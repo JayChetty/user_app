@@ -1,0 +1,6 @@
+<li>
+
+<%= quote.body  %>
+<%= quote.author %>
+<%= link_to "delete", [current_user, quote] , method: :delete, data: { confirm: "You sure?" } %>
+</li>

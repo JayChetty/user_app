@@ -3,9 +3,17 @@ StaticBootstrapApp::Application.routes.draw do
 
 
 
+  get "quotes/new"
+
+  get "quotes/create"
+
+  get "quotes/destroy"
+
   devise_for :users
 
-  resources :users, only: [:show]
+  resources :users, only: [:show] do
+    resources :quotes, only: [:index, :new, :create, :destroy]
+  end
 
   root to: 'static_pages#home'
 

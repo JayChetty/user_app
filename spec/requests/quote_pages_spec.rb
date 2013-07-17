@@ -30,5 +30,19 @@ describe "QuotePages" do
         should have_selector('.current', text: "La") 
       end
   	end
+
+    describe "Adding quote with incorrect info" do      
+
+      it "should not create a quote" do
+        expect { click_button "Add" }.not_to change(Quote, :count)
+      end
+
+      describe "error messages" do
+        before { click_button "Add" }
+        it { should have_content('error') } 
+      end
+    end
+
+
   end
 end

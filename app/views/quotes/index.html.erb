@@ -15,7 +15,7 @@
 <% if @user == current_user %>
 	<div class="span4 ">
 
-	<%= form_for [@user,  @user.quotes.build] do |f| %>
+	<%= form_for [@user, @quote] do |f| %>
 	 	<%= render 'shared/error_messages', object: f.object %>
 	 	<div><%= f.hidden_field :id %></div>
 	 	<div class = "pull-right">

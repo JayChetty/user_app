@@ -10,8 +10,13 @@ class QuotesController < ApplicationController
         current_user.current_quote_id = @quote.id
         current_user.save
       end
+      redirect_to user_quotes_path(current_user)
+    else
+      @user = current_user
+      @quotes = @user.quotes.all
+      render action: "index"
     end
-    redirect_to user_quotes_path(current_user)
+    
   end
 
   def destroy
@@ -23,6 +28,7 @@ class QuotesController < ApplicationController
   def index
   	@user = User.find(params[:user_id])
     @quotes = @user.quotes.all
+    @quote = @user.quotes.build
   end
 
 end

@@ -1,0 +1,22 @@
+<h2>Books</h2>
+<%= form_tag(books_path, method: "get") do %>
+  <%= label_tag(:title, "Title") %>
+  <%= text_field_tag(:title) %>
+  <%= submit_tag("Find") %>
+<% end %>
+
+<% if @books %>
+	<% unless @books.none? %>
+		<ul>
+		<% @books.each do |book| %>
+			<li>
+			<%= book.authors %>
+			<%= book.title   %>			
+			<%#= link_to "Add Read", new_user_read_path(current_user, book_isbn: book.isbn) %>
+			<%= link_to "Add Read", new_user_read_path(current_user, book_isbn: book.isbn ,book_author: book.authors, book_title: book.title, book_image_url: book.image_link(:zoom => 5))%>
+			</li>
+		<% end %>	
+		</ul>
+	<% end %>		
+<% end %>
+

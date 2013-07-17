@@ -1,6 +1,13 @@
 <li>
-
 <%= quote.body  %>
-<%= quote.author %>
-<%= link_to "delete", [current_user, quote] , method: :delete, data: { confirm: "You sure?" } %>
+<br>
+- <%= quote.author %> 
+<% if @user == current_user %>
+<div align="right">
+	<br>
+	<%= link_to "Delete", [current_user, quote] , method: :delete, data: { confirm: "You sure?" } %>
+	<br>
+	<%= link_to "Make current", user_current_quote_path(current_user, quote), method: :put %>
+</div>
+<% end %>
 </li>

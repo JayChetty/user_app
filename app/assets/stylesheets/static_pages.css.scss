@@ -72,11 +72,22 @@ p {
   line-height: 1.7em;
 }
 
+.quotes {
+  list-style: none;
+
+  li {
+    padding-top: 20px;
+    padding-bottom: 20px;
+    border-top: 3px solid #e8e8e8;
+  }
+}
+
+
 /* forms */ 
-input, textarea, select, .uneditable-input {
+/*input, textarea, select, .uneditable-input {
   border: 1px solid #bbb;
   width: 100%;
   padding: 10px;
   margin-bottom: 15px;
   @include box_sizing;
-}
+}*/

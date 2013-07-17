@@ -1,0 +1,11 @@
+<li>
+	<div class="row">
+	<div class="span1">	
+	<%= image_tag(read.image_url) %>
+    </div>
+	<div class="span6">
+	<%= read.title %>  <br>
+    <%= read.author %><br>
+	<%= link_to "Delete", [current_user, read] , method: :delete, data: { confirm: "You sure?" } if @user == current_user %>
+	</div>
+</li>

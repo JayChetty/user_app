@@ -1,19 +1,33 @@
 <%= render @user %>
+<div class="row">
 <% if @user == current_user %>
+	<div class="span8">
+<% else %>
+	<div class="span12 ">
+<% end %>
+<div class = "quotes">
+	<h5> All User Quotes </h5>
+	<ul class = "quotes">
+		<%= render @quotes %>
+	</ul>
+</div>
+</div>
+<% if @user == current_user %>
+	<div class="span4 ">
+
 	<%= form_for [@user,  @user.quotes.build] do |f| %>
 	 	<%= render 'shared/error_messages', object: f.object %>
 	 	<div><%= f.hidden_field :id %></div>
+	 	<div class = "pull-right">
 	    <div class = "field">
-		  	<%= f.label "Quote" %>		
-	      	<%= f.text_field :body %>
-		  	<%= f.label "Author" %>		
+		  	<%= f.label :body %>		
+	      	<%= f.text_area :body %>
+		  	<%= f.label :author %>		
 	      	<%= f.text_field :author %>      	
 	    </div>
-	    <%= f.submit "Post", class: "btn btn-large btn-primary" %>
+	    <%= f.submit "Add", class: "btn btn-large btn-primary pull-right" %>
+	    </div>
 	<% end %>
+	</div>
 <% end %>	
-<h5> Quotes Bank </h5>
-<%# debug @quotes %>
-<ul>
-	<%= render @quotes %>
-</ul>
+</div>

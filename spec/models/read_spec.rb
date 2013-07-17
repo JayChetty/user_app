@@ -1,43 +1,43 @@
 # == Schema Information
 #
-# Table name: quotes
+# Table name: reads
 #
 #  id         :integer          not null, primary key
-#  author     :string(255)
-#  body       :string(255)
+#  user_id    :integer
+#  isbn       :string(255)
 #  created_at :datetime         not null
 #  updated_at :datetime         not null
-#  user_id    :integer
+#  author     :string(255)
+#  title      :string(255)
+#  comment    :string(255)
+#  image_url  :string(255)
 #
 
 require 'spec_helper'
 
-describe Quote do
+describe Read do
   before do
     @user = User.create(name:"Jay Chetty", email: "user@example.com", password: "foobarbar", password_confirmation: "foobarbar")
-    @quote = @user.quotes.build(author: "Walt Whitman", body: "lalalllalalala")
+    @read= @user.reads.build(isbn: "9781907832567")
   end
 
-  subject {@quote}
+  subject {@read}
 
+  it {should respond_to(:user_id)}
+  it {should respond_to(:isbn)}
+  it {should respond_to(:user)}
   it {should respond_to(:author)}
-  it {should respond_to(:body)}
-  its (:user) {should == @user}
-  
+  it {should respond_to(:title)}
 
-  it {should be_valid}
+  it "should have the correct user" do
+  	@read.user_id.should == @user.id
+  end
 
   describe "accessible attributes" do
   	it "should not allow access to user_id" do
   		expect do
-  			Quote.new(user_id: @user.id)
+  			Read.new(user_id: @user.id)
   		end.to raise_error(ActiveModel::MassAssignmentSecurity::Error)
   	end
   end
-
-  describe "when user_id is not present" do
-  	before { @quote.user_id = nil }
-  	it { should_not be_valid }
-  end	
-
 end

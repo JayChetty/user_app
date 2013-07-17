@@ -1,1 +1,19 @@
 <%= render @user %>
+<div class = "pull-right">
+<% if @user.current_quote %>
+	<% if @user == current_user %>
+		<%= link_to "Change quote", user_quotes_path(current_user) %>
+	<% else %>
+		<%= link_to "See all users quotes",  user_quotes_path(@user) %>
+	<% end %>
+<% else %>
+	<% if @user == current_user %>
+		<%= link_to "Add quote", user_quotes_path(current_user) %>
+	<% end %>
+<% end %>
+</div>
+<br>
+<h5> Favorate Reads </h5>
+<ul class = "quotes">
+<%= render @user.reads %>
+</ul>	

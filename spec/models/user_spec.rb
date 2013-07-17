@@ -16,25 +16,46 @@
 #  created_at             :datetime         not null
 #  updated_at             :datetime         not null
 #  name                   :string(255)
+#  current_quote_id       :integer
 #
 
 require 'spec_helper'
 
 describe User do
   before do
-    @user = User.new(name:"Jay Chetty", email: "user@example.com", password: "foobarbar", password_confirmation: "foobarbar")
+    @user = User.new(name:"Jay Chetty", email: "user@example.com", password: "foobarbar", password_confirmation: "foobarbar")  
   end
 
   subject {@user}
 
   it {should respond_to(:email)}
   it {should respond_to(:name)}
+  it {should respond_to(:quotes)}
   it {should respond_to(:current_quote)}
+  it {should respond_to(:reads)}
+
 
   it { should be_valid }
 
   describe "When name does not exist" do
   	before {@user.name = nil}
   	it {should_not be_valid}
+  end 
+
+  describe "New quote added" do
+    before do      
+      @user.save
+      @quote = @user.quotes.create(author: "Walt Whitman", body: "lalalllalalala")   
+    end
+
+    it "should have a quote" do
+      @user.quotes.size.should == 1
+    end
+    # refactor so the logic is moved from controller to model, model use association call back
+    # it "should be the current quote" do
+    #   @user.current_quote_id.should == @quote.id
+    # end
   end
+
+
 end

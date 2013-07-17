@@ -2,23 +2,19 @@ StaticBootstrapApp::Application.routes.draw do
 
 
 
-
-  get "quotes/new"
-
-  get "quotes/create"
-
-  get "quotes/destroy"
-
   devise_for :users
 
-  resources :users, only: [:show] do
+  resources :users, only: [:show,:update] do
     resources :quotes, only: [:index, :new, :create, :destroy]
+    resources :current_quotes, only: [:update]
+    resources :reads
   end
+
+  resources :books, only: [:index, :show]
 
   root to: 'static_pages#home'
 
-  match 'home', to: 'static_pages#home'
-  match 'about', to: 'static_pages#about'
+
 
   # The priority is based upon order of creation:
   # first created -> highest priority.

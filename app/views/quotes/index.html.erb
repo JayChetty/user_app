@@ -1,4 +1,8 @@
-<%= render @user %>
+<h2><%=  @user.name %></h2>
+<% if @user.current_quote %>
+	<p class = "current"><%= @user.current_quote.body %> - <%= @user.current_quote.author %></p>
+<% end %>
+
 <div class="row">
 <% if @user == current_user %>
 	<div class="span8">

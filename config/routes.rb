@@ -4,7 +4,7 @@ StaticBootstrapApp::Application.routes.draw do
 
   devise_for :users
 
-  resources :users, only: [:show,:update] do
+  resources :users, only: [:show,:update, :index] do
     resources :quotes, only: [:index, :new, :create, :destroy]
     resources :current_quotes, only: [:update]
     resources :reads

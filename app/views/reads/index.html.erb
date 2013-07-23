@@ -1,2 +1,16 @@
-<h1>Reads#index</h1>
-<p>Find me in app/views/reads/index.html.erb</p>
+<%= render 'shared/userhead' %>
+<%= render 'shared/memehead' %>
+
+<% if @user == current_user %>
+		<%= link_to "Edit quotes", user_meme_quotes_path(current_user, @meme) %>
+<% else %>
+		<%= link_to "See all meme quotes",  user_meme_quotes_path(current_user, @meme) %>
+<% end %>
+<br>
+<br>
+<br>
+<ul class = "memes">
+	<%= render @reads %>	
+</ul>	
+<%= will_paginate @reads%>
+<%= link_to "Add Read", new_user_meme_read_path(current_user, @meme) %>

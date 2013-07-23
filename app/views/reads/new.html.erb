@@ -1,2 +1,29 @@
-<h1>Reads#new</h1>
-<p>Find me in app/views/reads/new.html.erb</p>
+<h2>New Read</h2>
+<%= form_tag(new_user_meme_read_path, method: "get") do %>
+  <%= label_tag(:title, "Title") %>
+  <%= text_field_tag(:title) %>
+  <%= label_tag(:author, "Author") %>
+  <%= text_field_tag(:author) %>  
+  <br>
+  <%= submit_tag("Find",  class: "btn") %>
+
+<% end %>
+
+<% if @books && !@books.none? %>
+	<ul class = "quotes">
+	<% @books.each do |book| %>
+		<li>
+	    <div class="row">
+			<div class="span1">	
+			<%= image_tag(book.image_link(zoom: 5)) %>
+		    </div>
+			<div class="span6">
+			<%= book.authors %><br>
+			<%= book.title   %><br>		
+			<%= link_to "Add Read", user_meme_reads_path(current_user, @meme, book_isbn: book.isbn ,book_author: book.authors, book_title: book.title, book_image_url: book.image_link(:zoom => 5)), method: "post" if !current_user.nil?%>
+			</div>
+		</div>
+		</li>
+	<% end %>	
+	</ul>	
+<% end %>

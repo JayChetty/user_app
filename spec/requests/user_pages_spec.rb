@@ -11,14 +11,14 @@ describe "UserPages" do
   end
   describe "On profile page" do
   	
-    it "should have link to user" do
-    	page.should have_link("Users")
+    it "should have name" do
+    	page.should have_content("Jay Chetty")
     end
 
-    it "should show users" do
-    	click_link "Users"
-    	page.should have_content "Users"
-    end
+    # it "should show users" do
+    # 	click_link "Users"
+    # 	page.should have_content "Users"
+    # end
   end
 end
 

@@ -11,21 +11,30 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130717134508) do
+ActiveRecord::Schema.define(:version => 20130718153144) do
+
+  create_table "memes", :force => true do |t|
+    t.integer  "user_id"
+    t.integer  "current_quote_id"
+    t.datetime "created_at",       :null => false
+    t.datetime "updated_at",       :null => false
+  end
+
+  add_index "memes", ["user_id"], :name => "index_memes_on_user_id"
 
   create_table "quotes", :force => true do |t|
     t.string   "author"
     t.string   "body"
     t.datetime "created_at", :null => false
     t.datetime "updated_at", :null => false
-    t.integer  "user_id"
+    t.integer  "meme_id"
   end
 
   add_index "quotes", ["author"], :name => "index_quotes_on_author"
-  add_index "quotes", ["user_id"], :name => "index_quotes_on_user_id"
+  add_index "quotes", ["meme_id"], :name => "index_quotes_on_user_id"
 
   create_table "reads", :force => true do |t|
-    t.integer  "user_id"
+    t.integer  "meme_id"
     t.string   "isbn"
     t.datetime "created_at", :null => false
     t.datetime "updated_at", :null => false
@@ -36,7 +45,7 @@ ActiveRecord::Schema.define(:version => 20130717134508) do
   end
 
   add_index "reads", ["isbn"], :name => "index_reads_on_isbn"
-  add_index "reads", ["user_id"], :name => "index_reads_on_user_id"
+  add_index "reads", ["meme_id"], :name => "index_reads_on_user_id"
 
   create_table "users", :force => true do |t|
     t.string   "email",                  :default => "", :null => false
@@ -52,7 +61,6 @@ ActiveRecord::Schema.define(:version => 20130717134508) do
     t.datetime "created_at",                             :null => false
     t.datetime "updated_at",                             :null => false
     t.string   "name"
-    t.integer  "current_quote_id"
   end
 
   add_index "users", ["email"], :name => "index_users_on_email", :unique => true

@@ -3,32 +3,43 @@ class QuotesController < ApplicationController
   end
 
   def create
-    @quote = current_user.quotes.build(params[:quote])
+    @meme = current_user.memes.find(params[:meme_id])
+    @quote = @meme.quotes.build(params[:quote])
     if @quote.save
       flash[:success] = "New Quote created"
-      if current_user.quotes.size == 1 
-        current_user.current_quote_id = @quote.id
-        current_user.save
-      end
-      redirect_to user_quotes_path(current_user)
+      # if @meme.quotes.size == 1 
+      #   @meme.current_quote_id = @quote.id
+      #   @meme.save
+      # end
+      redirect_to user_meme_quotes_path(current_user, @meme)
     else
       @user = current_user
-      @quotes = @user.quotes.all
+      @quotes = @meme.quotes.all
       render action: "index"
-    end
-    
+    end    
+  end
+
+  def edit
+
+
   end
 
   def destroy
-    current_user.quotes.find(params[:id]).destroy
-    flash[:success] = "Quote destroyed"
-    redirect_to user_quotes_path(current_user)
+    @meme = current_user.memes.find(params[:meme_id])
+    @quote = @meme.quotes.find(params[:id])
+    if @quote.destroy
+      flash[:success] = "Quote destroyed"
+    else
+      flash[:failure] = "Cannot destroy current quote"
+    end if
+    redirect_to user_meme_quotes_path(current_user, @meme)
   end
 
   def index
   	@user = User.find(params[:user_id])
-    @quotes = @user.quotes.all
-    @quote = @user.quotes.build
+    @meme = @user.memes.find(params[:meme_id])
+    @quotes = @meme.quotes.all
+    @quote = @meme.quotes.build
   end
 
 end

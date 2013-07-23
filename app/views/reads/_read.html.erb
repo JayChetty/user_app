@@ -6,6 +6,6 @@
 	<div class="span6">
 	<%= read.title %>  <br>
     <%= read.author %><br>
-	<%= link_to "Delete", [current_user, read] , method: :delete, data: { confirm: "You sure?" } if @user == current_user %>
+	<%= link_to "Delete", [current_user, @meme, read] , method: :delete, data: { confirm: "You sure?" } if @user == current_user %>
 	</div>
 </li>

@@ -1,7 +1,6 @@
 <%= render 'shared/userhead' %>
 <%= render 'shared/memehead' %>
 
-
 <div class="row">
 <% if @user == current_user %>
 	<div class="span8">
@@ -9,9 +8,9 @@
 	<div class="span12 ">
 <% end %>
 <div class = "memes">
-	<h5> All Meme Quotes </h5>
+	<h5> All User Quotes </h5>
 	<ul class = "memes">
-		<%= render @quotes %>
+		<%= render @meme.quotes %>
 	</ul>
 </div>
 </div>

@@ -8,7 +8,7 @@
 	<% if @user == current_user %>
 		<%= link_to "Change quote", user_quotes_path(current_user) %>
 	<% else %>
-		<%= link_to "See all users quotes",  user_quotes_path(@user) %>
+		<%= link_to "See all meme quotes",  user_quotes_path(@user) %>
 	<% end %>
 <% else %>
 	<% if @user == current_user %>
@@ -16,6 +16,7 @@
 	<% end %>
 <% end %>
 </div>
+
 <br>
 <h5> Favorate Reads </h5>
 <ul class = "quotes">

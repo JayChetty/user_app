@@ -3,4 +3,4 @@
 	<%= render @memes %>
 </ul>
 
-<%= link_to "Add Meme", user_memes_path(current_user.id), method: "post" if current_user %>
+<%= link_to "Add Meme", user_memes_path(current_user.id), method: "post" if @user == current_user %>

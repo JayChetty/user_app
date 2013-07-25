@@ -1,5 +1,6 @@
 class MemesController < ApplicationController
   def index
+
     @user = User.find(params[:user_id]) 
     @memes = @user.memes.all
   end

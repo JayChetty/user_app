@@ -2,10 +2,11 @@
 <%= render 'shared/memehead' %>
 
 <% if @user == current_user %>
-		<%= link_to "Edit quotes", user_meme_quotes_path(current_user, @meme) %>
+		<%= link_to "Edit quotes", user_meme_quotes_path(@user, @meme) %>
 <% else %>
-		<%= link_to "See all meme quotes",  user_meme_quotes_path(current_user, @meme) %>
+		<%= link_to "See all meme quotes",  user_meme_quotes_path(@user, @meme) %>
 <% end %>
+
 <br>
 <br>
 <br>
@@ -13,4 +14,7 @@
 	<%= render @reads %>	
 </ul>	
 <%= will_paginate @reads%>
-<%= link_to "Add Read", new_user_meme_read_path(current_user, @meme) %>
+<%= link_to "Add Read", new_user_meme_read_path(current_user, @meme) if @user == current_user %>
+<div class = "pull-right">
+	<%= link_to "all user memes" , user_memes_path(@user) %>
+</div>

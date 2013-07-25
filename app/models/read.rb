@@ -3,7 +3,7 @@
 # Table name: reads
 #
 #  id         :integer          not null, primary key
-#  meme_id    :integer
+#  user_id    :integer
 #  isbn       :string(255)
 #  created_at :datetime         not null
 #  updated_at :datetime         not null
@@ -17,7 +17,7 @@ class Read < ActiveRecord::Base
 
   attr_accessible :isbn, :author, :title, :comment, :image_url
 
-  belongs_to :meme
+  belongs_to :user
 
   # def ititle
   #   book = GoogleBooks.search("isbn:#{self.isbn}").first

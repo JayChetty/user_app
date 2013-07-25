@@ -1,5 +1,5 @@
 <h2>New Read</h2>
-<%= form_tag(new_user_meme_read_path, method: "get") do %>
+<%= form_tag(new_user_read_path, method: "get") do %>
   <%= label_tag(:title, "Title") %>
   <%= text_field_tag(:title) %>
   <%= label_tag(:author, "Author") %>
@@ -20,7 +20,7 @@
 			<div class="span6">
 			<%= book.authors %><br>
 			<%= book.title   %><br>		
-			<%= link_to "Add Read", user_meme_reads_path(current_user, @meme, book_isbn: book.isbn ,book_author: book.authors, book_title: book.title, book_image_url: book.image_link(:zoom => 5)), method: "post" if !current_user.nil?%>
+			<%= link_to "Add Read", user_reads_path(current_user, book_isbn: book.isbn ,book_author: book.authors, book_title: book.title, book_image_url: book.image_link(:zoom => 5)), method: "post" if !current_user.nil?%>
 			</div>
 		</div>
 		</li>

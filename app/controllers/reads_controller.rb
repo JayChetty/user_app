@@ -1,7 +1,6 @@
 class ReadsController < ApplicationController
   def new   
     #flash[:success] = "Read Added #{params}"
-    @meme = current_user.memes.find(params[:meme_id])
     @search_string = ""
     @search_string = "intitle:#{params[:title]}" if params[:title] && !params[:title].empty? 
     if params[:author] && !params[:author].empty?  
@@ -30,14 +29,13 @@ class ReadsController < ApplicationController
   end
 
   def create
-    @meme = current_user.memes.find(params[:meme_id])
-    @read = @meme.reads.build(isbn: params[:book_isbn], author: params[:book_author] ,title: params[:book_title] , image_url: params[:book_image_url] )
+    @read = current_user.reads.build(isbn: params[:book_isbn], author: params[:book_author] ,title: params[:book_title] , image_url: params[:book_image_url] )
      if @read.save
        flash[:success] = "Read Added"
-       redirect_to user_meme_reads_path(current_user, @meme)
+       redirect_to user_reads_path(current_user)
      else
        flash[:failure] = "Could not add read"
-       redirect_to user_meme_reads_path(current_user, @meme)
+       redirect_to user_reads_path(current_user)
      end 
   end
 
@@ -50,17 +48,19 @@ class ReadsController < ApplicationController
   def index
      #flash[:sucess] = "#{params}"
      @user = User.find(params[:user_id]) 
-     @meme = @user.memes.find(params[:meme_id])
-     @reads = @meme.reads.paginate(page: params[:page], per_page: 5)
+     @reads = @user.reads.paginate(page: params[:page], per_page: 5)
   end
 
   def show
   end
 
   def destroy
-    @meme = current_user.memes.find(params[:meme_id])
-    @meme.reads.find(params[:id]).destroy
-    flash[:success] = "Read destroyed"
-    redirect_to user_meme_path(current_user, @meme)  
+    @read = current_user.reads.find(params[:id])
+    if @read.destroy
+      flash[:success] = "Read destroyed"
+    else
+      flash[:failure] = "Could not destroy read"
+    end
+    redirect_to user_reads_path(current_user)  
   end
 end

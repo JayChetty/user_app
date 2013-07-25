@@ -1,6 +1,4 @@
 <%= render 'shared/userhead' %>
-<%= render 'shared/memehead' %>
-
 
 <div class="row">
 <% if @user == current_user %>
@@ -9,7 +7,7 @@
 	<div class="span12 ">
 <% end %>
 <div class = "memes">
-	<h5> All Meme Quotes </h5>
+	<h5> All Quotes </h5>
 	<ul class = "memes">
 		<%= render @quotes %>
 	</ul>
@@ -18,7 +16,7 @@
 <% if @user == current_user %>
 	<div class="span4 ">
 
-		<%= form_for [@user, @meme, @quote] do |f| %>
+		<%= form_for [@user, @quote] do |f| %>
 		 	<%= render 'shared/error_messages', object: f.object %>
 		 	<div><%= f.hidden_field :id %></div>
 		 	<div class = "pull-right">
@@ -35,6 +33,3 @@
 <% end %>	
 </div>
 
-<div class = "pull-right">
-			<%= link_to "back to reads" , user_meme_reads_path(@user, @meme) %>
-		</div>

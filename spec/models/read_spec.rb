@@ -3,7 +3,7 @@
 # Table name: reads
 #
 #  id         :integer          not null, primary key
-#  meme_id    :integer
+#  user_id    :integer
 #  isbn       :string(255)
 #  created_at :datetime         not null
 #  updated_at :datetime         not null
@@ -18,26 +18,23 @@ require 'spec_helper'
 describe Read do
   before do
     @user = User.create(name:"Jay Chetty", email: "user@example.com", password: "foobarbar", password_confirmation: "foobarbar")
-    @meme = @user.memes.create
-    @read=  @meme.reads.build(isbn: "9781907832567")
+    @read=  @user.reads.build(isbn: "9781907832567")
   end
 
   subject {@read}
 
-  it {should respond_to(:meme_id)}
   it {should respond_to(:isbn)}
-  it {should respond_to(:meme)}
   it {should respond_to(:author)}
   it {should respond_to(:title)}
 
   it "should have the correct user" do
-  	@read.meme_id.should == @meme.id
+  	@read.user_id.should == @user.id
   end
 
   describe "accessible attributes" do
   	it "should not allow access to meme_id" do
   		expect do
-  			Read.new(meme_id: @meme.id)
+  			Read.new(user_id: @user.id)
   		end.to raise_error(ActiveModel::MassAssignmentSecurity::Error)
   	end
   end

@@ -16,6 +16,7 @@
 #  created_at             :datetime         not null
 #  updated_at             :datetime         not null
 #  name                   :string(255)
+#  current_quote_id       :integer
 #
 
 class User < ActiveRecord::Base
@@ -30,13 +31,15 @@ class User < ActiveRecord::Base
   attr_accessible :email, :password, :password_confirmation, :remember_me, :name
   # attr_accessible :title, :body
 
-  has_many :memes
+  has_many :reads
+  has_many  :quotes
+  belongs_to :current_quote, class_name: "Quote"
 
   validates :name,  presence: true
 
-  after_create do 
-    self.memes.create     
-  end
+  # after_create do 
+  #   self.memes.create     
+  # end
 
 
 end

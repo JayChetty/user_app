@@ -1,1 +1,16 @@
 <h2><%=  @user.name %></h2>
+<% if @user.current_quote %>
+	<%= @user.current_quote.to_string %>
+<% end %>
+<div class = "pull-right">
+<% if @user == current_user %>
+		<%= link_to "Edit quotes", user_quotes_path(@user) %>
+<% else %>
+		<%= link_to "See User QuoteBook",  user_quotes_path(@user) if @user.quotes.any? %>
+<% end %>	
+
+</div>
+
+<br>
+<br>
+<br>

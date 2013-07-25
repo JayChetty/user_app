@@ -7,16 +7,16 @@
 #  body       :string(255)
 #  created_at :datetime         not null
 #  updated_at :datetime         not null
-#  meme_id    :integer
+#  user_id    :integer
 #
 
 class Quote < ActiveRecord::Base
   attr_accessible :author, :body
 
-  belongs_to :meme
+  belongs_to :user
 
   validates :body, presence: true
-  validates :meme_id, presence: true
+  validates :user_id, presence: true
 
   def to_string
   	out = "\"#{self.body}\""
@@ -24,10 +24,10 @@ class Quote < ActiveRecord::Base
   	out
   end
 
-  before_destroy do
-  	if self.id == self.meme.current_quote_id
-      errors.add(:id)
-      false
-    end
-  end
+  # before_destroy do
+  # 	if self.id == self.user.current_quote_id
+  #     errors.add(:id)
+  #     false
+  #   end
+  # end
 end

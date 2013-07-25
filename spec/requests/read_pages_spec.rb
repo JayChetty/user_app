@@ -4,17 +4,18 @@ describe "ReadPages" do
   subject { page }
 
   before do
-		@user = User.new(name:"Jay Chetty", email: "user@example.com", password: "foobarbar", password_confirmation: "foobarbar")
-		@user.save
-		@meme = @user.memes.first
+		@user = User.create(name:"Jay Chetty", email: "user@example.com", password: "foobarbar", password_confirmation: "foobarbar")
+		#@meme = @user.memes.first
     sign_in @user 
-    visit user_meme_reads_path(@user, @meme)
+    visit user_reads_path(@user)
   end
-  describe "memes index" do
+
+
+  describe "readsindex" do
   	it {should have_link "Add Read"}  
   end
 
-  describe "creating new meme" do
+  describe "creating new read" do
   	before{ click_link "Add Read"}
   	it {should have_content "New Read"}  
   end

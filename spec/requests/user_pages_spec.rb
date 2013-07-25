@@ -15,6 +15,10 @@ describe "UserPages" do
     	page.should have_content("Jay Chetty")
     end
 
+    it "should have link to add new quote" do
+      page.should have_link("Edit quotes")
+    end
+
     # it "should show users" do
     # 	click_link "Users"
     # 	page.should have_content "Users"

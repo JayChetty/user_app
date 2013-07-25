@@ -5,28 +5,15 @@ describe "QuotePages" do
 	subject { page }
 
   before do
-		@user = User.new(name:"Jay Chetty", email: "user@example.com", password: "foobarbar", password_confirmation: "foobarbar")
-		@user.save
-    @meme = @user.memes.first
+		@user = User.create(name:"Jay Chetty", email: "user@example.com", password: "foobarbar", password_confirmation: "foobarbar")
+   # @quote = @user.quotes.create(author:"Walt Whitman", body:"lala")
 		sign_in @user
 	end
 
-  describe "visiting user memes quotes path" do
-  	before { visit user_meme_quotes_path(@user.id, @meme.id) }
+  describe "visiting user quotes path" do
+  	before { visit user_quotes_path(@user.id) }
   	it { should have_content('Quotes') } 
-    it { should have_content('Default') } 
 
-    describe "Deletion" do
-      it { should have_link('Delete') }
-
-      describe "clicking delete on current" do
-        it "should not remove quote as current" do
-          expect { click_link "Delete" }.not_to change(Quote, :count)
-        end
-      end
-    end
-
-    
 
   	describe "Adding new quote" do  		
       before do
@@ -36,7 +23,7 @@ describe "QuotePages" do
       end
 
       it "should create a new quote" do
-        @meme.quotes.count.should == 2
+        @user.quotes.count.should == 1
       end
 
       describe "Making Current" do
@@ -56,6 +43,16 @@ describe "QuotePages" do
         it { should have_content('error') } 
       end
     end
+
+    # describe "Deletion" do
+    #   it { should have_link('Delete') }
+
+    #   describe "clicking delete on current" do
+    #     it "should not remove quote as current" do
+    #       expect { click_link "Delete" }.not_to change(Quote, :count)
+    #     end
+    #   end
+    # end   
 
 
 

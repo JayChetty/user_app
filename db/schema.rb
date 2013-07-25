@@ -11,13 +11,14 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130718153144) do
+ActiveRecord::Schema.define(:version => 20130725075505) do
 
   create_table "memes", :force => true do |t|
     t.integer  "user_id"
     t.integer  "current_quote_id"
     t.datetime "created_at",       :null => false
     t.datetime "updated_at",       :null => false
+    t.string   "title"
   end
 
   add_index "memes", ["user_id"], :name => "index_memes_on_user_id"

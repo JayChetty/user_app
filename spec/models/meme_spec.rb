@@ -22,9 +22,15 @@ describe Meme do
 
   it {should respond_to(:quotes)}
   it {should respond_to(:current_quote)}
+
+  it {should respond_to(:title)}  
   it {should respond_to(:reads)}
   its (:user) {should == @user}
   it {should be_valid}
+
+  it "should have a title" do
+     @meme.title.should == "New Meme"
+  end
 
   it "should have a default quote" do
      @meme.quotes.size.should == 1
@@ -47,15 +53,15 @@ describe Meme do
   	it { should_not be_valid }
   end	
 
-  describe "New quote added" do
-    before do      
-      @meme.save
-      @quote = @meme.quotes.create(author: "Walt Whitman", body: "lalalllalalala")   
-    end
+  # describe "New quote added" do
+  #   before do      
+  #     @meme.save
+  #     @quote = @meme.quotes.create(author: "Walt Whitman", body: "lalalllalalala")   
+  #   end
 
-    it "should have a quote" do
-      @meme.quotes.size.should == 2
-    end
-  end  
+  #   it "should have a quote" do
+  #     @meme.quotes.size.should == 2
+  #   end
+  # end  
 
 end

@@ -13,6 +13,11 @@ describe "MemePages" do
 
   describe "memes index" do
     before{ visit user_memes_path(@user)}
+
+    it "should have meme titles" do
+      page.should have_content('New Meme')
+    end  
+
     it "should show default quote" do
       page.should have_content('Default quote')
     end  

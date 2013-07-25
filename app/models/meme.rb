@@ -26,7 +26,12 @@ class Meme < ActiveRecord::Base
   #   end
   # end
 
+  before_create do
+    self.title = "New Meme"
+  end
+
   after_create do 
+    self.title
     default_quote = self.quotes.create(body: "Default quote. Add real") 
     self.current_quote_id = default_quote.id    
     self.save

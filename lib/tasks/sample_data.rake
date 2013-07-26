@@ -20,11 +20,11 @@ namespace :db do
     	shall be a great poem and have the richest fluency not only in its words but in the silent lines of its lips and face 
     	and between the lashes of your eyes and in every motion and joint of your body." ,author: "Walt Whitman")
 
-     jq2 = jay.quotes.create!(body: "Ever tried. Ever failed. No matter. Try again. Fail again. Fail better " ,author: "Samuel Beckket")
+    jq2 = jay.quotes.create!(body: "Ever tried. Ever failed. No matter. Try again. Fail again. Fail better " ,author: "Samuel Beckket")
 
-     jq3 = jay.quotes.create!(body: "Be the change you want to see in the world  " ,author: "Gandhi")
+    jq3 = jay.quotes.create!(body: "Be the change you want to see in the world  " ,author: "Gandhi")
 
-		jq4 = jay.quotes.create!(body: "Science and technology would be used as though, like the Sabbath, they 
+	jq4 = jay.quotes.create!(body: "Science and technology would be used as though, like the Sabbath, they 
 			had been made for man, not (as at present and still more so in the Brave New World) as though man were 
 			to be adapted and enslaved to them " ,author: "Aldous Huxley")
 
@@ -42,16 +42,20 @@ namespace :db do
 
     kq3 = kieran.quotes.create!(body: "Be the change you want to see in the world  " ,author: "Gandhi")
 
-		kq4 = kieran.quotes.create!(body: "Science and technology would be used as though, like the Sabbath, they 
+	kq4 = kieran.quotes.create!(body: "Science and technology would be used as though, like the Sabbath, they 
 			had been made for man, not (as at present and still more so in the Brave New World) as though man were 
 			to be adapted and enslaved to them " ,author: "Aldous Huxley")
 
 
-		jay.current_quote_id = jq1.id
-		kieran.current_quote_id = kq2.id
+	jay.current_quote_id = jq1.id
+	kieran.current_quote_id = kq2.id
+
+    jay.shelves.create(name: "Dystopia")
+    jay.shelves.create(name: "Fantasy")
 
 
-		jay.save
-		kieran.save
+	jay.save
+	kieran.save
+
 	end
 end

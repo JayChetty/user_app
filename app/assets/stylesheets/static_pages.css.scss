@@ -1,4 +1,7 @@
+
+
 @import "bootstrap";
+@import "bootstrap-responsive";
 
 $grayMediumLight: #eaeaea;
 
@@ -9,7 +12,13 @@ $grayMediumLight: #eaeaea;
   box-sizing: border-box;
 }
 
+/*bootstrap can override*/
+/*.navbar-inner { background: red; }*/
+
+/*.nav-tabs   { background: $navbarInverseLinkBackgroundActive}*/
+
 /* make the header thinner and nice */
+
 
 /* header */ 
 #logo {
@@ -82,6 +91,10 @@ p {
     border-top: 2px solid #e8e8e8;
   }
 }
+
+
+
+
 
 
 

@@ -32,7 +32,8 @@ class User < ActiveRecord::Base
   # attr_accessible :title, :body
 
   has_many :reads
-  has_many  :quotes
+  has_many :quotes
+  has_many :shelves
   belongs_to :current_quote, class_name: "Quote"
 
   validates :name,  presence: true

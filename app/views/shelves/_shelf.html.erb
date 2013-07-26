@@ -1,0 +1,9 @@
+<% if @shelf == shelf %>
+	<li class = "active">
+		<%= link_to "<i class=\"icon-book\"></i> #{shelf.name} <i class=\" icon-chevron-right pull-right\"></i>".html_safe, user_shelf_path(@user, shelf) %>
+	</li>
+<% else %>
+	<li>
+		<%= link_to "<i class=\"icon-book\"></i> #{shelf.name}".html_safe, user_shelf_path(@user, shelf) %>
+	</li>
+<% end %>

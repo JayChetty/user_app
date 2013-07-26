@@ -26,6 +26,9 @@ describe Read do
   it {should respond_to(:isbn)}
   it {should respond_to(:author)}
   it {should respond_to(:title)}
+  it {should respond_to(:user_id)}
+
+  it { should be_valid }
 
   it "should have the correct user" do
   	@read.user_id.should == @user.id

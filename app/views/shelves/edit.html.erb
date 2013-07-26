@@ -1,2 +1,19 @@
-<h1>Shelves#edit</h1>
-<p>Find me in app/views/shelves/edit.html.erb</p>
+<%= render 'shared/userhead' %>
+<div class="container">
+	<div class="row">
+
+      <%= render 'shared/shelves_sidebar' %>	
+
+	  <div class="span9">
+	    <h4> Edit Shelf </h4>
+	    <%= form_for [@user, @shelf], method: :put do |f| %>
+	    	<%= f.label :name %>
+	    	<%= f.text_field :name %>
+	    	<br>
+	        <%= f.submit %>
+	    <% end %>	
+	  </div>
+
+	</div> 
+</div> 
+

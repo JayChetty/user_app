@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130725152207) do
+ActiveRecord::Schema.define(:version => 20130726081024) do
 
   create_table "quotes", :force => true do |t|
     t.string   "author"
@@ -25,7 +25,7 @@ ActiveRecord::Schema.define(:version => 20130725152207) do
   add_index "quotes", ["user_id"], :name => "index_quotes_on_user_id"
 
   create_table "reads", :force => true do |t|
-    t.integer  "user_id"
+    t.integer  "shelf_id"
     t.string   "isbn"
     t.datetime "created_at", :null => false
     t.datetime "updated_at", :null => false
@@ -36,7 +36,7 @@ ActiveRecord::Schema.define(:version => 20130725152207) do
   end
 
   add_index "reads", ["isbn"], :name => "index_reads_on_isbn"
-  add_index "reads", ["user_id"], :name => "index_reads_on_user_id"
+  add_index "reads", ["shelf_id"], :name => "index_reads_on_user_id"
 
   create_table "shelves", :force => true do |t|
     t.integer  "user_id"

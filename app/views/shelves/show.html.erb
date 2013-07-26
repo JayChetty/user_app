@@ -2,11 +2,29 @@
 <div class="container">
 	<div class="row">
 
-	  <%= render 'shared/shelves_sidebar' %>	
+	<%= render 'shared/shelves_sidebar' %>	
 	  
-	  <div class="span9">
+	<div class="span9">
+		<% if @reads.any? %>
+			<ul class = "reads">
+				<%= render @reads %>	
+			</ul>	
+			<%= will_paginate @reads%>	 
+	    <% else %>
+	    No books on this shelf yet 	
+		<% end %>
+		<% if @user == current_user %> 
+		<div class = "pull-right">
+	    	<%= link_to "Add Read", new_user_shelf_read_path(@user, @shelf) %>	
+	    	<br>
+	    	<br>
+	    	<%= link_to "Edit Shelf", edit_user_shelf_path(@user, @shelf) %>
+	    	<br>
+	    	<%= link_to "Delete Shelf", user_shelf_path(@user, @shelf), method: :delete, data: { confirm: "Delete Shelf and all Books?" } %>
+	    </div>
+	    <% end %>
 
-	  </div>
+	</div>
 
 	</div> 
 </div> 

@@ -21,15 +21,12 @@ describe "ShelfPages" do
 		before do 
 			sign_in @user
 		end
+
 		it {should have_link("Add Shelf")}
 
-		# describe "Adding new shelf" do
-
-		# 	before {click_link("Add Shelf")}
-		  
 	  it {should have_content("New")}
 
-	  describe "sending form"
+	  describe "sending form" do
 	  	before do
 	  		fill_in "Name", with: "Dystopia"
 	  		click_button "Create Shelf"
@@ -40,8 +37,36 @@ describe "ShelfPages" do
 	  	end
 
 	    it {should have_content "Dystopia"}
-		# end
+	    it {should have_link "Add Read"}
 
+	    describe "adding new read to shelf" do
+	    	before do
+	    		click_link "Add Read"
+	    	end
+	    	it {should have_content "New Read"}
+
+	    	describe "finding book" do
+	    		before do
+	    			fill_in "Title", with: "Oryx and Crake"
+	    			click_button "Find"
+	    		end
+
+	    		it {should have_content "Oryx and Crake"}
+	    		it {should have_link "Add Read"}
+
+	    		describe "adding book to shelf" do
+	    			before {click_link "Add Read"}
+
+	    			it "should have added book to shelf" do
+	    				@user.shelves.first.reads.count.should == 1
+	    			end
+
+	    		end
+	    	end
+
+
+	    end
+	  end
 	end
 
 
@@ -53,5 +78,4 @@ describe "ShelfPages" do
 		it {should have_content("Fantasy")}
 		it {should have_link("Add Shelf")}			
 	end
-
 end

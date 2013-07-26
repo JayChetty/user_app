@@ -1,3 +1,14 @@
+# == Schema Information
+#
+# Table name: shelves
+#
+#  id         :integer          not null, primary key
+#  user_id    :integer
+#  name       :string(255)
+#  created_at :datetime         not null
+#  updated_at :datetime         not null
+#
+
 require 'spec_helper'
 
 describe Shelf do
@@ -11,6 +22,7 @@ describe Shelf do
   it {should respond_to(:user_id)}
   it {should respond_to(:name)}
   it {should respond_to(:user)}
+  it {should respond_to(:reads)}
   it { should be_valid }
 
   it "should have the correct user" do

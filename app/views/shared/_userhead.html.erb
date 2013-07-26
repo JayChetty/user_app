@@ -1,16 +1,21 @@
 <h2><%=  @user.name %></h2>
-<% if @user.current_quote %>
-	<%= @user.current_quote.to_string %>
-<% end %>
-<div class = "pull-right">
-<% if @user == current_user %>
-		<%= link_to "Edit quotes", user_quotes_path(@user) %>
+<% if @user.quotes.any? %>
+	<% if @user.current_quote %>
+		<%= @user.current_quote.to_string %>
+	<% end %>
+	<div class = "pull-right">
+	<% if current_page?(user_quotes_path) %>	
+      <%= link_to "Back to shelves", user_shelves_path(@user) %>
+    <% else %>
+		<% if @user == current_user %>
+				<%= link_to "Edit quotes", user_quotes_path(@user) %>
+		<% else %>
+				<%= link_to "All User Quotes",  user_quotes_path(@user) if @user.quotes.any? %>
+		<% end %>	
+	<% end %>
+	</div>
 <% else %>
-		<%= link_to "See User QuoteBook",  user_quotes_path(@user) if @user.quotes.any? %>
-<% end %>	
-
-</div>
-
-<br>
+<%= link_to "Add Quote", user_quotes_path(@user) if @user.quotes.any?%>
+<% end %>
 <br>
 <br>

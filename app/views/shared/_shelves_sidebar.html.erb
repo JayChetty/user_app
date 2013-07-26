@@ -1,7 +1,11 @@
 <div class="span3 ">
 	<ul class="nav nav-tabs nav-stacked">
-		<%= render @shelves %>
-		<%= link_to "Add Shelf", new_user_shelf_path(@user), class: "pull-right"%>
+		<% if @shelves.any? %>
+			<%= render @shelves %>
+			<%= link_to "Add Shelf", new_user_shelf_path(current_user), class: "pull-right" if @user == current_user && !current_page?(new_user_shelf_path) %>
+		<% else %>
+			No Shelves created yet
+		<% end %>
 	</ul>
 
 </div>

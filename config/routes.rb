@@ -1,27 +1,17 @@
 StaticBootstrapApp::Application.routes.draw do
 
 
-  get "shelves/new"
-
-  get "shelves/create"
-
-  get "shelves/edit"
-
-  get "shelves/update"
-
-  get "shelves/show"
-
-  get "shelves/index"
-
-  get "shelves/destroy"
-
   devise_for :users
 
   resources :users, only: [:show,:update, :index] do
-    resources :shelves
+  
     resources :quotes, only: [:index, :new, :create, :destroy]
     resources :reads
     resources :current_quotes, only: [:update]
+
+    resources :shelves  do
+      resources :reads 
+    end
 
   end
 

@@ -33,6 +33,7 @@ describe User do
 
   it {should respond_to(:quotes)}
   it {should respond_to(:current_quote)}
+  it {should respond_to(:shelves)}
 
   it { should be_valid }
 

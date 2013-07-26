@@ -8,6 +8,8 @@ class UsersController < ApplicationController
   end
 
   def index
-  	@users = User.all
+  	#@users = User.find(:all, conditions: ['name LIKE ?', "%#{params[:search]}%"]).paginate(page: params[:page], per_page: 10)
+
+    @users = User.paginate(conditions: ['name LIKE ?', "%#{params[:search]}%"], page: params[:page], per_page: 10)
   end
 end

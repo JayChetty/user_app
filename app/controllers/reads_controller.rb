@@ -20,7 +20,13 @@ class ReadsController < ApplicationController
     end
 
     unless @search_string.empty?  
+      if Rails.env.production?
+        user_ip = request.remote_ip  
+        @books = GoogleBooks.search(@search_string, {count: 20}, user_ip)
+      else
       @books = GoogleBooks.search(@search_string, count: 20)
+      end 
+
       if @books.none?
         flash.now[:failure] = "No books found with Title: #{params[:title]}, Author: #{params[:author]}"    
       else

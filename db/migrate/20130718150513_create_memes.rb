@@ -5,5 +5,6 @@ class CreateMemes < ActiveRecord::Migration
       t.integer :current_quote_id
 
       t.timestamps
+    end
   end
 end

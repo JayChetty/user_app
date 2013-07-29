@@ -61,14 +61,14 @@ class ReadsController < ApplicationController
   private
     def getFromAmazon(title, author)
 
-        # country = "us"
+        country = "us"
 
-        # case request.location.country
-        # when "United Kingdom"
-        #   country = "uk"
-        # else
-        #   country = "us"
-        # end
+        case request.location.country
+        when "United Kingdom"
+          country = "uk"
+        else
+          country = "us"
+        end
         Amazon::Ecs.item_search(title, :author => author, :country => "uk", :response_group => "Medium", :binding => "paperback").items
     end
 end

@@ -69,6 +69,6 @@ class ReadsController < ApplicationController
         # else
         #   country = "us"
         # end
-        Amazon::Ecs.item_search(title, :author=> author, :country => "uk", :response_group => "Medium", :binding => "paperback").items
+        Amazon::Ecs.item_search(title, :author => author, :country => "uk", :response_group => "Medium", :binding => "paperback").items
     end
 end

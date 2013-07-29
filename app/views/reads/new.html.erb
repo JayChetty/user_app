@@ -17,18 +17,22 @@
 
 			<% end %>
 
-			<% if @books && !@books.none? %>
+			<% if @books && @books.any? %>
 				<ul class = "reads">
 					<% @books.each do |book| %>
 						<li>
 					    <div class="row">
 								<div class="span1">	
-								<%= image_tag(book.image_link(zoom: 5)) %>
+								<%# image_tag(book.image_link(zoom: 5)) %>
+								<%= link_to image_tag(book.get("SmallImage/URL")), book.get("DetailPageURL")  %>
 							    </div>
 								<div class="span6">
-								<%= book.authors %><br>
-								<%= book.title   %><br>		
-								<%= link_to "Add Read to Shelf", user_shelf_reads_path(@shelf, book_isbn: book.isbn ,book_author: book.authors, book_title: book.title, book_image_url: book.image_link(:zoom => 5)), method: "post" if !current_user.nil?%>
+								<%= link_to book.get('ItemAttributes/Title'), book.get("DetailPageURL")  %><br>
+								<%= book.get('ItemAttributes/Author') %><br>
+									
+
+								<%= link_to "Add Read to Shelf", user_shelf_reads_path(@shelf, book_isbn: book.get('ItemAttributes/ISBN') ,book_author: book.get('ItemAttributes/Author'), book_title: book.get('ItemAttributes/Title'), book_image_url: book.get("SmallImage/URL"),  url: book.get("DetailPageURL")),
+								    method: "post" if !current_user.nil?%>
 								</div>
 							</div>
 						</li>

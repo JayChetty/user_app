@@ -15,22 +15,8 @@
 
 class Read < ActiveRecord::Base
 
-  attr_accessible :isbn, :author, :title, :comment, :image_url
+  attr_accessible :isbn, :author, :title, :comment, :image_url, :url
 
   belongs_to :shelf
 
-  # def ititle
-  #   book = GoogleBooks.search("isbn:#{self.isbn}").first
-  #   book.title
-  # end
-
-  # def iauthor
-  #   book = GoogleBooks.search("isbn:#{self.isbn}").first
-  #   book.authors
-  # end
-
-  # def iimage
-  #   book = GoogleBooks.search("isbn:#{self.isbn}").first
-  #   book.image_link(:zoom => 5) 
-  # end
 end

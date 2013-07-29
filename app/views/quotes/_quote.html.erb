@@ -1,5 +1,11 @@
 <li>
-<%= quote.to_string  %>
+
+<%# quote.to_string  %>
+
+<blockquote>
+	<p> "<%= quote.body%>" </p>
+	<small class = "pull-right"><%= quote.author%></small>
+</blockquote>	
 <% if @user == current_user %>
 	<div align="right">
 		<br>
@@ -8,4 +14,5 @@
 		<%= link_to "Make current", user_current_quote_path(current_user, quote), method: :put %>
 	</div>
 <% end %>
+
 </li>

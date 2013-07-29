@@ -10,7 +10,7 @@
 #
 
 class Shelf < ActiveRecord::Base
-  attr_accessible :name, :user_id
+  attr_accessible :name, :user_id, :comment
 
   belongs_to :user
   has_many :reads

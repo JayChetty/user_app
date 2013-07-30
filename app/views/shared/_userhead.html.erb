@@ -19,7 +19,7 @@
 	<% end %>
 	</div>
 <% else %>
-<%= link_to "Add Quote", user_quotes_path(@user) if @user.quotes.any?%>
+<%= link_to "Add Quote", user_quotes_path(@user) if @user == current_user %>
 <% end %>
 <br>
 <br>

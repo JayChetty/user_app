@@ -16,7 +16,7 @@ describe "UserPages" do
     end
 
     it "should have link to add new quote" do
-      page.should have_link("Edit quotes")
+      page.should have_link("Add Quote")
     end
 
     # it "should show users" do

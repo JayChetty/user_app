@@ -22,7 +22,7 @@ describe "ShelfPages" do
 			sign_in @user
 		end
 
-		it {should have_link("Add Shelf")}
+		#it {should have_link("Add Shelf")}
 
 	  it {should have_content("New")}
 

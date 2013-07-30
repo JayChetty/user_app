@@ -4,6 +4,10 @@
       <%#= link_to "sample", root_path, id: "logo" %>
       <nav>
         <ul class="nav pull-right">
+
+          <% if !user_signed_in? %>  
+          	<li><%= link_to 'Home', root_path %></li>
+          <% end %>	
           <li><%= link_to "Users", users_path %></li>
 	      
 	        <% if user_signed_in? %>  

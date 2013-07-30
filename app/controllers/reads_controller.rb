@@ -23,8 +23,6 @@ class ReadsController < ApplicationController
   def edit
     @shelf = current_user.shelves.find(params[:shelf_id])
     @read = @shelf.reads.find(params[:id])
-    #flash[:success] = "#{params}"
-    #flash[:success] = "#{@read}"
     redirect_to user_shelf_path(current_user, @shelf, read_id: @read.id)
 
   end

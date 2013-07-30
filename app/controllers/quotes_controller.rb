@@ -9,7 +9,6 @@ class QuotesController < ApplicationController
       flash[:success] = "New Quote created"
       redirect_to user_quotes_path(current_user)
     else
-      #@user = current_user
       @quotes = current_user.quotes.all
       render action: "index"
     end    

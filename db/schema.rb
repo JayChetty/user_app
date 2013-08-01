@@ -11,7 +11,17 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130729185511) do
+ActiveRecord::Schema.define(:version => 20130801124045) do
+
+  create_table "items", :force => true do |t|
+    t.integer  "shelf_id"
+    t.string   "image_url"
+    t.string   "url"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
+  end
+
+  add_index "items", ["shelf_id"], :name => "index_items_on_shelf_id"
 
   create_table "quotes", :force => true do |t|
     t.string   "author"
@@ -56,6 +66,18 @@ ActiveRecord::Schema.define(:version => 20130729185511) do
     t.datetime "updated_at", :null => false
     t.string   "comment"
   end
+
+  create_table "tracks", :force => true do |t|
+    t.integer  "shelf_id"
+    t.string   "title"
+    t.string   "artist"
+    t.string   "url"
+    t.string   "image_url"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
+  end
+
+  add_index "tracks", ["shelf_id"], :name => "index_tracks_on_shelf_id"
 
   create_table "users", :force => true do |t|
     t.string   "email",                  :default => "", :null => false

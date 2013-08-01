@@ -1,0 +1,47 @@
+<%= render 'shared/userhead' %>
+<div class="container">
+	<div class="row">
+
+      <%= render 'shared/shelves_sidebar' %>	
+
+	  <div class="span9">
+
+			<h4>New track</h4>
+			<%= form_tag(new_user_shelf_track_path, method: "get" ) do %>
+			  <%= label_tag(:artist, "Artist") %>
+			  <%= text_field_tag :artist , params[:artist]%>  		
+			  <%= label_tag(:title, "Title") %>
+			  <%= text_field_tag :title, params[:title] %>
+			  <br>
+			  <%= submit_tag("Find",  class: "btn") %>
+
+			<% end %>
+
+			<% if @tracks && @tracks.any? %>
+				<ul class = "reads">
+					<% @tracks.each do |track| %>
+						<% artist = track.get("ItemAttributes/Creator").html_safe || track.get("ItemAttributes/Artist").html_safe %>
+						<li>
+					    	<div class="row">
+								<div class="span1">	 
+							  	<% if track.get("SmallImage/URL") %>
+									<%= link_to image_tag(track.get("SmallImage/URL")), track.get("DetailPageURL")  %>
+								<% end %>
+							    </div>
+								<div class="span6">
+								<%= link_to track.get('ItemAttributes/Title').html_safe, track.get("DetailPageURL")  %><br>
+								<%= artist %> <br>
+									
+								<%= link_to "Add track to Shelf", user_shelf_tracks_path(@shelf ,track_artist: artist, track_title: track.get('ItemAttributes/Title'), track_image_url: track.get("SmallImage/URL"),  url: track.get("DetailPageURL")),
+								    method: "post" if current_user %>
+								</div>
+							</div>
+						</li>
+					<% end %>	
+				</ul>	
+			<% end %>
+
+	  </div>
+
+	</div> 
+</div> 

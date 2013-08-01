@@ -1,0 +1,17 @@
+<li>
+	<div class="row">
+	<div class="span1">	
+	<% if track.image_url %>
+		<%= link_to image_tag(track.image_url), track.url  %>
+	<% end %>
+    </div>
+	<div class="span6">
+	<%= link_to track.title.html_safe, track.url  %> <br>
+    <%= track.artist.html_safe %> <br>    
+    <br>
+    <% if @user == current_user %>
+	    <%= link_to "Delete", [current_user, @shelf, track] , method: :delete, data: { confirm: "You sure?" }%>
+	<% end %>
+	</div>
+	</div>
+</li>

@@ -38,19 +38,12 @@ class ShelvesController < ApplicationController
     @user = User.find(params[:user_id])
     @shelves = @user.shelves.all
     @shelf = @user.shelves.find(params[:id])
-    @reads = @shelf.reads.paginate(page: params[:page], per_page: 10)
-
-    if params[:read_id]
-      @read = @shelf.reads.find(params[:read_id]) 
-    end
-
-
-
-    #@edit_read = @shelf.reads.find(params[:id])
-
-    # if @reads.empty? && current_user == @user
-    #   redirect_to new_user_shelf_read_path(current_user, @shelf)
+    @reads = @shelf.reads.paginate(page: params[:page], per_page: 5)
+    @tracks = @shelf.tracks.paginate(page: params[:page], per_page: 5)
+    # if params[:read_id]
+    #   @read = @shelf.reads.find(params[:read_id]) 
     # end
+
   end
 
   def index

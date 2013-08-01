@@ -6,22 +6,35 @@
 	  
 	<div class="span9">
 
-		<% if @reads.any? %>
-			<ul class = "reads">
-				<%= render @reads %>	
-			</ul>	
-			<%= will_paginate @reads%>	 
+		<% if @reads.any? or @tracks.any? %>
+			<% if @reads.any? %>
+				<% if @tracks.any? %> <i class="icon-book"></i> <% end %>
+				<ul class = "reads">
+					<%= render @reads %>		
+				</ul>	
+				<%= will_paginate @reads%>	 
+			<% end %>
+
+			<% if @tracks.any? %>
+				<% if @reads.any? %> <i class="icon-music"></i> <% end %>
+				<ul class = "reads">
+					<%= render @tracks %>		
+				</ul>	
+				<%= will_paginate @tracks%>	 
+			<% end %>	
+
 	    <% else %>
-	    No books on this shelf yet 	
+	    No items on this shelf yet 	
 		<% end %>
+
 		<% if @user == current_user %> 
 		<div class = "pull-right">
-	    	<%= link_to "Add Read", new_user_shelf_read_path(@user, @shelf) %>	
-	    	<br>
+	    	<%= link_to "Add Read", new_user_shelf_read_path(@user, @shelf) %>	<br>
+	    	<%= link_to "Add Track", new_user_shelf_track_path(@user, @shelf) %> <br>	
 	    	<br>
 	    	<%= link_to "Edit Shelf", edit_user_shelf_path(@user, @shelf) %>
 	    	<br>
-	    	<%= link_to "Delete Shelf", user_shelf_path(@user, @shelf), method: :delete, data: { confirm: "Delete Shelf and all Books?" } %>
+	    	<%= link_to "Delete Shelf", user_shelf_path(@user, @shelf), method: :delete, data: { confirm: "Delete Shelf and all Items?" } %>
 	    </div>
 	    <% end %>
 

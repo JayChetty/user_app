@@ -6,6 +6,7 @@ class ReadsController < ApplicationController
     @shelf = current_user.shelves.find(params[:shelf_id])
 
     @books = getFromAmazon(title = params[:title], author  = params[:author])
+    flash[:success] = "in read"
   end
 
   def create
@@ -24,7 +25,6 @@ class ReadsController < ApplicationController
     @shelf = current_user.shelves.find(params[:shelf_id])
     @read = @shelf.reads.find(params[:id])
     redirect_to user_shelf_path(current_user, @shelf, read_id: @read.id)
-
   end
 
   def update

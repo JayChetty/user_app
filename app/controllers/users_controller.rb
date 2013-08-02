@@ -1,7 +1,8 @@
 class UsersController < ApplicationController
   def show
   	@user = User.find(params[:id])
-  	redirect_to user_shelves_path(@user.id)
+  	@shelves = @user.shelves.all
+  	redirect_to user_feelings_path(@user.id)
   end
 
   def index

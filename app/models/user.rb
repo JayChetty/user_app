@@ -34,6 +34,7 @@ class User < ActiveRecord::Base
   
   has_many :quotes
   has_many :shelves
+  has_many :feelings
   belongs_to :current_quote, class_name: "Quote"
 
   validates :name,  presence: true

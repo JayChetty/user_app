@@ -20,13 +20,14 @@ describe "ShelfPages" do
 	describe "Signed in user no shelf" do
 		before do 
 			sign_in @user
+			visit user_shelves_path(@user)
 		end
 
 		#it {should have_link("Add Shelf")}
 
 	  it {should have_content("New")}
 
-	  describe "sending form" do
+	  describe "Adding Shelf" do
 	  	before do
 	  		fill_in "Name", with: "Dystopia"
 	  		click_button "Create Shelf"
@@ -61,10 +62,13 @@ describe "ShelfPages" do
 	    				@user.shelves.first.reads.count.should == 1
 	    			end
 
+	    			describe "adding feeling for book" do
+	    				it {should have_link "Feeling?"}
+	    				click_link
+
+	    			end
 	    		end
 	    	end
-
-
 	    end
 	  end
 	end

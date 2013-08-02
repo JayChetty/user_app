@@ -37,12 +37,6 @@ describe User do
 
   it { should be_valid }
 
-  # describe "at the start" do
-  #   before{@user.save}
-  #   it "should have a default meme" do
-  #     @user.memes.size.should == 1
-  #   end
-  # end   
 
   describe "When name does not exist" do
   	before {@user.name = nil}

@@ -7,12 +7,19 @@ StaticBootstrapApp::Application.routes.draw do
   resources :users, only: [:show,:update, :index] do
   
     resources :quotes, only: [:index, :new, :create, :destroy]
+
     resources :current_quotes, only: [:update]
 
-    resources :shelves  do
-      resources :reads 
-      resources :tracks
+    resources :shelves do 
+      resources :reads do
+        resources :feelings
+      end
+      resources :tracks do
+        resources :feelings
+      end
     end
+
+    resources :feelings
 
   end
 

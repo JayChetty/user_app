@@ -10,9 +10,9 @@
     <%= read.author.html_safe %> <br>    
     <br>
     <% if @user == current_user %>
-	    <%= link_to "Delete", [current_user, @shelf, read] , method: :delete, data: { confirm: "You sure?" }%>
-
+	    <%= link_to "Delete", [current_user, @shelf, read] , method: :delete, data: { confirm: "You sure?" }%> <br> 	     
 	<% end %>
+		<%= link_to "Feeling?", user_shelf_read_feelings_path(current_user, @shelf, read), method: "post" %>   
 	</div>
 	</div>
 </li>

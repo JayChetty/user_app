@@ -18,6 +18,7 @@ class Quote < ActiveRecord::Base
   validates :body, presence: true
   validates :user_id, presence: true
 
+
   def to_string
   	out = "\"#{self.body}\""
   	out << " - #{self.author}" if self.author and !self.author.empty?

@@ -1,0 +1,22 @@
+<li class = "reads">
+<div class="row">
+	<div class="span1">	
+		<% if feeling.feelable.image_url %>
+			<%= link_to image_tag(feeling.feelable.image_url), feeling.feelable.url  %>
+		<% end %>
+    </div>
+    <div class="span6">
+		<% if feeling.feelable.instance_of?(Read) %>	
+			<i class="icon-book"></i> <%= feeling.feelable.title%>, <%= feeling.feelable.author%> <br>
+			Shelf:  <%= feeling.feelable.shelf.name%>, <%= feeling.feelable.shelf.user.name%> <br>
+			<%= feeling.created_at.strftime("%I:%M%p %m/%d/%Y") %>
+
+		<% elsif feeling.feelable.instance_of?(Track) %>
+			<i class="icon-music"></i> <%= feeling.feelable.title%>, <%= feeling.feelable.artist%> <br>
+			Shelf:  <%= feeling.feelable.shelf.name%>, <%= feeling.feelable.shelf.user.name%> <br>
+			<%= feeling.created_at.strftime("%I:%M%p %m/%d/%Y") %>
+		<% end %>
+	</div>
+</div>
+</li>
+

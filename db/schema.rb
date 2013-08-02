@@ -11,7 +11,19 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130801124045) do
+ActiveRecord::Schema.define(:version => 20130802094208) do
+
+  create_table "feelings", :force => true do |t|
+    t.integer  "user_id"
+    t.text     "content"
+    t.integer  "feelable_id"
+    t.string   "feelable_type"
+    t.datetime "created_at",    :null => false
+    t.datetime "updated_at",    :null => false
+  end
+
+  add_index "feelings", ["feelable_id", "feelable_type"], :name => "index_feelings_on_feelable_id_and_feelable_type"
+  add_index "feelings", ["user_id"], :name => "index_feelings_on_user_id"
 
   create_table "items", :force => true do |t|
     t.integer  "shelf_id"

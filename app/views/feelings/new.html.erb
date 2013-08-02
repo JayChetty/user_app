@@ -1,0 +1,19 @@
+<h1>Feelings#new</h1>
+<p>Find me in app/views/feelings/new.html.erb</p>
+
+<% if @feelable.instance_of?(Read)  %>
+	<%= render partial: "reads/read",  object: @feelable %>
+<% end %>
+
+<% if @feelable.instance_of?(Track)  %>
+	<%= render partial: "tracks/track",  object: @feelable %>
+<% end %>
+
+
+<%= form_for [@user, @shelf, @feelable, @feeling] do |f| %>
+	<%= f.label :content %>
+	<%= f.text_area :content %>
+	<br>
+	<%= f.submit %>
+
+<% end %>

@@ -9,6 +9,7 @@ a:link {color:#2F8F8F;}
 a:visited {color:#2F8F8F;} 
 
 
+
 @mixin box_sizing {
   -moz-box-sizing: border-box; 
   -webkit-box-sizing: border-box; 
@@ -103,7 +104,11 @@ blockquote {
 }
 
 
-
+.comment {
+  p { 
+    color: $grayLight;
+  }
+}
 
 
 

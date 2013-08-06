@@ -27,7 +27,7 @@
 
 	
 	</div>
-	<%= link_to "Delete", [current_user, feeling] , method: :delete, data: { confirm: "You sure?" }, class: "pull-right"%> 	
+	<%= link_to "Delete", [current_user, feeling] , method: :delete, data: { confirm: "You sure?" }, class: "pull-right" if @user == current_user%> 	
 
 
 <!--     <div class= "span3">

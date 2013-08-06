@@ -9,8 +9,8 @@
 	<%= link_to read.title.html_safe, read.url, :target => "_blank"  %> <br>
     <%= read.author.html_safe %> <br>    
     <br>
-	<%= link_to "Stirred", user_shelf_read_feelings_path(current_user, @shelf, read), method: "post"%> <br>
-	<% if current_user || current_user.friends.exists?(@user) %>
+	<%= link_to "Stirred", user_shelf_read_feelings_path(current_user, @shelf, read), method: "post" if user_signed_in?%> <br>
+	<% if user_signed_in? && (@user == current_user || current_user.friends.exists?(@user)) %>
 		<%= link_to "Send Card", new_user_card_path(current_user, item_id: read.id, item_type: read.class, receiver_id: @user.id)  %> 	 
 	<% end %>
 	</div>

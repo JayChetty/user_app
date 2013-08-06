@@ -9,8 +9,8 @@
 	<%= link_to track.title.html_safe, track.url, :target => "_blank"  %> <br>
     <%= track.artist.html_safe %> <br>    
     <br>
-	<%= link_to "Stirred", user_shelf_track_feelings_path(current_user, @shelf, track), method: "post"%> 
-    <% if current_user || current_user.friends.exists?(@user) %>
+	<%= link_to "Stirred", user_shelf_track_feelings_path(current_user, @shelf, track), method: "post" if user_signed_in?%> 
+    <% if user_signed_in? && (@user == current_user || current_user.friends.exists?(@user)) %>
 		<br><%= link_to "Send Card", new_user_card_path(current_user, item_id: track.id, item_type: track.class, receiver_id: @user.id)  %> 	 
 	<% end %>
 	</div>

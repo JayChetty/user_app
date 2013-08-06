@@ -2,8 +2,8 @@ class FriendshipsController < ApplicationController
 
 	def index
 		@user = current_user
-		@friendships_pend = @user.friendships.find(:all, conditions: ['status = "pending"'])
-		@friendships_req = @user.friendships.find(:all, conditions: ['status = "requested"'])
+		@friendships_pend = @user.friendships.find(:all, conditions: ["status = 'pending'"])
+		@friendships_req = @user.friendships.find(:all, conditions: ["status = 'requested'"])
 		@friends = @user.friends
 	end	
 

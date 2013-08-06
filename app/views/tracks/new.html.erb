@@ -20,7 +20,7 @@
 			<% if @tracks && @tracks.any? %>
 				<ul class = "reads">
 					<% @tracks.each do |track| %>
-						<% artist = track.get("ItemAttributes/Creator").html_safe || track.get("ItemAttributes/Artist").html_safe %>
+						<% artist = track.get("ItemAttributes/Creator") || track.get("ItemAttributes/Artist") %>
 						<li>
 					    	<div class="row">
 								<div class="span1">	 
@@ -30,7 +30,7 @@
 							    </div>
 								<div class="span6">
 								<%= link_to track.get('ItemAttributes/Title').html_safe, track.get("DetailPageURL")  %><br>
-								<%= artist %> <br>
+								<%= artist.html_safe %> <br>
 									
 								<%= link_to "Add track to Shelf", user_shelf_tracks_path(@shelf ,track_artist: artist, track_title: track.get('ItemAttributes/Title'), track_image_url: track.get("SmallImage/URL"),  url: track.get("DetailPageURL")),
 								    method: "post" if current_user %>

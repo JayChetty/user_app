@@ -35,6 +35,13 @@ class User < ActiveRecord::Base
   has_many :quotes
   has_many :shelves
   has_many :feelings
+
+  has_many :friendships
+  has_many :friends, through: :friendships, conditions: "friendships.status = 'confirmed'"
+
+  has_many :sent_cards, foreign_key: "sender_id", class_name: "Card"
+  has_many :received_cards, foreign_key: "receiver_id", class_name: "Card"
+
   belongs_to :current_quote, class_name: "Quote"
 
   validates :name,  presence: true
@@ -42,6 +49,24 @@ class User < ActiveRecord::Base
   # after_create do 
   #   self.memes.create     
   # end
+
+
+  def request_friend(friend)
+    self.friendships.create(friend_id: friend.id, status: "requested")
+    friend.friendships.create(friend_id: self.id, status: "pending")
+  end
+
+  def confirm_friend(friend)
+    pend = self.friendships.find(:all, conditions: ['friend_id = ? AND status = "pending"', friend.id]).first
+    if pend
+      pend.status = "confirmed"
+      request = friend.friendships.find(:all, conditions: ['friend_id = ? AND status = "requested"', self.id]).first
+      request.status = "confirmed"
+      pend.save
+      request.save
+    end
+  end 
+
 
 
 end

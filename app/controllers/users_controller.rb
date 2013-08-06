@@ -2,7 +2,12 @@ class UsersController < ApplicationController
   def show
   	@user = User.find(params[:id])
   	@shelves = @user.shelves.all
-  	redirect_to user_feelings_path(@user.id)
+
+  	if @user.feelings.any?
+  		redirect_to user_feelings_path(@user)
+  	else
+  		redirect_to user_shelves_path(@user)
+  	end
   end
 
   def index

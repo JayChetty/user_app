@@ -14,6 +14,7 @@
 					 , User: <%= link_to feeling.feelable.shelf.user.name, user_path(feeling.feelable.shelf.user)  %> 
 					<% end %><br>
 			<%= feeling.created_at.strftime("%I:%M%p %m/%d/%Y") %>
+			
 		<% elsif feeling.feelable.instance_of?(Track) %>
 			<i class="icon-music"></i> <%= link_to feeling.feelable.title, user_shelf_path(feeling.feelable.shelf.user, feeling.feelable.shelf)  %><br>
 			<%= feeling.feelable.artist%> <br>

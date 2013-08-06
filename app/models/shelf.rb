@@ -7,6 +7,7 @@
 #  name       :string(255)
 #  created_at :datetime         not null
 #  updated_at :datetime         not null
+#  comment    :string(255)
 #
 
 class Shelf < ActiveRecord::Base
@@ -23,9 +24,9 @@ class Shelf < ActiveRecord::Base
       if self.tracks.empty?
       	iconstring << "<i class=\"icon-empty\"></i>"
       end
-	end
+	  end
 
-	if self.tracks.any?
+	  if self.tracks.any?
     iconstring << "<i class=\"icon-music\"></i>"
       if self.reads.empty?
       	iconstring << "<i class=\"icon-empty\"></i>"

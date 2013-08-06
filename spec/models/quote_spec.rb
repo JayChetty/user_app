@@ -4,7 +4,7 @@
 #
 #  id         :integer          not null, primary key
 #  author     :string(255)
-#  body       :string(255)
+#  body       :text(255)
 #  created_at :datetime         not null
 #  updated_at :datetime         not null
 #  user_id    :integer

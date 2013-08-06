@@ -1,3 +1,16 @@
+# == Schema Information
+#
+# Table name: feelings
+#
+#  id            :integer          not null, primary key
+#  user_id       :integer
+#  content       :text
+#  feelable_id   :integer
+#  feelable_type :string(255)
+#  created_at    :datetime         not null
+#  updated_at    :datetime         not null
+#
+
 require 'spec_helper'
 
 describe Feeling do
@@ -6,7 +19,6 @@ describe Feeling do
     @user = User.create(name:"Jay Chetty", email: "user@example.com", password: "foobarbar", password_confirmation: "foobarbar")
     @shelf = @user.shelves.create(name: "Dystopia")
     @read =  @shelf.reads.create(isbn: "9781907832567")
-   # @feeling = @read.feelings.create(user_id:@user.id, content: "liking it")
     @feeling = @user.feelings.create(feelable_id: @read.id, feelable_type: "Read", content: "liking it")
   end
 

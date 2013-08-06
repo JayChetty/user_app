@@ -1,0 +1,11 @@
+<h2><%=  link_to @user.name, user_path(current_user) %></h2>
+<h5> Received Cards</h5>
+	<ul class = "reads">
+		<%= render @received_cards %>
+
+	</ul>	
+
+<!-- <h5> Sent Cards</h5>
+	<ul class = "reads">
+		<%# render @sent_cards %>
+	</ul>	 -->

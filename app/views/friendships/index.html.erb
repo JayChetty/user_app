@@ -1,0 +1,29 @@
+<%= render 'shared/userhead' %>
+<div class="container">
+	<div class="row">
+
+      <div class="span9">
+      	<ul class = "reads">
+		  	<% @friends.each do |friend| %>
+		  	<li class = "reads">
+		  		<%= link_to friend.name, user_path(friend) %>
+		  		
+		  	</li>
+		  	<% end %>
+	  	<ul class = "reads">
+	  </div>
+
+
+	  <div class="span3">
+	  	<h5> Friend Requests </h5>
+	  	    <% @friendships_pend.each do |pend| %>
+		  	<li class = "reads">
+		  		<%= link_to pend.friend.name, user_path(pend.friend) %>
+		  		<%= link_to "Confirm Friend", user_friendship_path(current_user, pend, friend_id: pend.friend), method: "put" %>
+		  	</li>
+		  	<% end %>
+	  </div>
+
+
+	</div> 
+</div> 

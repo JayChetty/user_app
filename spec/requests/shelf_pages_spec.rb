@@ -63,9 +63,12 @@ describe "ShelfPages" do
 	    			end
 
 	    			describe "adding feeling for book" do
-	    				it {should have_link "Feeling?"}
-	    				click_link
+	    				before {click_link "Stirred"}
+		    			it "should have added feeling to User" do
+		    				@user.feelings.count.should == 1
+		    			end
 
+		    			it {should have_content "Stirred"}
 	    			end
 	    		end
 	    	end

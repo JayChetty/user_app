@@ -11,6 +11,7 @@
 #  title      :string(255)
 #  comment    :string(255)
 #  image_url  :string(255)
+#  url        :string(255)
 #
 
 require 'spec_helper'

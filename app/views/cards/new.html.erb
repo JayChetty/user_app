@@ -1,28 +1,35 @@
 <% if @receiver %>
-	Card to <%= @receiver.name %>
+	<h2> Card to <%= @receiver.name %> </h2><br>
+<% end %>
 
-<% end %>
-<% if @item %>
-			<%= link_to image_tag(@item.image_url), @item.url, :target => "_blank"  if @item.image_url %>
-			<%= link_to @item.title.html_safe, @item.url, :target => "_blank"  %> <br>
-		 	<%= @item.author.html_safe if @item.instance_of?(Read)  %> 
-			<%= @item.artist.html_safe if @item.instance_of?(Track)  %>    
-<% end %>
-<%= form_for [current_user, @card], url:user_cards_path(current_user) do |f| %>
-  <%= render 'shared/error_messages', object: f.object %>
-  <% if @item %>
- 		<%= f.hidden_field :item_id, value: params[:item_id] %>
- 		<%= f.hidden_field :item_type, value: params[:item_type] %>
-  <% end %>
-  <% if @receiver %>
-  	<%= f.hidden_field :receiver_id, value: params[:receiver_id] %>     
-  <% else %>
-    <%= f.label :receiver_id %>
-  	<%= f.text_field :receiver_id %>
-	<% end %>	
-	<%= f.label :message %>
-	<%= f.text_area :message %>
-	<br>
-  <%= f.submit %>
-<% end %>
-  
+<div class="row">
+	<div class="span1">
+				<%= link_to image_tag(@item.image_url), @item.url, :target => "_blank"  if @item.image_url %>
+	</div>	
+	<div class="span4">		
+				<%= link_to @item.title.html_safe, @item.url, :target => "_blank"  %> <br>
+			 	<%= @item.author.html_safe if @item.instance_of?(Read)  %> 
+				<%= @item.artist.html_safe if @item.instance_of?(Track)  %>    
+	</div>	
+</div>	
+<div class="row">	
+	<div class="span12">	
+	<%= form_for [current_user, @card], url:user_cards_path(current_user) do |f| %>
+	  <%= render 'shared/error_messages', object: f.object %>
+	  <% if @item %>
+	 		<%= f.hidden_field :item_id, value: params[:item_id] %>
+	 		<%= f.hidden_field :item_type, value: params[:item_type] %>
+	  <% end %>
+	  <% if @receiver %>
+	  	<%= f.hidden_field :receiver_id, value: params[:receiver_id] %>     
+	  <% else %>
+	    <%= f.label :receiver_id %>
+	  	<%= f.text_field :receiver_id %>
+		<% end %>	
+		<%= f.label :message %>
+		<%= f.text_area :message, :cols => "40", :rows => "5"%>
+		<br>
+	  <%= f.submit %>
+	<% end %>
+	</div>	
+</div>

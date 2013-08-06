@@ -13,16 +13,28 @@
 	  	<ul class = "reads">
 	  </div>
 
+	  <% if @friendships_pend.any? %>
+		  <div class="span3">
+		  	<h5> Received Friend Requests </h5>
+		  	    <% @friendships_pend.each do |pend| %>
+			  	<li class = "reads">
+			  		<%= link_to pend.friend.name, user_path(pend.friend) %>
+			  		(<%= link_to "Confirm Friend", user_friendship_path(current_user, pend, friend_id: pend.friend), method: "put" %>)
+			  	</li>
+			  	<% end %>
+		  </div>
+	  <% end %>
 
-	  <div class="span3">
-	  	<h5> Friend Requests </h5>
-	  	    <% @friendships_pend.each do |pend| %>
-		  	<li class = "reads">
-		  		<%= link_to pend.friend.name, user_path(pend.friend) %>
-		  		<%= link_to "Confirm Friend", user_friendship_path(current_user, pend, friend_id: pend.friend), method: "put" %>
-		  	</li>
-		  	<% end %>
-	  </div>
+	  <% if @friendships_req.any? %>
+		  <div class="span3">
+		  	<h5> Sent Friend Requests (Waiting) </h5>
+		  	    <% @friendships_req.each do |req| %>
+			  	<li class = "reads">
+			  		<%= link_to req.friend.name, user_path(req.friend) %>
+			  	</li>
+			  	<% end %>
+		  </div>
+	  <% end %>	  
 
 
 	</div> 

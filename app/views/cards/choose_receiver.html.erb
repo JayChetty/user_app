@@ -1,5 +1,7 @@
-<h2><%=  link_to @user.name, user_path(current_user) %></h2>
 
+
+
+<h2> Choose Friend to send card</h2><br><br>
 <% @friends.each do |f| %>
 	<%= link_to f.name, params.merge(:receiver_id => f.id) %> <br>
 <% end %>

@@ -3,6 +3,7 @@ class FriendshipsController < ApplicationController
 	def index
 		@user = current_user
 		@friendships_pend = @user.friendships.find(:all, conditions: ['status = "pending"'])
+		@friendships_req = @user.friendships.find(:all, conditions: ['status = "requested"'])
 		@friends = @user.friends
 	end	
 
@@ -10,10 +11,10 @@ class FriendshipsController < ApplicationController
   def create
 	  @friend = User.find(params[:friend_id])
 	  if current_user.request_friend(@friend)
-	    flash[:notice] = "Friend Requested"
+	    flash.keep[:notice] = "Friend Requested"
 	    redirect_to user_path(@friend)
 	  else
-	    flash[:error] = "Could not Request"
+	    flash.keep[:error] = "Could not Request"
 	    redirect_to user_path(@friend)
 	  end  	
   end
@@ -21,7 +22,7 @@ class FriendshipsController < ApplicationController
 	def update
 		@friend = User.find(params[:friend_id])
 		if current_user.confirm_friend(@friend)
-			flash[:sucess] = "Friend Confirmed"
+			flash[:success] = "Friend Confirmed"
 		else
 			flash[:error] = "Could not confirm friend"
 		end

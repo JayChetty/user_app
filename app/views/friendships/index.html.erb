@@ -1,18 +1,17 @@
 <%= render 'shared/userhead' %>
 <div class="container">
 	<div class="row">
-
-      <div class="span9">
-      	<ul class = "reads">
-		  	<% @friends.each do |friend| %>
-		  	<li class = "reads">
-		  		<%= link_to friend.name, user_path(friend) %>
-		  		
-		  	</li>
-		  	<% end %>
-	  	<ul class = "reads">
-	  </div>
-
+	  <% if @friends.any? %>	
+	      <div class="span9">
+	      	<ul class = "reads">
+			  	<% @friends.each do |friend| %>
+			  	<li class = "reads">
+			  		<%= link_to friend.name, user_path(friend) %>	  		
+			  	</li>
+			  	<% end %>
+		  	<ul class = "reads">
+		  </div>
+	  <% end %>
 	  <% if @friendships_pend.any? %>
 		  <div class="span3">
 		  	<h5> Received Friend Requests </h5>

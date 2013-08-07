@@ -6,7 +6,7 @@
 	  
 	<div class="span9">
 
-		<% if @reads.any? or @tracks.any? %>
+		<% if @reads.any? or @tracks.any? or @items.any? %>
 			<% if @reads.any? %>
 				<% if @tracks.any? %> <i class="icon-book"></i> <% end %>
 				<ul class = "reads">
@@ -22,15 +22,19 @@
 				</ul>	
 				<%= will_paginate @tracks%>	 
 			<% end %>	
-
+			     <ul class = "reads">
+					<%= render @items %>		
+				</ul>	
 	    <% else %>
 	    No items on this shelf yet 	
 		<% end %>
 
 		<% if @user == current_user %> 
 		<div class = "pull-right">
-	    	<%= link_to "Add Read", new_user_shelf_read_path(@user, @shelf) %>	<br>
-	    	<%= link_to "Add Track", new_user_shelf_track_path(@user, @shelf) %> <br>	
+	    	<%#= link_to "Add Read", new_user_shelf_read_path(@user, @shelf) %>	<br>
+	    	<%#= link_to "Add Track", new_user_shelf_track_path(@user, @shelf) %> <br>
+	    	<%= link_to "Add Read", new_user_shelf_item_path(@user, @shelf, medium: "read") %> <br>	
+	    	<%= link_to "Add Track", new_user_shelf_item_path(@user, @shelf, medium: "track") %> <br>	
 	    	<br>
 	    	<%= link_to "Edit Shelf", edit_user_shelf_path(@user, @shelf) %>
 	    	<br>

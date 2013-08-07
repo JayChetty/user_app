@@ -16,6 +16,7 @@ class Shelf < ActiveRecord::Base
   belongs_to :user
   has_many :reads, dependent: :destroy
   has_many :tracks, dependent: :destroy
+  has_many :items, dependent: :destroy
 
   def icon 
   	iconstring = ""

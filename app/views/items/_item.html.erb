@@ -1,0 +1,23 @@
+<li>
+	<div class="row">
+	<div class="span1">	
+	<% if item.image_url %>
+		<%= link_to image_tag(item.image_url), item.url, :target => "_blank"  %>
+	<% end %>
+    </div>
+	<div class="span6">
+	<%= link_to item.title.html_safe, item.url, :target => "_blank"  %> <br>
+    <%= item.creator %> <br>    
+    <br>
+	<%= link_to "Stirred", user_shelf_item_feelings_path(current_user, @shelf, item), method: "post" if user_signed_in?%> <br>
+	<% if user_signed_in? && (@user == current_user || current_user.friends.exists?(@user)) %>
+		<%= link_to "Send Card", new_user_card_path(current_user, item_id: item.id, item_type: item.class, receiver_id: @user.id)  %> 	 
+	<% end %>
+	</div>
+	
+    <% if @user == current_user %>
+	    <%= link_to "Delete", [current_user, @shelf, item] , method: :delete, data: { confirm: "You sure?" }, class: "pull-right" %> <br> 	     
+	<% end %>
+
+	</div>
+</li>

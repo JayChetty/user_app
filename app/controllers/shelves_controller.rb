@@ -40,6 +40,7 @@ class ShelvesController < ApplicationController
     @shelf = @user.shelves.find(params[:id])
     @reads = @shelf.reads.paginate(page: params[:page], per_page: 5)
     @tracks = @shelf.tracks.paginate(page: params[:page], per_page: 5)
+    @items = @shelf.items.paginate(page: params[:page], per_page: 5)
     # if params[:read_id]
     #   @read = @shelf.reads.find(params[:read_id]) 
     # end

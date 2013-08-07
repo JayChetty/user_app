@@ -18,6 +18,9 @@ StaticBootstrapApp::Application.routes.draw do
       resources :tracks do
         resources :feelings
       end
+      resources :items do
+        resources :feelings
+      end      
     end
 
     resources :feelings

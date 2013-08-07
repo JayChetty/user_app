@@ -17,6 +17,9 @@
 #  updated_at             :datetime         not null
 #  name                   :string(255)
 #  current_quote_id       :integer
+#  confirmation_token     :string(255)
+#  confirmed_at           :datetime
+#  confirmation_sent_at   :datetime
 #
 
 class User < ActiveRecord::Base

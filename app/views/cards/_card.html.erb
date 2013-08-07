@@ -1,7 +1,9 @@
 <li class = "reads">
 	<div class="row">	
 		<div class="span5">	
-			<%= card.sender.name %> :  <%= card.message %><br>
+			From: <%= card.sender.name %> <br>
+			To: <%= card.receiver.name %> <br>
+			<%= card.message %><br>
 			<small> <%= card.created_at.strftime("%I:%M%p %m/%d/%Y") %> </small>
 		</div>
 	</div>	

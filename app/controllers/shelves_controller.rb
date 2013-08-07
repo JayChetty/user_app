@@ -43,6 +43,7 @@ class ShelvesController < ApplicationController
 
     @reads = @shelf.items.find(:all, conditions: ["medium = 'read'"])
     @tracks = @shelf.items.find(:all, conditions: ["medium = 'track'"])
+    @shows = @shelf.items.find(:all, conditions: ["medium = 'show'"])
     #@items = @shelf.items.paginate(page: params[:page], per_page: 5)
     # if params[:read_id]
     #   @read = @shelf.reads.find(params[:read_id]) 

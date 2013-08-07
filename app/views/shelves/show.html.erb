@@ -7,34 +7,44 @@
 	<div class="span9">
 
 		<% if @reads.any? or @tracks.any? %>
-			<% if @reads.any? %>
-				<% if @tracks.any? %> <i class="icon-book"></i> <% end %>
-				<ul class = "reads">
-					<%= render @reads %>		
-				</ul>	
-				<%#= will_paginate @reads%>	 
-			<% end %>
 
+			<% if @reads.any? %>
+
+				<%= link_to_function Item::MEDIUM_ICON["read"].html_safe, "$('.bookshelf').toggle(500)" %>
+				<div class = "bookshelf" >
+					<ul class = "reads">
+						<%= render @reads %>		
+					</ul>	
+				</div> 
+			<% end %>
+			<br>
 			<% if @tracks.any? %>
-				<% if @reads.any? %> <i class="icon-music"></i> <% end %>
+				<%= link_to_function Item::MEDIUM_ICON["track"].html_safe, "$('.trackshelf').toggle(500)" %>
+				<div class = "trackshelf" >
 				<ul class = "reads">
 					<%= render @tracks %>		
 				</ul>	
-				<%#= will_paginate @tracks%>	 
-			<% end %>	
-			     <!-- <ul class = "reads"> -->
-					<%#= render @items %>	
-				<!-- </ul>	 -->
+				</div> 
+			<% end %>
+			<br>
+			<% if @shows.any? %>
+				<%= link_to_function Item::MEDIUM_ICON["show"].html_safe, "$('.showshelf').toggle(500)" %>
+				<div class = "showshelf" >
+				<ul class = "reads">
+					<%= render @shows %>		
+				</ul>	
+				</div> 
+			<% end %>					
+
 	    <% else %>
 	   	 No items on this shelf yet 	
 		<% end %>
 
 		<% if @user == current_user %> 
 		<div class = "pull-right">
-	    	<%#= link_to "Add Read", new_user_shelf_read_path(@user, @shelf) %>	<br>
-	    	<%#= link_to "Add Track", new_user_shelf_track_path(@user, @shelf) %> <br>
 	    	<%= link_to "Add Read", new_user_shelf_item_path(@user, @shelf, medium: "read") %> <br>	
 	    	<%= link_to "Add Track", new_user_shelf_item_path(@user, @shelf, medium: "track") %> <br>	
+	    	<%= link_to "Add Film/Show", new_user_shelf_item_path(@user, @shelf, medium: "show") %> <br>
 	    	<br>
 	    	<%= link_to "Edit Shelf", edit_user_shelf_path(@user, @shelf) %>
 	    	<br>

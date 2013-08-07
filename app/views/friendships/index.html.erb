@@ -1,12 +1,13 @@
 <%= render 'shared/userhead' %>
 <div class="container">
 	<div class="row">
-	  <% if @friends.any? %>	
+	  <% if @friendships_conf.any? %>	
 	      <div class="span9">
 	      	<ul class = "reads">
-			  	<% @friends.each do |friend| %>
+			  	<% @friendships_conf.each do |conf| %>
 			  	<li class = "reads">
-			  		<%= link_to friend.name, user_path(friend) %>	  		
+			  		<%= link_to conf.friend.name, user_path(conf.friend) %>	 
+			  		(<%= link_to "Defriend", [current_user, conf] , method: :delete, data: { confirm: "Defriend #{conf.friend.name}?" } %>)	
 			  	</li>
 			  	<% end %>
 		  	<ul class = "reads">

@@ -60,12 +60,14 @@ class ItemsController < ApplicationController
      	when "read"
       	result = Amazon::Ecs.item_search(title, :author => creator, :country => "uk", :response_group => "Medium", :binding => "paperback").items
       when "track"
-
       	result = Amazon::Ecs.item_search("#{title} #{creator}", :country => "uk", :response_group => "Medium", :search_index => "MP3Downloads").items
 
         if result.empty?
            result = Amazon::Ecs.item_search(title, :artist => creator, :country => "uk", :response_group => "Medium", :search_index => "Music").items
         end
+      when "show"
+         result = Amazon::Ecs.item_search(title, :actor => creator, :country => "uk", :response_group => "Medium", :search_index => "DVD").items
+         #result = Amazon::Ecs.item_search("#{title} #{creator}", :country => "uk", :response_group => "Medium").items 
       end
 
       result

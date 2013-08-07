@@ -15,8 +15,8 @@
 
 class Item < ActiveRecord::Base
 
-  MEDIUM_DESC = {"read" => "Author", "track" => "Artist"} 
-  MEDIUM_ICON = {"read" => '<i class="icon-book"></i>', "track" => '<i class="icon-music"></i>'}  
+  MEDIUM_DESC = {"read" => "Author", "track" => "Artist", "show" => "Actors"} 
+  MEDIUM_ICON = {"read" => '<i class="icon-book"></i>', "track" => '<i class="icon-music"></i>', "show" => '<i class="icon-film"></i>'}  
 
   attr_accessible :creator, :image_url, :medium, :title, :url
 

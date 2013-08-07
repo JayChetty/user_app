@@ -12,7 +12,7 @@
     <%= item.creator %> <br>       
     <br>
 
-	<%= link_to "Feeling it?", user_shelf_item_feelings_path(current_user, @shelf, item), method: "post" if user_signed_in?%> <br>
+	<%= link_to "Stirred", user_shelf_item_feelings_path(current_user, @shelf, item), method: "post" if user_signed_in?%> <br>
 	<% if user_signed_in? && (@user == current_user || current_user.friends.exists?(@user)) %>
 		<%= link_to "Send Card", new_user_card_path(current_user, item_id: item.id, receiver_id: @user.id)  %> 	 
 	<% end %>

@@ -35,26 +35,12 @@ class Shelf < ActiveRecord::Base
   # end
 
   def icon 
-    anyreads = self.items.find(:all, conditions: ["medium = 'read'"]).any?
-    anytracks = self.items.find(:all, conditions: ["medium = 'track'"]).any?
-
     iconstring = ""
-
-    if anyreads
-
-    iconstring << "<i class=\"icon-book\"></i>"
-      if !anytracks
-        iconstring << "<i class=\"icon-empty\"></i>"
-      end
-    end
-
-    if anytracks
-    iconstring << "<i class=\"icon-music\"></i>"
-      if !anyreads
-        iconstring << "<i class=\"icon-empty\"></i>"
-      end
-    end
+    iconstring << "<i class=\"icon-book\"></i>" if self.items.find(:all, conditions: ["medium = 'read'"]).any?
+    iconstring << "<i class=\"icon-music\"></i>" if self.items.find(:all, conditions: ["medium = 'track'"]).any?
+    iconstring << "<i class=\"icon-film\"></i>" if self.items.find(:all, conditions: ["medium = 'show'"]).any?
 
     iconstring
+
   end  
 end

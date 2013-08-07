@@ -3,7 +3,7 @@
 		<%= link_to image_tag(@item.image_url), @item.url, :target => "_blank"  if @item.image_url %>
 	</div>
 	<div class="span4">		
-		<%= Item::MEDIUM_ICON[@item.medium].html_safe%> <%= link_to @item.title.html_safe, @item.url, :target => "_blank"  %> <br>
+		<%= Item::MEDIUM_ICON[@item.medium].html_safe%> <%= link_to @item.title.html_safe, user_shelf_path(@item.shelf.user, @item.shelf), :target => "_blank"  %> <br>
 		<%= @item.creator.html_safe %> 	
 		<br>
 		Shelf: <%= link_to @item.shelf.name, user_shelf_path(@item.shelf.user, @item.shelf)%>  

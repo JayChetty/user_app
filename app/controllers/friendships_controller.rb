@@ -4,6 +4,7 @@ class FriendshipsController < ApplicationController
 		@user = current_user
 		@friendships_pend = @user.friendships.find(:all, conditions: ["status = 'pending'"])
 		@friendships_req = @user.friendships.find(:all, conditions: ["status = 'requested'"])
+		@friendships_conf = @user.friendships.find(:all, conditions: ["status = 'confirmed'"])
 		@friends = @user.friends
 	end	
 
@@ -29,10 +30,12 @@ class FriendshipsController < ApplicationController
 		redirect_to user_friendships_path(current_user)
 	end
 
-  # def destroy
-	 #  @friendship = current_user.friendships.find(params[:id])
-	 #  @friendship.destroy
-	 #  flash[:notice] = "Removed friendship."
-	 #  redirect_to current_user
-  # end
+  def destroy
+	  @friendship = current_user.friendships.find(params[:id])
+	  @inverse = current_user.inverse_friendships.find(:all, conditions: ["user_id = #{@friendship.friend_id}"]).first
+	  @friendship.destroy
+	  @inverse.destroy
+	  flash[:notice] = "Removed friendship."
+	  redirect_to user_friendships_path(current_user)
+  end
 end

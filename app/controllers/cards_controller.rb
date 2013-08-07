@@ -25,12 +25,13 @@ class CardsController < ApplicationController
 
 	def create
 		@card = current_user.sent_cards.build(sender_id: current_user.id, receiver_id: params[:card][:receiver_id], message: params[:card][:message], item_id: params[:card][:item_id])
+		
 		if @card.save
 			flash[:success] = "Card Created"
 			redirect_to user_cards_path(current_user)
 		else
-			flash.now[:error] = "Couldn't create card"
-			render action: "new"
+			flash[:error] = "Couldn't create card"
+			redirect_to user_cards_path(current_user)
 		end	
 	end	
 

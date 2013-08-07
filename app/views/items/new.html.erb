@@ -6,13 +6,14 @@
 
 	  <div class="span9">
 
-			<h4>New Item</h4>
+			<h4>New <%= params[:medium].capitalize %></h4>
 			<%= form_tag(new_user_shelf_item_path, method: "get" ) do %>
-				<%= hidden_field_tag :medium, params[:medium] %>
-			  <%= label_tag(:creator, Item::MEDIUM_DESC[params[:medium]]) %>
-			  <%= text_field_tag :creator , params[:creator]%>  		
+			  <%= hidden_field_tag :medium, params[:medium] %>
 			  <%= label_tag(:title, "Title") %>
 			  <%= text_field_tag :title, params[:title] %>
+			  <%= label_tag(:creator, Item::MEDIUM_DESC[params[:medium]]) %>
+			  <%= text_field_tag :creator , params[:creator]%>  		
+			  
 			  <br>
 			  <%= submit_tag("Find",  class: "btn") %>
 
@@ -31,6 +32,8 @@
 							<% creator = item.get('ItemAttributes/Author') %>
 						<% when "track" %>
 							<% creator = item.get("ItemAttributes/Creator") || item.get("ItemAttributes/Artist") %>
+						<% when "show" %>	
+							<% creator = item.get('ItemAttributes/Actor') %>
 						<% end %>
 
 						<li>

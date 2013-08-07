@@ -12,6 +12,7 @@
 #
 
 class Card < ActiveRecord::Base
+	validate :check_friends
   attr_accessible :message, :item_id, :receiver_id, :sender_id
  
   belongs_to :sender, class_name:"User"
@@ -21,5 +22,11 @@ class Card < ActiveRecord::Base
   validates :receiver_id, presence: true
 
   belongs_to :item
+
+  private
+	  def check_friends
+	  	sender = User.find(sender_id)
+	  	errors.add(:receiver_id) unless sender.friends.exists?(receiver_id)
+	  end
 
 end

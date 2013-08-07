@@ -38,6 +38,7 @@ class User < ActiveRecord::Base
 
   has_many :friendships, dependent: :destroy
   has_many :inverse_friendships, :class_name => "Friendship", :foreign_key => "friend_id", dependent: :destroy
+  
   has_many :friends, through: :friendships, conditions: "friendships.status = 'confirmed'"
 
   has_many :sent_cards, foreign_key: "sender_id", class_name: "Card"

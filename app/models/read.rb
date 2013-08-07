@@ -19,6 +19,6 @@ class Read < ActiveRecord::Base
   attr_accessible :isbn, :author, :title, :comment, :image_url, :url
 
   belongs_to :shelf
-  has_many :feelings, as: :feelable
+  has_many :feelings, as: :feelable, , dependent: :destroy
 
 end

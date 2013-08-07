@@ -14,8 +14,8 @@ class Shelf < ActiveRecord::Base
   attr_accessible :name, :user_id, :comment
 
   belongs_to :user
-  has_many :reads
-  has_many :tracks
+  has_many :reads, dependent: :destroy
+  has_many :tracks, dependent: :destroy
 
   def icon 
   	iconstring = ""

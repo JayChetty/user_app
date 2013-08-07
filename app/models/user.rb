@@ -32,15 +32,16 @@ class User < ActiveRecord::Base
   # attr_accessible :title, :body
 
   
-  has_many :quotes
-  has_many :shelves
-  has_many :feelings
+  has_many :quotes, dependent: :destroy
+  has_many :shelves, dependent: :destroy
+  has_many :feelings, dependent: :destroy
 
-  has_many :friendships
+  has_many :friendships, dependent: :destroy
+  has_many :inverse_friendships, :class_name => "Friendship", :foreign_key => "friend_id", dependent: :destroy
   has_many :friends, through: :friendships, conditions: "friendships.status = 'confirmed'"
 
   has_many :sent_cards, foreign_key: "sender_id", class_name: "Card"
-  has_many :received_cards, foreign_key: "receiver_id", class_name: "Card"
+  has_many :received_cards, foreign_key: "receiver_id", class_name: "Card", dependent: :destroy
 
   belongs_to :current_quote, class_name: "Quote"
 

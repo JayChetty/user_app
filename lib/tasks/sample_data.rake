@@ -5,27 +5,32 @@ namespace :db do
     jay  = User.create!(name: "Jay Chetty",
                          email: "jaypaulchetty@gmail.com",
                          password: "password",
-                         password_confirmation: "password")
+                         password_confirmation: "password"
+                         )
 
     rb  = User.create!(name: "Rachael Blennerhassett",
                          email: "rb@gmail.com",
                          password: "password",
-                         password_confirmation: "password")
+                         password_confirmation: "password"
+                         )
 
     kh  = User.create!(name: "Kieran Heil",
                          email: "kh@gmail.com",
                          password: "password",
-                         password_confirmation: "password")
+                         password_confirmation: "password"
+                         )
 
     mf = User.create!(name: "Mark Fleming",
                          email: "mf@gmail.com",
                          password: "password",
-                         password_confirmation: "password")     
+                         password_confirmation: "password"
+                         )     
 
     rh = User.create!(name: "Ryan Higgins",
                          email: "rh@gmail.com",
                          password: "password",
-                         password_confirmation: "password")                                                                              
+                         password_confirmation: "password"
+                         )                                                                              
 
 
     jayq = jay.quotes.create!(body: "This is what you shall do; Love the earth and sun and the animals, despise riches, 
@@ -73,8 +78,9 @@ namespace :db do
     mf.shelves.create(name: "Wierd")
     mf.shelves.create(name: "Classic")        
 
+    User.update_all(:confirmed_at => Time.now)
 
-	  jay.save
+	jay.save
     kh.save
     rb.save
     mf.save

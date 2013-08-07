@@ -12,12 +12,7 @@ StaticBootstrapApp::Application.routes.draw do
     resources :friendships, only: [:create, :destroy, :index, :update]
 
     resources :shelves do 
-      resources :reads do
-        resources :feelings
-      end
-      resources :tracks do
-        resources :feelings
-      end
+
       resources :items do
         resources :feelings
       end      

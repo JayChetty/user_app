@@ -19,15 +19,14 @@ describe Feeling do
     @user = User.create(name:"Jay Chetty", email: "user@example.com", password: "foobarbar", password_confirmation: "foobarbar")
     @user.confirm!
     @shelf = @user.shelves.create(name: "Dystopia")
-    @read =  @shelf.reads.create(isbn: "9781907832567")
-    @feeling = @user.feelings.create(feelable_id: @read.id, feelable_type: "Read", content: "liking it")
+    @item =  @shelf.items.create(medium: "read")
+    @feeling = @user.feelings.create(feelable_id: @item.id, feelable_type: "Item")
   end
 
   subject {@feeling}
 
   it {should respond_to(:user_id)}
   it {should respond_to(:user)}
-  it {should respond_to(:content)}
   it {should respond_to(:feelable_id)}
   it {should respond_to(:feelable_type)}
   it {should respond_to(:feelable)}

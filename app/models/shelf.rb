@@ -14,25 +14,47 @@ class Shelf < ActiveRecord::Base
   attr_accessible :name, :user_id, :comment
 
   belongs_to :user
-  has_many :reads, dependent: :destroy
-  has_many :tracks, dependent: :destroy
   has_many :items, dependent: :destroy
 
-  def icon 
-  	iconstring = ""
-  	if self.reads.any?
-    iconstring << "<i class=\"icon-book\"></i>"
-      if self.tracks.empty?
-      	iconstring << "<i class=\"icon-empty\"></i>"
-      end
-	  end
+  # def icon 
+  # 	iconstring = ""
+  # 	if self.reads.any?
+  #   iconstring << "<i class=\"icon-book\"></i>"
+  #     if self.tracks.empty?
+  #     	iconstring << "<i class=\"icon-empty\"></i>"
+  #     end
+	 #  end
 
-	  if self.tracks.any?
-    iconstring << "<i class=\"icon-music\"></i>"
-      if self.reads.empty?
-      	iconstring << "<i class=\"icon-empty\"></i>"
+	 #  if self.tracks.any?
+  #   iconstring << "<i class=\"icon-music\"></i>"
+  #     if self.reads.empty?
+  #     	iconstring << "<i class=\"icon-empty\"></i>"
+  #     end
+  #   end
+  #   iconstring
+  # end
+
+  def icon 
+    anyreads = self.items.find(:all, conditions: ["medium = 'read'"]).any?
+    anytracks = self.items.find(:all, conditions: ["medium = 'track'"]).any?
+
+    iconstring = ""
+
+    if anyreads
+
+    iconstring << "<i class=\"icon-book\"></i>"
+      if !anytracks
+        iconstring << "<i class=\"icon-empty\"></i>"
       end
     end
+
+    if anytracks
+    iconstring << "<i class=\"icon-music\"></i>"
+      if !anyreads
+        iconstring << "<i class=\"icon-empty\"></i>"
+      end
+    end
+
     iconstring
-  end
+  end  
 end

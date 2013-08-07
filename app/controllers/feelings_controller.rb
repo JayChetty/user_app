@@ -21,10 +21,11 @@ class FeelingsController < ApplicationController
   # end
 
   def create
-    resource, id = request.path.split('/')[5, 6]
-    #flash[:success] = "#{params}"
-    @feeling = current_user.feelings.build(feelable_type: resource.singularize.classify, 
-                                          feelable_id: id)
+    # resource, id = request.path.split('/')[5, 6]
+    # @feeling = current_user.feelings.build(feelable_type: resource.singularize.classify, 
+    #                                       feelable_id: id)
+
+    @feeling = current_user.feelings.build(feelable_type: "Item", feelable_id: params[:item_id])
     if @feeling.save
       flash[:success] = "Feeling Created"
       redirect_to user_feelings_path(current_user)

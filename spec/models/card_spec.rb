@@ -5,7 +5,6 @@
 #  id          :integer          not null, primary key
 #  sender_id   :integer
 #  receiver_id :integer
-#  item_type   :string(255)
 #  item_id     :integer
 #  message     :text
 #  created_at  :datetime         not null
@@ -22,8 +21,8 @@ describe Card do
     @sender.save
     @receiver.save
   	@shelf = @sender.shelves.create(name: "Dystopia")
-    @item =  @shelf.reads.create(isbn: "9781907832567")
-    @card = @sender.sent_cards.create(receiver_id: @receiver.id, item_type: @item.class, item_id: @item.id, message: "Check this out" )
+    @item =  @shelf.items.create(medium: "read")
+    @card = @sender.sent_cards.create(receiver_id: @receiver.id, item_id: @item.id, message: "Check this out" )
   end
 
   subject{@card}
@@ -31,7 +30,6 @@ describe Card do
   it {should be_valid}
   it {should respond_to(:receiver_id)}
   it {should respond_to(:sender_id)}
-  it {should respond_to(:item_type)}
   it {should respond_to(:item_id)}
   it {should respond_to(:message)}
   it {should respond_to(:receiver)}

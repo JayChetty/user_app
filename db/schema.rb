@@ -11,12 +11,11 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130807081820) do
+ActiveRecord::Schema.define(:version => 20130807140721) do
 
   create_table "cards", :force => true do |t|
     t.integer  "sender_id"
     t.integer  "receiver_id"
-    t.string   "item_type"
     t.integer  "item_id"
     t.text     "message"
     t.datetime "created_at",  :null => false
@@ -28,7 +27,6 @@ ActiveRecord::Schema.define(:version => 20130807081820) do
 
   create_table "feelings", :force => true do |t|
     t.integer  "user_id"
-    t.text     "content"
     t.integer  "feelable_id"
     t.string   "feelable_type"
     t.datetime "created_at",    :null => false
@@ -51,15 +49,15 @@ ActiveRecord::Schema.define(:version => 20130807081820) do
   create_table "items", :force => true do |t|
     t.integer  "shelf_id"
     t.string   "medium"
-    t.string   "medium_desc"
-    t.string   "medium_icon"
     t.text     "title"
     t.string   "creator"
     t.string   "url"
     t.string   "image_url"
-    t.datetime "created_at",  :null => false
-    t.datetime "updated_at",  :null => false
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
   end
+
+  add_index "items", ["shelf_id"], :name => "index_items_on_shelf_id"
 
   create_table "quotes", :force => true do |t|
     t.string   "author"
@@ -71,21 +69,6 @@ ActiveRecord::Schema.define(:version => 20130807081820) do
 
   add_index "quotes", ["author"], :name => "index_quotes_on_author"
   add_index "quotes", ["user_id"], :name => "index_quotes_on_user_id"
-
-  create_table "reads", :force => true do |t|
-    t.integer  "shelf_id"
-    t.string   "isbn"
-    t.datetime "created_at", :null => false
-    t.datetime "updated_at", :null => false
-    t.string   "author"
-    t.string   "title"
-    t.string   "comment"
-    t.string   "image_url"
-    t.string   "url"
-  end
-
-  add_index "reads", ["isbn"], :name => "index_reads_on_isbn"
-  add_index "reads", ["shelf_id"], :name => "index_reads_on_user_id"
 
   create_table "sessions", :force => true do |t|
     t.string   "session_id", :null => false
@@ -102,20 +85,7 @@ ActiveRecord::Schema.define(:version => 20130807081820) do
     t.string   "name"
     t.datetime "created_at", :null => false
     t.datetime "updated_at", :null => false
-    t.string   "comment"
   end
-
-  create_table "tracks", :force => true do |t|
-    t.integer  "shelf_id"
-    t.string   "title"
-    t.string   "artist"
-    t.string   "url"
-    t.string   "image_url"
-    t.datetime "created_at", :null => false
-    t.datetime "updated_at", :null => false
-  end
-
-  add_index "tracks", ["shelf_id"], :name => "index_tracks_on_shelf_id"
 
   create_table "users", :force => true do |t|
     t.string   "email",                  :default => "", :null => false

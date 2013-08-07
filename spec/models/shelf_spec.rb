@@ -24,7 +24,7 @@ describe Shelf do
   it {should respond_to(:user_id)}
   it {should respond_to(:name)}
   it {should respond_to(:user)}
-  it {should respond_to(:reads)}
+  it {should respond_to(:items)}
   it { should be_valid }
 
   it "should have the correct user" do

@@ -45,7 +45,7 @@ describe "ShelfPages" do
 	    	before do
 	    		click_link "Add Read"
 	    	end
-	    	it {should have_content "New Read"}
+	    	it {should have_content "New Item"}
 
 	    	describe "finding book" do
 	    		before do
@@ -54,17 +54,17 @@ describe "ShelfPages" do
 	    		end
 
 	    		it {should have_content "Oryx and Crake"}
-	    		it {should have_link "Add Read"}
+	    		it {should have_link "Add Item"}
 
 	    		describe "adding book to shelf" do
-	    			before {click_link "Add Read"}
+	    			before {click_link "Add Item"}
 
 	    			it "should have added book to shelf" do
-	    				@user.shelves.first.reads.count.should == 1
+	    				@user.shelves.first.items.count.should == 1
 	    			end
 
 	    			describe "adding feeling for book" do
-	    				before {click_link "Stirred"}
+	    				before {click_link "Feeling it?"}
 		    			it "should have added feeling to User" do
 		    				@user.feelings.count.should == 1
 		    			end

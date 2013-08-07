@@ -1,27 +1,15 @@
 <li class = "reads">
-<div class="row">	
-	<div class="span5">	
-		<%= card.sender.name %> :  <%= card.message %><br>
-		<small> <%= card.created_at.strftime("%I:%M%p %m/%d/%Y") %> </small>
-	</div>
-</div>	
-<br>	    	
-	<% if card.item_type %>	
-		<div class="row">							    
-			<%  @item = card.item_type.classify.constantize.find(card.item_id) %>
-			<div class="span1">	
-				<%= link_to image_tag(@item.image_url), @item.url, :target => "_blank"  if @item.image_url %>
-			</div>
-			<div class="span4">		
-				<i class="icon-book"></i> <%= link_to @item.title.html_safe, @item.url, :target => "_blank"  %> <br>
-				<%= @item.author.html_safe if card.item_type == "Read"  %> 
-				<%= @item.artist.html_safe if card.item_type == "Track"  %> 	
-				<br>
-				Shelf:  <%= link_to @item.shelf.name, user_shelf_path(@item.shelf.user, @item.shelf)%>  
-				User: <%= link_to @item.shelf.user.name, user_path(@item.shelf.user)  %>  
-			</div>	 
-		</div>							
-	<% end %>
+	<div class="row">	
+		<div class="span5">	
+			<%= card.sender.name %> :  <%= card.message %><br>
+			<small> <%= card.created_at.strftime("%I:%M%p %m/%d/%Y") %> </small>
+		</div>
+	</div>	
+	<br>	
+
+	<% @item = Item.find(card.item_id) %>
+	<%= render "items/shelfitem", object: @item %>				
+
 	<%= link_to "Delete", [current_user, card] , method: :delete, data: { confirm: "You sure?" }, class: "pull-right"  if card.receiver_id == current_user.id%> 	
 
 				

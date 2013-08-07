@@ -1,50 +1,10 @@
 <li class = "reads">
+<small> <%= feeling.created_at.strftime("%I:%M%p %m/%d/%Y") %> </small>
+<% @item = feeling.feelable %>
+<%= render "items/shelfitem", object: @item  %>	
+
 <div class="row">
-	<div class="span1">	
-		<% if feeling.feelable.image_url %>
-			<%= link_to image_tag(feeling.feelable.image_url), feeling.feelable.url, :target => "_blank" %>
-		<% end %>
-    </div>
-    <div class="span6">
-		<% if feeling.feelable.instance_of?(Read) %>	
-			<i class="icon-book"></i> <%= link_to feeling.feelable.title, user_shelf_path(feeling.feelable.shelf.user, feeling.feelable.shelf)  %> <br>
-			<%= feeling.feelable.author%> <br>
-			Shelf:  <%= link_to feeling.feelable.shelf.name, user_shelf_path(feeling.feelable.shelf.user, feeling.feelable.shelf)%>
-					<% if @user != feeling.feelable.shelf.user %>
-					 , User: <%= link_to feeling.feelable.shelf.user.name, user_path(feeling.feelable.shelf.user)  %> 
-					<% end %><br>
-			<%= feeling.created_at.strftime("%I:%M%p %m/%d/%Y") %>
-			
-		<% elsif feeling.feelable.instance_of?(Track) %>
-			<i class="icon-music"></i> <%= link_to feeling.feelable.title, user_shelf_path(feeling.feelable.shelf.user, feeling.feelable.shelf)  %><br>
-			<%= feeling.feelable.artist%> <br>
-			Shelf:  <%= link_to feeling.feelable.shelf.name, user_shelf_path(feeling.feelable.shelf.user, feeling.feelable.shelf)%>
-					<% if @user != feeling.feelable.shelf.user %>
-					 , User: <%= link_to feeling.feelable.shelf.user.name, user_path(feeling.feelable.shelf.user)  %> 
-					<% end %><br>
-			<%= feeling.created_at.strftime("%I:%M%p %m/%d/%Y") %>
-		<% end %>
-
-	
-	</div>
 	<%= link_to "Delete", [current_user, feeling] , method: :delete, data: { confirm: "You sure?" }, class: "pull-right" if @user == current_user%> 	
-
-
-<!--     <div class= "span3">
-    	<%# if @user == current_user %> 
-    		<%# if feeling.content && !feeling.content.empty?%> 			
-    			<%#= link_to feeling.content, edit_user_feeling_path(current_user, feeling), class: "comment" %> 
-    		<%# else %>
-    			<%#= link_to "...", edit_user_feeling_path(current_user, feeling), class: "comment" %> 
-    		<%# end %>
-    	<%# else %>
-			<p class = "comment"> <%= feeling.content %>  </p>
-		<%# end %>
-	</div>	 -->
-
-	
-
-
 </div>
 </li>
 

@@ -2,15 +2,14 @@ class CreateItems < ActiveRecord::Migration
   def change
     create_table :items do |t|
       t.integer :shelf_id
-      t.string :medium
-      t.string :medium_desc
-      t.string :medium_icon    
+      t.string :medium 
       t.text :title
       t.string :creator
       t.string :url
       t.string :image_url
 
-      t.timestamps
+      t.timestamps     
     end
+    add_index :items, :shelf_id
   end
 end

@@ -18,14 +18,13 @@ class CardsController < ApplicationController
 		end
 
 		if params[:item_id]
-		  @item = params[:item_type].classify.constantize.find(params[:item_id])
+		  @item = Item.find(params[:item_id])
 		end
 
 	end
 
 	def create
-		#flash[:success] = "#{params}"
-		@card = current_user.sent_cards.build(sender_id: current_user.id, receiver_id: params[:card][:receiver_id], message: params[:card][:message], item_id: params[:card][:item_id], item_type: params[:card][:item_type])
+		@card = current_user.sent_cards.build(sender_id: current_user.id, receiver_id: params[:card][:receiver_id], message: params[:card][:message], item_id: params[:card][:item_id])
 		if @card.save
 			flash[:success] = "Card Created"
 			redirect_to user_cards_path(current_user)

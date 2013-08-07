@@ -12,7 +12,7 @@
 				<ul class = "reads">
 					<%= render @reads %>		
 				</ul>	
-				<%= will_paginate @reads%>	 
+				<%#= will_paginate @reads%>	 
 			<% end %>
 
 			<% if @tracks.any? %>
@@ -20,13 +20,13 @@
 				<ul class = "reads">
 					<%= render @tracks %>		
 				</ul>	
-				<%= will_paginate @tracks%>	 
+				<%#= will_paginate @tracks%>	 
 			<% end %>	
-			     <ul class = "reads">
-					<%= render @items %>		
-				</ul>	
+			     <!-- <ul class = "reads"> -->
+					<%#= render @items %>	
+				<!-- </ul>	 -->
 	    <% else %>
-	    No items on this shelf yet 	
+	   	 No items on this shelf yet 	
 		<% end %>
 
 		<% if @user == current_user %> 

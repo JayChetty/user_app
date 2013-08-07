@@ -14,7 +14,8 @@ require 'spec_helper'
 
 describe Shelf do
   before do
-    @user = User.create(name:"Jay Chetty", email: "user@example.com", password: "foobarbar", password_confirmation: "foobarbar")
+    @user = User.new(name:"Jay Chetty", email: "user@example.com", password: "foobarbar", password_confirmation: "foobarbar")
+    @user.confirm!
     @shelf=  @user.shelves.create(name: "Test")
   end
 

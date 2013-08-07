@@ -16,8 +16,11 @@ require 'spec_helper'
 
 describe Card do
   before do
-  	@sender = User.create(name:"Jay Chetty", email: "user@example.com", password: "foobarbar", password_confirmation: "foobarbar")
-  	@receiver = User.create(name:"Gill Chetty", email: "user2@example.com", password: "foobarbar", password_confirmation: "foobarbar")
+  	@sender = User.new(name:"Jay Chetty", email: "user@example.com", password: "foobarbar", password_confirmation: "foobarbar")
+  	@receiver = User.new(name:"Gill Chetty", email: "user2@example.com", password: "foobarbar", password_confirmation: "foobarbar")
+    User.update_all(:confirmed_at => Time.now)
+    @sender.save
+    @receiver.save
   	@shelf = @sender.shelves.create(name: "Dystopia")
     @item =  @shelf.reads.create(isbn: "9781907832567")
     @card = @sender.sent_cards.create(receiver_id: @receiver.id, item_type: @item.class, item_id: @item.id, message: "Check this out" )

@@ -14,7 +14,8 @@ require 'spec_helper'
 
 describe Quote do
   before do
-    @user = User.create(name:"Jay Chetty", email: "user@example.com", password: "foobarbar", password_confirmation: "foobarbar")
+    @user = User.new(name:"Jay Chetty", email: "user@example.com", password: "foobarbar", password_confirmation: "foobarbar")
+    @user.confirm!
     @quote = @user.quotes.create(author:"Walt Whitman", body:"lala")
   end
 

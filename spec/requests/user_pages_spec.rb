@@ -6,7 +6,7 @@ describe "UserPages" do
 
   before do
 		@user = User.new(name:"Jay Chetty", email: "user@example.com", password: "foobarbar", password_confirmation: "foobarbar")
-		@user.save
+    @user.confirm!
 		sign_in @user
   end
   describe "On profile page" do

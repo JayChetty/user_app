@@ -14,8 +14,11 @@ require 'spec_helper'
 
 describe Friendship do
   before do
-    @user = User.create(name:"Jay Chetty", email: "user@example.com", password: "foobarbar", password_confirmation: "foobarbar")  
-    @user2 = User.create(name:"Kieran Heil", email: "user2@example.com", password: "foobarbar", password_confirmation: "foobarbar")  
+    @user = User.new(name:"Jay Chetty", email: "user@example.com", password: "foobarbar", password_confirmation: "foobarbar")  
+    @user2 = User.new(name:"Kieran Heil", email: "user2@example.com", password: "foobarbar", password_confirmation: "foobarbar")  
+    User.update_all(:confirmed_at => Time.now)
+    @user.save
+    @user2.save    
     @user.request_friend(@user2)
     @request = @user.friendships.first
     @pend = @user2.friendships.first

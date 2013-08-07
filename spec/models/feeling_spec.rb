@@ -17,6 +17,7 @@ describe Feeling do
   
   before do
     @user = User.create(name:"Jay Chetty", email: "user@example.com", password: "foobarbar", password_confirmation: "foobarbar")
+    @user.confirm!
     @shelf = @user.shelves.create(name: "Dystopia")
     @read =  @shelf.reads.create(isbn: "9781907832567")
     @feeling = @user.feelings.create(feelable_id: @read.id, feelable_type: "Read", content: "liking it")

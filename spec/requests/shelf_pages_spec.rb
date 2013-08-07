@@ -4,7 +4,8 @@ describe "ShelfPages" do
   subject { page }
 
   before do
-		@user = User.create(name:"Jay Chetty", email: "user@example.com", password: "foobarbar", password_confirmation: "foobarbar")		
+		@user = User.new(name:"Jay Chetty", email: "user@example.com", password: "foobarbar", password_confirmation: "foobarbar")	
+		@user.confirm!
 	end
 
 	describe "Non signed in user" do

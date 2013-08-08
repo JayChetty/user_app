@@ -47,8 +47,8 @@
 									<%= link_to title, url %><br>
 									<%= creator %><br>
 						
-									<%= link_to "Add Item to Shelf", user_shelf_items_path(creator: creator, title: title, image_url: image,  url: url, medium: params[:medium]),
-																																				  method: "post" if current_user %>
+									<%= link_to "Add Item to Shelf", user_shelf_items_path(
+										creator: creator, title: title, image_url: image,  url: url, medium: params[:medium]), method: "post", disable_with: "Adding Item..." if current_user %>
 								</div>
 							</div>
 						</li>

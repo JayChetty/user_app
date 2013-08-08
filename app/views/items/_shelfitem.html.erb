@@ -9,6 +9,9 @@
 		Shelf: <%= link_to @item.shelf.name, user_shelf_path(@item.shelf.user, @item.shelf)%>  
 		User:  <%= link_to @item.shelf.user.name, user_path(@item.shelf.user)  %>  
 		<br><br>
-		<%= link_to "Send Card", new_user_card_path(current_user, item_id: @item.id, receiver_id: @user.id) unless request.path.include?('card') if user_signed_in? %>
+
+		<% if user_signed_in? && (@user == current_user || current_user.friends.exists?(@user)) && !request.path.include?('card')  %>
+			<%= link_to "Send Card", new_user_card_path(current_user, item_id: @item.id, receiver_id: @user.id)  %> 	 
+		<% end %>
 	</div>	 
 </div>				

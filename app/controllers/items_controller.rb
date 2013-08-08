@@ -5,8 +5,10 @@ class ItemsController < ApplicationController
     @shelves = current_user.shelves.all
     @shelf = current_user.shelves.find(params[:shelf_id])
 
-    @items = getFromAmazon(title = params[:title], creator  = params[:creator], medium = params[:medium])
-
+    
+    if params[:title] || params[:creator]
+      @items = getFromAmazon(title = params[:title], creator = params[:creator], medium = params[:medium]) 
+    end
   end
 
   def create

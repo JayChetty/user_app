@@ -57,8 +57,8 @@ class User < ActiveRecord::Base
 
 
   def request_friend(friend)
-    self.friendships.create!(friend_id: friend.id, status: "requested")
-    friend.friendships.create!(friend_id: self.id, status: "pending")
+    self.friendships.create!(friend_id: friend.id, status: 'requested')
+    friend.friendships.create!(friend_id: self.id, status: 'pending')
   end
 
   def confirm_friend(friend)

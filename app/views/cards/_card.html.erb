@@ -1,10 +1,14 @@
-<li class = "reads">
+<li class = "cards">
 	<div class="row">	
-		<div class="span5">	
+		<div class="span3">	
+			<!-- <div class="timeago">	 -->
 			From: <%= card.sender.name %> <br>
 			To: <%= card.receiver.name %> <br>
-			<%= card.message %><br>
-			<small> <%= card.created_at.strftime("%I:%M%p %m/%d/%Y") %> </small>
+			<small> <%= card.created_at.strftime("%I:%M%p %m/%d/%Y") %> </small> </p>
+		<!-- 	</div> -->	
+		</div>
+		<div class="span2">	
+			<i> <%= card.message %> </i>
 		</div>
 	</div>	
 	<br>	
@@ -12,7 +16,7 @@
 	<% @item = Item.find(card.item_id) %>
 	<%= render "items/shelfitem", object: @item %>				
 
-	<%= link_to "Delete", [current_user, card] , method: :delete, data: { confirm: "You sure?" }, class: "pull-right"  if card.receiver_id == current_user.id%> 	
+	<%=  link_to "Delete".html_safe, [current_user, card] , method: :delete, data: { confirm: "You sure?" }, class: "pull-right"  if card.receiver_id == current_user.id%> 	
 
 				
 </li>

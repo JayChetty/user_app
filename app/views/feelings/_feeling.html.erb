@@ -1,5 +1,6 @@
 <li class = "reads">
-<small> <%= feeling.created_at.strftime("%I:%M%p %m/%d/%Y") %> </small>
+<small class = "pull-right timeago"> <%#= feeling.created_at.strftime("%I:%M%p %m/%d/%Y") %> 
+<%= time_ago_in_words(feeling.created_at) %></small>
 <% @item = feeling.feelable %>
 <%= render "items/shelfitem", object: @item  %>	
 

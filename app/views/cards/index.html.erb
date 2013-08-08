@@ -1,11 +1,24 @@
-<h2><%=  link_to @user.name, user_path(current_user) %></h2>
-<h5> Received Cards</h5>
-	<ul class = "reads">
-		<%= render @received_cards %>
 
+<%= render 'shared/userhead' %>
+
+<%= link_to_function "<h5> Received Cards</h5>".html_safe, "$('.reccards').toggle(500)" %>
+<div class = "reccards" >
+	<ul class = "cards">
+		<div class = "row" >
+			<div class = "span6" >
+				<%= render @received_cards %>
+			</div>	
+		</div>	
 	</ul>	
+</div>
 
-<h5> Sent Cards</h5>
-	<ul class = "reads">
+<%= link_to_function "<h5> Sent Cards</h5>".html_safe, "$('.sentcards').toggle(500)" %>
+<div class = "sentcards" >
+	<ul class = "cards">
+		<div class = "row" >
+			<div class = "span6" >
 		<%= render @sent_cards %>
+		</div>
+			</div>
 	</ul>	
+</div>	

@@ -103,15 +103,37 @@ blockquote {
   }
 }
 
+.cards {
+  list-style: none;
 
-.comment {
-  p { 
-    color: $grayLight;
+  p{
+    color: $grayLight;  
+  }
+
+  li {
+    padding-top: 20px;
+    padding-bottom: 20px;
+    padding-left: 20px;
+    padding-right: 20px;
+
+    margin-bottom: 15px;
+
+    border-top: 3px solid #e8e8e8;
+    border-left: 3px solid #e8e8e8;
+    border-right: 3px solid #e8e8e8;
+    border-bottom: 3px solid #e8e8e8;
   }
 }
 
 
+.timeago {
+    color: $grayLight;
+}
 
+
+.sentcards {
+  display:none;
+}
 
 /* forms */ 
 /*input, textarea, select, .uneditable-input {

@@ -19,10 +19,10 @@ class FeelingsController < ApplicationController
 
     @feeling = current_user.feelings.build(feelable_type: "Item", feelable_id: params[:item_id])
     if @feeling.save
-      flash[:success] = "Feeling Created"
+      flash[:success] = "Stir Created"
       redirect_to user_feelings_path(current_user)
     else
-      flash[:failure] = "Couldn't create feeling"
+      flash[:failure] = "Couldn't create Stir"
       redirect_to user_feelings_path(current_user)
     end
   end
@@ -30,9 +30,9 @@ class FeelingsController < ApplicationController
   def destroy
     @feeling = current_user.feelings.find(params[:id])
     if @feeling.destroy
-      flash[:success] = "Feeling destroyed"
+      flash[:success] = "stir destroyed"
     else
-      flash[:failure] = "Could not destroy Feeling"
+      flash[:failure] = "Could not destroy Stir"
     end
     redirect_to user_feelings_path(current_user)      
   end

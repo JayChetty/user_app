@@ -34,7 +34,7 @@ class FriendshipsController < ApplicationController
 
   def destroy
 	  @friendship = current_user.friendships.find(params[:id])
-	  @inverse = current_user.inverse_friendships.where(user_id: friendship.friend_id).first
+	  @inverse = current_user.inverse_friendships.where(user_id: @friendship.friend_id).first
 	  @friendship.destroy
 	  @inverse.destroy
 	  flash[:notice] = "Removed friendship."

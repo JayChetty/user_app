@@ -61,7 +61,7 @@ StaticBootstrapApp::Application.configure do
   # Send deprecation notices to registered listeners
   config.active_support.deprecation = :notify
 
-  config.action_mailer.default_url_options = { :host => 'shelvesyo.herokuapp.com' }
+  config.action_mailer.default_url_options = { :host => 'stirs.herokuapp.com' }
   ActionMailer::Base.smtp_settings = {
     :address        => "smtp.sendgrid.net",
     :port           => "25",

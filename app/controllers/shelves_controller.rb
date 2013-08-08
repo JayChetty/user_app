@@ -38,17 +38,10 @@ class ShelvesController < ApplicationController
     @user = User.find(params[:user_id])
     @shelves = @user.shelves.all
     @shelf = @user.shelves.find(params[:id])
-    #@reads = @shelf.items.paginate(page: params[:page], per_page: 5)
-    #@tracks = @shelf.items.paginate(page: params[:page], per_page: 5)
 
-    @reads = @shelf.items.find(:all, conditions: ["medium = 'read'"])
-    @tracks = @shelf.items.find(:all, conditions: ["medium = 'track'"])
-    @shows = @shelf.items.find(:all, conditions: ["medium = 'show'"])
-    #@items = @shelf.items.paginate(page: params[:page], per_page: 5)
-    # if params[:read_id]
-    #   @read = @shelf.reads.find(params[:read_id]) 
-    # end
-
+    @reads = @shelf.items.where(medium: 'read')
+    @tracks = @shelf.items.where(medium: 'track')
+    @shows = @shelf.items.where(medium:'show')    
   end
 
   def index

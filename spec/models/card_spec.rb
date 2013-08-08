@@ -27,7 +27,7 @@ describe Card do
 
   subject{@card}
 
-  it {should be_valid}
+  it {should_not be_valid} #they aren't friends yet
   it {should respond_to(:receiver_id)}
   it {should respond_to(:sender_id)}
   it {should respond_to(:item_id)}

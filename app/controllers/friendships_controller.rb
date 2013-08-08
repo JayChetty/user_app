@@ -2,9 +2,11 @@ class FriendshipsController < ApplicationController
 
 	def index
 		@user = current_user
-		@friendships_pend = @user.friendships.find(:all, conditions: ["status = 'pending'"])
-		@friendships_req = @user.friendships.find(:all, conditions: ["status = 'requested'"])
-		@friendships_conf = @user.friendships.find(:all, conditions: ["status = 'confirmed'"])
+
+	    @friendships_pend = @user.friendships.where(status: 'pending')
+		@friendships_req = @user.friendships.where(status: 'requested')
+		@friendships_conf = @user.friendships.where(status: 'confirmed')
+
 		@friends = @user.friends
 	end	
 
@@ -32,7 +34,7 @@ class FriendshipsController < ApplicationController
 
   def destroy
 	  @friendship = current_user.friendships.find(params[:id])
-	  @inverse = current_user.inverse_friendships.find(:all, conditions: ["user_id = #{@friendship.friend_id}"]).first
+	  @inverse = current_user.inverse_friendships.where(user_id: friendship.friend_id).first
 	  @friendship.destroy
 	  @inverse.destroy
 	  flash[:notice] = "Removed friendship."

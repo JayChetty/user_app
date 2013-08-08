@@ -57,19 +57,17 @@ class User < ActiveRecord::Base
 
 
   def request_friend(friend)
-    self.friendships.create(friend_id: friend.id, status: "requested")
-    friend.friendships.create(friend_id: self.id, status: "pending")
+    self.friendships.create!(friend_id: friend.id, status: "requested")
+    friend.friendships.create!(friend_id: self.id, status: "pending")
   end
 
   def confirm_friend(friend)
-    pend = self.friendships.find(:all, conditions: ['friend_id = ? AND status = "pending"', friend.id]).first
-    if pend
-      pend.status = "confirmed"
-      request = friend.friendships.find(:all, conditions: ['friend_id = ? AND status = "requested"', self.id]).first
-      request.status = "confirmed"
-      pend.save
-      request.save
-    end
+    pend = self.friendships.where(friend_id: friend.id, status: 'pending').first
+    pend.status = "confirmed"
+    request = friend.friendships.where(friend_id: self.id, status: 'requested').first
+    request.status = "confirmed"
+    pend.save
+    request.save
   end 
 
 

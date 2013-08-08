@@ -8,26 +8,26 @@ namespace :db do
                          password_confirmation: "password"
                          )
 
-    rb  = User.create!(name: "Rachael Blennerhassett",
-                         email: "rb@gmail.com",
+    rb  = User.create!(name: "Buddy One",
+                         email: "bud1@gmail.com",
                          password: "password",
                          password_confirmation: "password"
                          )
 
-    kh  = User.create!(name: "Kieran Heil",
-                         email: "kh@gmail.com",
+    kh  = User.create!(name: "Buddy Two",
+                         email: "bud2@gmail.com",
                          password: "password",
                          password_confirmation: "password"
                          )
 
-    mf = User.create!(name: "Mark Fleming",
-                         email: "mf@gmail.com",
+    mf = User.create!(name: "Buddy Three",
+                         email: "bud3@gmail.com",
                          password: "password",
                          password_confirmation: "password"
                          )     
 
-    rh = User.create!(name: "Ryan Higgins",
-                         email: "rh@gmail.com",
+    rh = User.create!(name: "Buddy Four",
+                         email: "bud4@gmail.com",
                          password: "password",
                          password_confirmation: "password"
                          )                                                                              

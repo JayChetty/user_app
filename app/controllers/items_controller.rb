@@ -13,7 +13,7 @@ class ItemsController < ApplicationController
     @shelf = current_user.shelves.find(params[:shelf_id])
     @item = @shelf.items.build(creator: params[:creator] ,title: params[:title] , image_url: params[:image_url], url: params[:url], medium: params[:medium]  )
     if @item.save
-      flash[:success] = "item Added"
+      flash[:success] = "Item Added"
       redirect_to user_shelf_path(current_user, @shelf)
     else
       flash[:failure] = "Could not add item"

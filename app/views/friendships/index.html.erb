@@ -1,8 +1,9 @@
 <%= render 'shared/userhead' %>
 <div class="container">
 	<div class="row">
+	<div class="span9">
 	  <% if @friendships_conf.any? %>	
-	      <div class="span9">
+	      
 	      	<ul class = "reads">
 			  	<% @friendships_conf.each do |conf| %>
 			  	<li class = "reads">
@@ -11,8 +12,9 @@
 			  	</li>
 			  	<% end %>
 		  	<ul class = "reads">
-		  </div>
+		  
 	  <% end %>
+	  </div>
 	  <% if @friendships_pend.any? %>
 		  <div class="span3">
 		  	<h5> Received Friend Requests </h5>

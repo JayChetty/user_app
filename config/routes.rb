@@ -22,7 +22,6 @@ StaticBootstrapApp::Application.routes.draw do
 
   end
 
- # resources :books, only: [:index, :show]
 
   root to: 'static_pages#home'
 

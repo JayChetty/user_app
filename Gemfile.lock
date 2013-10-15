@@ -74,12 +74,7 @@ GEM
       i18n (~> 0.4)
     ffi (1.9.0)
     geocoder (1.1.8)
-    googlebooks (0.0.6)
-      httparty
     hike (1.2.3)
-    httparty (0.11.0)
-      multi_json (~> 1.0)
-      multi_xml (>= 0.5.2)
     i18n (0.6.1)
     journey (1.0.4)
     jquery-rails (2.0.2)
@@ -92,7 +87,6 @@ GEM
     mime-types (1.23)
     mini_portile (0.5.1)
     multi_json (1.7.7)
-    multi_xml (0.5.4)
     nokogiri (1.6.0)
       mini_portile (~> 0.5.0)
     orm_adapter (0.4.0)
@@ -185,7 +179,6 @@ DEPENDENCIES
   factory_girl_rails (= 4.1.0)
   faker (= 1.0.1)
   geocoder
-  googlebooks (~> 0.0.6)
   jquery-rails (= 2.0.2)
   pg (= 0.12.2)
   rails (= 3.2.13)

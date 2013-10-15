@@ -14,7 +14,8 @@ class FriendshipsController < ApplicationController
   def create
 	  @friend = User.find(params[:friend_id])
 	  if current_user.request_friend(@friend)
-	    flash.keep[:notice] = "Friend Requested"
+	  	FriendMailer.friend_request_email(current_user, @friend)
+	    flash.keep[:notice] = "Friendship Requested"
 	    redirect_to user_path(@friend)
 	  else
 	    flash.keep[:error] = "Could not Request"

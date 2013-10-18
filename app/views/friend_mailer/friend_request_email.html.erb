@@ -4,13 +4,13 @@
     <meta content='text/html; charset=UTF-8' http-equiv='Content-Type' />
   </head>
   <body>
-    <h1>Hi <%= @friend.name %></h1>
+    <h1>Hi, <%= @friend.name %></h1>
     <p>
-      You have a pending friend request from <br/>
+      <%= @user.name %> has requested you friendship on SoulStirs.<br/>
     </p>
     <p>
-      To check it out, just follow this link: <%= @url %>.
+      Follow this link to accept: <%= @url %>.
     </p>
-    <p>One Love</p>
+    <p>One love</p>
   </body>
 </html>

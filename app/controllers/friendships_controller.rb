@@ -1,9 +1,14 @@
 class FriendshipsController < ApplicationController
-
 	def index
+		puts "the current user is #{current_user.class}"
+		if !current_user
+			session[:target] = 'friendships'
+			redirect_to new_user_session_path
+			return false
+		end
 		@user = current_user
 
-	    @friendships_pend = @user.friendships.where(status: 'pending')
+	  @friendships_pend = @user.friendships.where(status: 'pending')
 		@friendships_req = @user.friendships.where(status: 'requested')
 		@friendships_conf = @user.friendships.where(status: 'confirmed')
 
@@ -14,7 +19,8 @@ class FriendshipsController < ApplicationController
   def create
 	  @friend = User.find(params[:friend_id])
 	  if current_user.request_friend(@friend)
-	  	FriendMailer.friend_request_email(current_user, @friend)
+	  	puts 'requesting friendship'
+	  	FriendMailer.friend_request_email(current_user, @friend).deliver
 	    flash.keep[:notice] = "Friendship Requested"
 	    redirect_to user_path(@friend)
 	  else

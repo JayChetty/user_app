@@ -4,6 +4,8 @@ class ApplicationController < ActionController::Base
   def after_sign_in_path_for(user)
     if session[:target] == 'friendships'
       user_friendships_path(user)
+    else 
+      user_path(user)
     end
   end
 end

@@ -9,7 +9,11 @@ StaticBootstrapApp::Application.routes.draw do
     resources :current_quotes, only: [:update]
     resources :cards, only: [:new, :create, :index, :destroy]
 
-    resources :friendships, only: [:create, :destroy, :index, :update]
+    resources :friendships, only: [:create, :destroy, :index, :update] do
+      collection do
+        post 'invite'
+      end
+    end
 
     resources :shelves do 
 
@@ -24,7 +28,6 @@ StaticBootstrapApp::Application.routes.draw do
 
 
   root to: 'static_pages#home'
-
 
 
   # The priority is based upon order of creation:

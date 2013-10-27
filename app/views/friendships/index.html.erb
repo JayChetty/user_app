@@ -1,42 +1,49 @@
 <%= render 'shared/userhead' %>
 <div class="container">
+	<%#= link_to 'Invite Friend' controller: 'friendships', action: 'invite' %>	
 	<div class="row">
-	<div class="span9">
-	  <% if @friendships_conf.any? %>	
-	      
-	      	<ul class = "reads">
-			  	<% @friendships_conf.each do |conf| %>
-			  	<li class = "reads">
-			  		<%= link_to conf.friend.name, user_path(conf.friend) %>	 
-			  		(<%= link_to "Defriend", [current_user, conf] , method: :delete, data: { confirm: "Defriend #{conf.friend.name}?" } %>)	
-			  	</li>
-			  	<% end %>
-		  	<ul class = "reads">
-		  
-	  <% end %>
-	  </div>
-	  <% if @friendships_pend.any? %>
-		  <div class="span3">
-		  	<h5> Received Friend Requests </h5>
-		  	    <% @friendships_pend.each do |pend| %>
-			  	<li class = "reads">
-			  		<%= link_to pend.friend.name, user_path(pend.friend) %>
-			  		(<%= link_to "Confirm Friend", user_friendship_path(current_user, pend, friend_id: pend.friend), method: "put" %>)
-			  	</li>
-			  	<% end %>
-		  </div>
-	  <% end %>
+		<div class="span9">
+		  <% if @friendships_conf.any? %>	
+		      
+		      	<ul class = "reads">
+				  	<% @friendships_conf.each do |conf| %>
+				  	<li class = "reads">
+				  		<%= link_to conf.friend.name, user_path(conf.friend) %>	 
+				  		(<%= link_to "Defriend", [current_user, conf] , method: :delete, data: { confirm: "Defriend #{conf.friend.name}?" } %>)	
+				  	</li>
+				  	<% end %>
+			  		<ul class = "reads">
+			  
+		  <% end %>
+		</div>
+		<div class="span3">
+		  <% if @friendships_pend.any? %>
+			  	<h5> Received Friend Requests </h5>
+			  	    <% @friendships_pend.each do |pend| %>
+				  	<li class = "reads">
+				  		<%= link_to pend.friend.name, user_path(pend.friend) %>
+				  		(<%= link_to "Confirm Friend", user_friendship_path(current_user, pend, friend_id: pend.friend), method: "put" %>)
+				  	</li>
+				  	<% end %>
+		  <% end %>
 
-	  <% if @friendships_req.any? %>
-		  <div class="span3">
-		  	<h5> Sent Friend Requests (Waiting) </h5>
-		  	    <% @friendships_req.each do |req| %>
-			  	<li class = "reads">
-			  		<%= link_to req.friend.name, user_path(req.friend) %>
-			  	</li>
-			  	<% end %>
-		  </div>
-	  <% end %>	  
+		  <% if @friendships_req.any? %>
+			  	<h5> Sent Friend Requests (Waiting) </h5>
+			  	    <% @friendships_req.each do |req| %>
+				  	<li class = "reads">
+				  		<%= link_to req.friend.name, user_path(req.friend) %>
+				  	</li>
+				  	<% end %>
+			  
+		  <% end %>	  
+			<h5> Invite Friend </h5>
+			<%= form_tag invite_user_friendships_path do %>
+			  <%= label_tag(:friend_email, "Friends email") %>
+			  <%= text_field_tag(:friend_email) %>
+			  <%= submit_tag("Invite") %>
+			<% end %>
+		</div>
+
 
 
 	</div> 

@@ -47,4 +47,12 @@ class FriendshipsController < ApplicationController
 	  flash[:notice] = "Removed friendship."
 	  redirect_to user_friendships_path(current_user)
   end
+
+  def invite
+  	friend_email = params[:friend_email]
+  	if FriendMailer.invite_email(current_user, friend_email).deliver
+  		flash[:notice] = "Friend invited #{friend_email}"
+  	end
+  	redirect_to user_friendships_path(current_user)
+  end
 end

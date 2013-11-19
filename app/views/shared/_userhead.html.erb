@@ -1,4 +1,4 @@
-<h2><%=  link_to @user.name, user_path(@user) %></h2>
+<h2><%=  link_to "#{@user.name}(#{@user.username})", user_path(@user) %></h2>
 
 <% if user_signed_in? && @user != current_user && !current_user.friendships.exists?(friend_id: @user.id) %>
 	<%= link_to "Send friend request", user_friendships_path(friend_id: @user.id), method: "post", disable_with: "Requesting..." %>

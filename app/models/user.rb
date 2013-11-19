@@ -31,7 +31,7 @@ class User < ActiveRecord::Base
     
 
   # Setup accessible (or protected) attributes for your model
-  attr_accessible :email, :password, :password_confirmation, :remember_me, :name
+  attr_accessible :email, :password, :password_confirmation, :remember_me, :name, :username
   # attr_accessible :title, :body
 
   
@@ -50,6 +50,7 @@ class User < ActiveRecord::Base
   belongs_to :current_quote, class_name: "Quote"
 
   validates :name,  presence: true
+  validates :username, presence: true, uniqueness: true
 
   # after_create do 
   #   self.memes.create     

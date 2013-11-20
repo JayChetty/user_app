@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta content='text/html; charset=UTF-8' http-equiv='Content-Type' />
+  </head>
+  <body>
+    <h2>
+      <%= @user.name %> has sent you this card using SoulStirs.<br/>
+    </h2>
+    <p>
+      <%= @message %>
+    </p>
+  <!-- UGLY SHOULD JUST RENDER -->
+  <div class="row">                 
+    <div class="span1"> 
+      <%= link_to image_tag(@item.image_url), @item.url, :target => "_blank"  if @item.image_url %>
+    </div>
+    <div class="span4">   
+      <%= Item::MEDIUM_ICON[@item.medium].html_safe%> 
+      <%= link_to @item.title.html_safe, user_shelf_url(@item.shelf.user, @item.shelf) if @item.title %> <br>
+      <%= @item.creator.html_safe if @item.creator %>   
+      <br>
+      Shelf: <%= link_to @item.shelf.name, user_shelf_url(@item.shelf.user, @item.shelf)%>  
+      User:  <%= link_to @item.shelf.user.name, user_url(@item.shelf.user)  %>  
+      <br><br>
+    </div>   
+  </div>        
+    <%#= link_to image_tag(@item.image_url), @item.url, :target => "_blank"  if @item.image_url %>
+  </body>
+</html>

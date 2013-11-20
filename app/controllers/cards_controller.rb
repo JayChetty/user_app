@@ -16,7 +16,9 @@ class CardsController < ApplicationController
 		@card = current_user.sent_cards.new
 		if params[:receiver_id] && params[:receiver_id].to_i != current_user.id
 			@receiver = User.find(params[:receiver_id])
-		else
+		elsif params[:receiver_email] 
+			@receiver_email = params[:receiver_email]
+		else	
 			#need to find your friend
 			@friends = current_user.friends.all
 			render "cards/choose_receiver"
@@ -29,6 +31,15 @@ class CardsController < ApplicationController
 	end
 
 	def create
+		if params[:card][:receiver_email]
+			#send via email
+			item = Item.find(params[:card][:item_id])
+			message = params[:card][:message]
+			CardMailer.card_email(current_user, item, message, params[:card][:receiver_email]).deliver
+			#flash[:success] = "Email Card Sent to #{params[:card][:receiver_email]}"
+			redirect_to user_path(current_user)
+			return false
+		end
 		@receiver = User.find( params[:card][:receiver_id] )
 		@card = current_user.sent_cards.build(sender_id: current_user.id, receiver_id: params[:card][:receiver_id], message: params[:card][:message], item_id: params[:card][:item_id])
 		

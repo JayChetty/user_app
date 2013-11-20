@@ -1,5 +1,7 @@
 <% if @receiver %>
 	<h2> Card to <%= @receiver.name %> </h2><br>
+<% elsif @receiver_email %>
+	<h2> Card to <%= @receiver_email %> </h2><br>
 <% end %>
 
 <%= render "items/shelfitem", object: @item %>	
@@ -11,7 +13,9 @@
 	  <%= render 'shared/error_messages', object: f.object %>
 	  <%= f.hidden_field :item_id, value: params[:item_id] %>
 	  <% if @receiver %>
-	  	<%= f.hidden_field :receiver_id, value: params[:receiver_id] %>     
+	  	<%= f.hidden_field :receiver_id, value: params[:receiver_id] %> 
+	  <% elsif @receiver_email %>
+	    <%= f.hidden_field :receiver_email, value: params[:receiver_email] %>   
 	  <% else %>
 	    <%= f.label :receiver_id %>
 	  	<%= f.text_field :receiver_id %>
@@ -19,7 +23,7 @@
 		<%= f.label :message %>
 		<%= f.text_area :message, :cols => "40", :rows => "5"%>
 		<br>
-	  <%= f.submit %>
+	  <%= f.submit ('Send Card') %>
 	<% end %>
 	</div>	
 </div>

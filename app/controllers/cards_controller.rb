@@ -36,21 +36,21 @@ class CardsController < ApplicationController
 			item = Item.find(params[:card][:item_id])
 			message = params[:card][:message]
 			CardMailer.card_email(current_user, item, message, params[:card][:receiver_email]).deliver
-			#flash[:success] = "Email Card Sent to #{params[:card][:receiver_email]}"
-			redirect_to user_path(current_user)
-			return false
+			flash[:success] = "Email Card Sent to #{params[:card][:receiver_email]}"
+			redirect_to user_cards_path(current_user)
+		else			
+			@receiver = User.find( params[:card][:receiver_id] )
+			@card = current_user.sent_cards.build(sender_id: current_user.id, receiver_id: params[:card][:receiver_id], message: params[:card][:message], item_id: params[:card][:item_id])
+			
+			if @card.save
+				FriendMailer.new_card_email(current_user, @receiver).deliver
+				flash[:success] = "Card Created"
+				redirect_to user_cards_path(current_user)
+			else
+				flash[:error] = "Couldn't create card"
+				redirect_to user_cards_path(current_user)
+			end	
 		end
-		@receiver = User.find( params[:card][:receiver_id] )
-		@card = current_user.sent_cards.build(sender_id: current_user.id, receiver_id: params[:card][:receiver_id], message: params[:card][:message], item_id: params[:card][:item_id])
-		
-		if @card.save
-			FriendMailer.new_card_email(current_user, @receiver).deliver
-			flash[:success] = "Card Created"
-			redirect_to user_cards_path(current_user)
-		else
-			flash[:error] = "Couldn't create card"
-			redirect_to user_cards_path(current_user)
-		end	
 	end	
 
 	def destroy

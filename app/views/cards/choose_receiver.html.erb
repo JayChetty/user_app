@@ -1,9 +1,9 @@
-<h2> Choose Friend to send card</h2><br><br>
+<h2> Choose Friend to Receive Card</h2>
 <% @friends.each do |f| %>
 	<%= link_to f.name, params.merge(:receiver_id => f.id) %> <br>
 <% end %>
 
-<h5> Send via Email </h5>
+<h2> Or Send via Email </h2>
 <%= form_tag new_user_card_path, method: :get do %>
   <%= label_tag(:receiver_email, "Receiver Email") %>
   <%= text_field_tag(:receiver_email) %>

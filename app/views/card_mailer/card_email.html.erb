@@ -4,13 +4,10 @@
     <meta content='text/html; charset=UTF-8' http-equiv='Content-Type' />
   </head>
   <body>
-    <h2>
-      <%= @user.name %> has sent you this card using SoulStirs.<br/>
-    </h2>
     <p>
       <%= @message %>
     </p>
-  <!-- UGLY SHOULD JUST RENDER -->
+  <!-- UGLY SHOULD JUST RENDER PARTAL, maybe-->
   <div class="row">                 
     <div class="span1"> 
       <%= link_to image_tag(@item.image_url), @item.url, :target => "_blank"  if @item.image_url %>
@@ -25,6 +22,9 @@
       <br><br>
     </div>   
   </div>        
-    <%#= link_to image_tag(@item.image_url), @item.url, :target => "_blank"  if @item.image_url %>
+    <p>
+      <%= @user.name %> sent you this card using SoulStirs<br/>
+      <%= link_to "Sign up", new_user_registration_path %> and share what stirs your soul.
+    </p>
   </body>
 </html>

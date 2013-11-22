@@ -3,11 +3,11 @@ class UsersController < ApplicationController
   	@user = User.find(params[:id])
   	@shelves = @user.shelves.all
 
-  	if @user.feelings.any?
-  		redirect_to user_feelings_path(@user)
-  	else
-  		redirect_to user_shelves_path(@user)
-  	end
+  	# if @user.feelings.any?
+  	# 	redirect_to user_feelings_path(@user)
+  	# else
+    redirect_to user_shelves_path(@user)
+  	# end
   end
 
   def index

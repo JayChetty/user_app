@@ -39,6 +39,7 @@ class ShelvesController < ApplicationController
     @shelves = @user.shelves.all
     @shelf = @user.shelves.find(params[:id])
 
+    #Refactor using scopes
     @reads = @shelf.items.where(medium: 'read')
     @tracks = @shelf.items.where(medium: 'track')
     @shows = @shelf.items.where(medium:'show')    

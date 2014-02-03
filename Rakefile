@@ -4,4 +4,4 @@
 
 require File.expand_path('../config/application', __FILE__)
 
-StaticBootstrapApp::Application.load_tasks
+Shelf::Application.load_tasks

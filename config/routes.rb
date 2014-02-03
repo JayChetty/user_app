@@ -1,4 +1,4 @@
-StaticBootstrapApp::Application.routes.draw do
+Shelf::Application.routes.draw do
 
 
   devise_for :users

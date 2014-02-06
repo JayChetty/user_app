@@ -9,3 +9,13 @@ window.Stirs =
   Collections: {}
   Routers: {}
   Views: {}
+  # init: ->
+    # alert 'Hello from Backbone!'
+    # new Stirs.Routers.ShelvesRouter()
+    # new Stirs.Routers.ShelvesRouter
+    # Backbone.history.start()
+    
+
+# $(document).ready ->
+#   Stirs.init()
+# window.onload = Stirs.init()

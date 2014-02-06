@@ -15,6 +15,11 @@ class Stirs.Routers.ShelvesRouter extends Backbone.Router
     $("#shelves").html(@view.render().el)
 
   index: ->
+    # alert "Sup"
+    # s = new Stirs.Collections.ShelvesCollection()
+    # s.fetch()
+    # alert "#{s.length}"
+    console.log("shelves", @shelves)
     @view = new Stirs.Views.Shelves.IndexView(shelves: @shelves)
     $("#shelves").html(@view.render().el)
 

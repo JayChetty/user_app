@@ -1,12 +1,9 @@
-<%= render 'shared/userhead' %>
-<div class="container">
-	<div class="row">
+<div id="shelves"> loading...</div>
 
-      <%= render 'shared/shelves_sidebar' %>	
-
-	  <div class="span9">
-
-	  </div>
-
-	</div> 
-</div> 
+<script type="text/javascript">
+  $(function() {
+    // Blog is the app name
+    window.router = new Stirs.Routers.ShelvesRouter({shelves: <%= @shelves.to_json.html_safe -%>});
+    Backbone.history.start();
+  });
+</script>

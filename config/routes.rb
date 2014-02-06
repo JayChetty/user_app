@@ -26,6 +26,7 @@ Shelf::Application.routes.draw do
 
   end
 
+  resources :shelves
 
   root to: 'static_pages#home'
 

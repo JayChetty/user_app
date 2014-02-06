@@ -16,23 +16,6 @@ class Shelf < ActiveRecord::Base
   belongs_to :user
   has_many :items, dependent: :destroy
 
-  # def icon 
-  # 	iconstring = ""
-  # 	if self.reads.any?
-  #   iconstring << "<i class=\"icon-book\"></i>"
-  #     if self.tracks.empty?
-  #     	iconstring << "<i class=\"icon-empty\"></i>"
-  #     end
-	 #  end
-
-	 #  if self.tracks.any?
-  #   iconstring << "<i class=\"icon-music\"></i>"
-  #     if self.reads.empty?
-  #     	iconstring << "<i class=\"icon-empty\"></i>"
-  #     end
-  #   end
-  #   iconstring
-  # end
 
   def icon 
     iconstring = ""

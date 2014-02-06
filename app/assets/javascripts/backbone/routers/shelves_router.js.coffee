@@ -1,7 +1,8 @@
 class Stirs.Routers.ShelvesRouter extends Backbone.Router
   initialize: (options) ->
     @shelves = new Stirs.Collections.ShelvesCollection()
-    @shelves.reset options.shelves
+    @shelves.fetch()
+    # @shelves.reset options.shelves
 
   routes:
     "new"      : "newShelf"
@@ -17,7 +18,8 @@ class Stirs.Routers.ShelvesRouter extends Backbone.Router
   index: ->
     # alert "Sup"
     # s = new Stirs.Collections.ShelvesCollection()
-    # s.fetch()
+    # s.fetch
+
     # alert "#{s.length}"
     console.log("shelves", @shelves)
     @view = new Stirs.Views.Shelves.IndexView(shelves: @shelves)

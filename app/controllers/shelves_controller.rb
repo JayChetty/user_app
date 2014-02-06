@@ -27,7 +27,7 @@ class ShelvesController < ApplicationController
   end
 
   def update
-    @shelf = current_user.shelves.find(params[:id])
+    @shelf = current_user 
     if @shelf.update_attributes(params[:shelf])
       flash[:success] = "Shelf Updated"
       redirect_to user_shelf_path(current_user, @shelf)
@@ -38,7 +38,7 @@ class ShelvesController < ApplicationController
   end
 
   def show
-    @user = User.find(params[:user_id])
+    @user = current_user 
     @shelves = @user.shelves.all
     @shelf = @user.shelves.find(params[:id])
 
@@ -49,7 +49,8 @@ class ShelvesController < ApplicationController
   end
 
   def index
-    @user = User.find(params[:user_id])
+    # @user = User.find(params[:user_id])
+    @user = current_user    
     @shelves = @user.shelves.all
 
     # if @shelves.empty? && current_user == @user

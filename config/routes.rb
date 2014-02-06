@@ -1,4 +1,4 @@
-Shelf::Application.routes.draw do
+Stirs::Application.routes.draw do
 
 
   devise_for :users

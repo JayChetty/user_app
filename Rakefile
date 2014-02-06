@@ -4,4 +4,4 @@
 
 require File.expand_path('../config/application', __FILE__)
 
-Shelf::Application.load_tasks
+Stirs::Application.load_tasks

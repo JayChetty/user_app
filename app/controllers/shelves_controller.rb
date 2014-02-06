@@ -64,7 +64,7 @@ class ShelvesController < ApplicationController
     respond_to do |format|
       format.html
       format.json { render :json => @shelves }
-    end  
+    end
 
   end
 

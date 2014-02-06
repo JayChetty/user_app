@@ -26,7 +26,9 @@ Stirs::Application.routes.draw do
 
   end
 
-  resources :shelves
+  resources :shelves do
+    resources :items
+  end
   root to: 'static_pages#home'
 
 

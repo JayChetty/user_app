@@ -1,4 +1,6 @@
 class ItemsController < ApplicationController
+  respond_to :json, :html
+  before_filter :authenticate_user!
 
   def new 
     @user = current_user
@@ -30,6 +32,12 @@ class ItemsController < ApplicationController
   end
 
   def index
+    shelf = current_user.shelves.find(params[:shelf_id])
+    @items = shelf.items
+    respond_to do |format|
+      format.html
+      format.json { render :json => @items }
+    end    
   end
 
   def show

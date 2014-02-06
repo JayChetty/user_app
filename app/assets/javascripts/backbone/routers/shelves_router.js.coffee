@@ -27,7 +27,12 @@ class Stirs.Routers.ShelvesRouter extends Backbone.Router
 
   show: (id) ->
     shelf = @shelves.get(id)
-
+    console.log("id", id)
+    items = new Stirs.Collections.ItemCollection(id)
+    console.log("item", items)
+    items.fetch
+      success:
+        console.log("HELLO")
     @view = new Stirs.Views.Shelves.ShowView(model: shelf)
     $("#shelves").html(@view.render().el)
 

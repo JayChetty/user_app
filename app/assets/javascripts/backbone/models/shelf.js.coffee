@@ -6,4 +6,4 @@ class Stirs.Models.Shelf extends Backbone.Model
 
 class Stirs.Collections.ShelvesCollection extends Backbone.Collection
   model: Stirs.Models.Shelf
-  url: '/shelves'
+  url: "/users/1/shelves"

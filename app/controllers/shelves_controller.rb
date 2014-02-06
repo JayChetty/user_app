@@ -1,4 +1,7 @@
 class ShelvesController < ApplicationController
+  respond_to :json, :html
+  before_filter :authenticate_user!
+  
   def new
     @user = current_user
     @shelves = @user.shelves.all
@@ -49,13 +52,18 @@ class ShelvesController < ApplicationController
     @user = User.find(params[:user_id])
     @shelves = @user.shelves.all
 
-    if @shelves.empty? && current_user == @user
-      redirect_to new_user_shelf_path(current_user)
-    end
+    # if @shelves.empty? && current_user == @user
+    #   redirect_to new_user_shelf_path(current_user)
+    # end
 
-    if @shelves.any?
-      redirect_to user_shelf_path(@user, @shelves.first)
-    end
+    # if @shelves.any?
+    #   redirect_to user_shelf_path(@user, @shelves.first)
+    # end
+
+    respond_to do |format|
+      format.html
+      format.json { render :json => @shelves }
+    end  
 
   end
 

@@ -24,11 +24,15 @@ class Stirs.Views.Shelves.ShowView extends Backbone.View
     
     return this
 
-  findItem: ->
+  findItem:(ev) ->
+    console.log('event', ev)
+    title = $('#title').val()
+    creator = $('#creator').val()
+    console.log('title', title)
     $.ajax
       dataType: "json"
       url: "/shelves/#{@model.get('id')}/items/new"
-      data: {medium: "read", title: "Face"}
+      data: {medium: "read", title: "#{title}", creator: "#{creator}"}
       success: @success
 
   success: (data)=>
@@ -37,7 +41,11 @@ class Stirs.Views.Shelves.ShowView extends Backbone.View
     console.log("succes", items)
     console.log("this", this)
 
-    item_list = this.$('#found_items')[0]
+    jlist = this.$('#found_items')
+    jlist.empty()
+    item_list = jlist[0]
+
+    console.log("item list", item_list)
 
     _.each(items.models, (item) ->
       item_element = document.createElement('li')
@@ -48,4 +56,3 @@ class Stirs.Views.Shelves.ShowView extends Backbone.View
       item_element.appendChild(img)
       item_list.appendChild(item_element)
     )
-    this.render

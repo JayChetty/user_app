@@ -27,8 +27,9 @@ class ShelvesController < ApplicationController
   end
 
   def update
-    @shelf = current_user 
-    if @shelf.update_attributes(params[:shelf])
+    @shelf = current_user
+    name = params[:shelf][:name]
+    if @shelf.update_attribute(:name, name)
       flash[:success] = "Shelf Updated"
       redirect_to user_shelf_path(current_user, @shelf)
     else

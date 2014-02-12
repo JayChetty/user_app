@@ -3,14 +3,42 @@ class ItemsController < ApplicationController
   before_filter :authenticate_user!
 
   def new 
-    @user = current_user
-    @shelves = current_user.shelves.all
-    @shelf = current_user.shelves.find(params[:shelf_id])
-
-    
     if params[:title] || params[:creator]
-      @items = getFromAmazon(title = params[:title], creator = params[:creator], medium = params[:medium]) 
+      puts('searching amazon')
+      @xml_items = getFromAmazon(title = params[:title], creator = params[:creator], medium = params[:medium])
+
+      creator_hash = {read: "Author", } 
+
+       case params[:medium]
+       when "read"
+         creator = 'Author'
+       when "track"
+         # creator = 'Creator' || item.get("ItemAttributes/Artist")
+         creator = 'Creator'
+       when "show" 
+         creator = 'Actor'
+       end 
+    
+      @items = @xml_items.map do |item|
+        item = Item.new(creator: item.get("ItemAttributes/#{creator}") ,title: item.get('ItemAttributes/Title'), 
+        image_url: item.get("SmallImage/URL"), url: item.get("DetailPageURL"), medium: params[:medium])  
+      end
+
+      # if params[:medium] == 'track' && !item.creator
+      #   item.update_attribute(:creator, item.get("ItemAttributes/Artist"))
+      # end
+
     end
+    respond_to do |format|
+      format.html do
+        @user = current_user
+        @shelves = current_user.shelves.all
+        @shelf = current_user.shelves.find(params[:shelf_id])
+      end
+      format.json do
+        render :json => @items.to_json
+      end
+    end    
   end
 
   def create
@@ -36,7 +64,7 @@ class ItemsController < ApplicationController
     @items = shelf.items
     respond_to do |format|
       format.html
-      format.json { render :json => @items }
+      format.json { render :json => @items.to_json }
     end    
   end
 

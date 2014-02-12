@@ -19,9 +19,9 @@
 
 			<% end %>
 
-			<% if @items && @items.any? %>
+			<% if @xml_items && @xml_items.any? %>
 				<ul class = "reads">
-					<% @items.each do |item| %>
+					<% @xml_items.each do |item| %>
 
 						<% image = item.get("SmallImage/URL") %>
 						<% url = item.get("DetailPageURL") %>

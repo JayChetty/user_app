@@ -25,4 +25,12 @@ class Stirs.Views.Shelves.ShowView extends Backbone.View
     return this
 
   findItem: ->
-        alert("Hello")
+    alert("Hello")
+    $.ajax
+      dataType: "json"
+      url: "/shelves/#{@model.get('id')}/items/new"
+      data: {medium: "read", title: "Face"}
+      success: @success
+
+  success: (data)->
+    console.log("succes", data)

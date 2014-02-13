@@ -69,4 +69,3 @@ class Stirs.Views.Shelves.ShowView extends Backbone.View
     item.save()
     
     #@model.addItem(item)
-    alert("CLi")

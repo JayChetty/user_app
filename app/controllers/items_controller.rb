@@ -43,7 +43,9 @@ class ItemsController < ApplicationController
 
   def create
     @shelf = current_user.shelves.find(params[:shelf_id])
-    @item = @shelf.items.build(creator: params[:creator] ,title: params[:title] , image_url: params[:image_url], url: params[:url], medium: params[:medium]  )
+    #@item = @shelf.items.build(creator: params[:creator] ,title: params[:title] , image_url: params[:image_url], url: params[:url], medium: params[:medium]  )
+    @item = @shelf.items.build(creator: params[:item][:creator] ,title: params[:item][:title] , image_url: params[:item][:image_url], url: params[:item][:url], medium: params[:item][:medium]  )
+    
     if @item.save
       flash[:success] = "Item Added"
       redirect_to user_shelf_path(current_user, @shelf)

@@ -5,6 +5,7 @@ class Stirs.Views.Shelves.ShowView extends Backbone.View
 
   events:
     "click #find_btn": 'findItem'
+    "click .found_item": 'saveItem'
 
 
   render: ->
@@ -36,9 +37,9 @@ class Stirs.Views.Shelves.ShowView extends Backbone.View
       success: @success
 
   success: (data)=>
-    items = new Stirs.Collections.ItemCollection()
-    items.reset data
-    console.log("succes", items)
+    @found_items = new Stirs.Collections.ItemCollection()
+    @found_items.reset data
+    console.log("succes", @found_items)
     console.log("this", this)
 
     jlist = this.$('#found_items')
@@ -47,8 +48,12 @@ class Stirs.Views.Shelves.ShowView extends Backbone.View
 
     console.log("item list", item_list)
 
-    _.each(items.models, (item) ->
+    _.each(@found_items.models, (item, i) =>
+      #want to create a view for an item element right?
       item_element = document.createElement('li')
+      # item_element.id = "found_item_#{i}"
+      item_element.setAttribute('data-pos', i);
+      item_element.className = "found_item"
       console.log("item", item)
       # item_element.innerHTML = item.title
       img = document.createElement("img");
@@ -56,3 +61,12 @@ class Stirs.Views.Shelves.ShowView extends Backbone.View
       item_element.appendChild(img)
       item_list.appendChild(item_element)
     )
+  saveItem:(ev) =>
+    console.log("event", ev.currentTarget)
+    item = @found_items.models[ev.currentTarget.getAttribute('data-pos')]
+    item.set('shelf_id', @model.get('id'))
+    console.log("item", item)
+    item.save()
+    
+    #@model.addItem(item)
+    alert("CLi")

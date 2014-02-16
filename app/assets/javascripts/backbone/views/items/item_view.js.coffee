@@ -7,6 +7,7 @@ class Stirs.Views.Items.ItemView extends Backbone.View
   #   "click .destroy" : "destroy"
 
   tagName: "li"
+  className: "item"
 
   # destroy: () ->
   #   @model.destroy()

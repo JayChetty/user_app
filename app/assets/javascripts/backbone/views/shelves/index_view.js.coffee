@@ -11,7 +11,7 @@ class Stirs.Views.Shelves.IndexView extends Backbone.View
 
   addOne: (shelf) =>
     view = new Stirs.Views.Shelves.ShelfView({model : shelf})
-    @$("tbody").append(view.render().el)
+    @$("ul").append(view.render().el)
 
   render: =>
     $(@el).html(@template(shelves: @options.shelves.toJSON() ))

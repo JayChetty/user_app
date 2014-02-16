@@ -37,11 +37,14 @@ class Stirs.Views.Items.ItemFinderView extends Backbone.View
     item_list = jlist[0]
 
     _.each(@found_items.models, (item, i) =>
-      item_view = new Stirs.Views.Items.ItemView({model : item}) # Do this with the ItemView
+      #item_view = new Stirs.Views.Items.ItemView({model : item}) 
+      #Do this properly
       
       item_element = document.createElement('li')
-      item_element.setAttribute('data-pos', i);
-      item_element.className = "found_item"
+      $(item_element).addClass('item')
+      $(item_element).addClass('found_item')
+      item_element.setAttribute('data-pos', i)
+      # item_element.className = "found_item"
 
       img = document.createElement("img");
       img.setAttribute('src', item.get('image_url'))

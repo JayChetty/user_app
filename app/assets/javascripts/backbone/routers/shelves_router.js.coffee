@@ -24,8 +24,11 @@ class Stirs.Routers.ShelvesRouter extends Backbone.Router
     shelf = @shelves.get(id)
     @index_view = new Stirs.Views.Shelves.IndexView(shelves: @shelves)
     @view = new Stirs.Views.Shelves.ShowView(model: shelf, shelves: @shelves)
+
     $("#shelf-index").html(@index_view.render().el)
-    $("#current-shelf")[0].appendChild(@view.render().el)
+    $("#current-shelf").html(@view.render().el)
+
+    # $("#item-finder")[0].appendChild(@view.render().el)
 
   edit: (id) ->
     shelf = @shelves.get(id)

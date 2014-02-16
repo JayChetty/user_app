@@ -7,12 +7,15 @@ class Stirs.Views.Shelves.ShowView extends Backbone.View
     "click #find_btn": 'findItem'
     "click .found_item": 'addItem'
 
-  initialize: ->
+  initialize:(options) ->
     @model.on('change', @render)
-
+    @index  = new Stirs.Views.Shelves.IndexView(shelves: options.shelves)
+    console.log('options', options)
 
   render: =>
     console.log('TRIGGERED')
+    # 
+
     $(@el).html(@template(@model.toJSON() ))
 
     item_list = this.$('#items')[0]
@@ -20,12 +23,8 @@ class Stirs.Views.Shelves.ShowView extends Backbone.View
     console.log('in show render model', @model)
 
     _.each(@model.items.models, (item) ->
-      item_element = document.createElement('li')
-
-      img = document.createElement("img");
-      img.setAttribute('src', item.get('image_url'))
-      item_element.appendChild(img)
-      item_list.appendChild(item_element)
+      item_view = new Stirs.Views.Items.ItemView({model : item})
+      item_list.appendChild(item_view.render().el)
     )
     
     return this
@@ -48,7 +47,8 @@ class Stirs.Views.Shelves.ShowView extends Backbone.View
     item_list = jlist[0]
 
     _.each(@found_items.models, (item, i) =>
-
+      item_view = new Stirs.Views.Items.ItemView({model : item})
+      
       item_element = document.createElement('li')
       item_element.setAttribute('data-pos', i);
       item_element.className = "found_item"

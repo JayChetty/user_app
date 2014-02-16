@@ -1,24 +1,35 @@
-<p>
-  <b>Name:</b>
-  <%= name %>
-  <b>Items </b>
-</p>
+<div class="panel">
+  <div class="row">
+    <div class="small-12 columns">
 
-<ul id='items'>
-</ul>
+      <div class="row">
+        <div class="large-6 columns">
+          <p>
+            <b>Name:</b>
+            <%= name %>
+            <b>Items </b>
+          </p>
 
-<a href="#/index">Add Item</a>
-<br>
+          <ul id='items' class = 'inline-list'>
+          </ul>
+        </div>
+        <div class="large-6 columns">
 
-<form>
-  <label for="title">Title</label>
-  <input id="title" name="title" type="text">
-  <label for="creator">Author</label>
-  <input id="creator" name="creator" type="text">
-  <input id = "find_btn" class="btn" name="commit" type="button" value="Find">
-</form>
+          <form>
+            <label for="title">Title</label>
+            <input id="title" name="title" type="text">
+            <label for="creator">Author</label>
+            <input id="creator" name="creator" type="text">
+            <input id = "find_btn" name="commit" type="button" value="Find" >
+          </form>
+        
 
-<ul id='found_items'>
-</ul>
+        
+          <ul id='found_items' >
+          </ul>
 
-<a href="#/index">Back</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

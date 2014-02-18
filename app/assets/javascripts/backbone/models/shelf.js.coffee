@@ -16,6 +16,7 @@ class Stirs.Models.Shelf extends Backbone.Model
     @items.reset items
 
   addItem:(item) -> 
+    item.set('shelf_id', @.get('id'))
     @items.add(item)
     @.trigger('change')
     item.save()

@@ -15,6 +15,8 @@ gem "rails-backbone"
 
 gem 'foundation-rails'
 
+gem 'jquery-ui-rails'
+
 
 group :development, :test do
   gem 'sqlite3', '1.3.5'

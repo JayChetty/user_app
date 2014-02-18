@@ -18,7 +18,7 @@ class ItemsController < ApplicationController
        when "show" 
          creator = 'Actor'
        end 
-    
+
       @items = @xml_items.map do |item|
         item = Item.new(creator: item.get("ItemAttributes/#{creator}") ,title: item.get('ItemAttributes/Title'), 
         image_url: item.get("SmallImage/URL"), url: item.get("DetailPageURL"), medium: params[:medium])  

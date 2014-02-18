@@ -26,10 +26,14 @@ Stirs::Application.routes.draw do
 
   end
 
+  #JSON API
+
   resources :shelves do
     resources :items
   end
   root to: 'static_pages#home'
+
+  resources :items
 
 
   # The priority is based upon order of creation:

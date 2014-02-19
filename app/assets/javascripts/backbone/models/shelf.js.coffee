@@ -9,7 +9,6 @@ class Stirs.Models.Shelf extends Backbone.Model
     console.log("Creating shelf object", this)
 
     @createItems(data.items)
-    # super
 
   createItems:(items) ->
     @items = new Stirs.Collections.ItemCollection()

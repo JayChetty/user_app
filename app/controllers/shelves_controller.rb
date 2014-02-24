@@ -10,13 +10,33 @@ class ShelvesController < ApplicationController
 
   def create
     @shelf = current_user.shelves.build(params[:shelf])
-    if @shelf.save
-      flash[:success] = "New shelf created"
-      redirect_to user_shelf_path(current_user, @shelf)
-    else
-      flash[:failure] = "Shelf could not be created"
-      redirect_to new_user_shelf_path(current_user)
-    end
+
+
+    respond_to do |format|
+      format.html do
+        if @shelf.save
+          flash[:success] = "New shelf created"
+          redirect_to user_shelf_path(current_user, @shelf)
+        else
+          flash[:failure] = "Shelf could not be created"
+          redirect_to new_user_shelf_path(current_user)
+        end
+      end
+      format.json do
+        @shelf.save
+        render :json => @shelf.to_json
+      end
+    end    
+
+
+    # if @shelf.save
+    #   flash[:success] = "New shelf created"
+    #   redirect_to user_shelf_path(current_user, @shelf)
+    # else
+    #   flash[:failure] = "Shelf could not be created"
+    #   redirect_to new_user_shelf_path(current_user)
+    # end
+
   end
 
   def edit

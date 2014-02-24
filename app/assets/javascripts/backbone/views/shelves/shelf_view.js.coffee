@@ -3,8 +3,8 @@ Stirs.Views.Shelves ||= {}
 class Stirs.Views.Shelves.ShelfView extends Backbone.View
   template: JST["backbone/templates/shelves/shelf"]
 
-  # events:
-  #   "click .destroy" : "destroy"
+  events:
+    "click .destroy" : "destroy"
 
   # tagName: "li"
 

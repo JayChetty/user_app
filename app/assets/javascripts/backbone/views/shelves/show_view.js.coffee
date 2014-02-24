@@ -22,11 +22,16 @@ class Stirs.Views.Shelves.ShowView extends Backbone.View
   render: =>   
     $(@el).html(@template(@model.toJSON() ))
     item_list = this.$('#items')[0]
+    if @model.items.length == 0
+      li = document.createElement("li")
+      li.innerHTML = "No books added yet, drop books here to add"
+      item_list.appendChild(li)
+    else
+      _.each(@model.items.models, (item) ->
+        item_view = new Stirs.Views.Items.ItemView({model : item})
+        item_list.appendChild(item_view.render().el)
+      )
 
-    _.each(@model.items.models, (item) ->
-      item_view = new Stirs.Views.Items.ItemView({model : item})
-      item_list.appendChild(item_view.render().el)
-    )
     @setActive()
     
     return this

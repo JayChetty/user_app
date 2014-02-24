@@ -4,7 +4,7 @@ class ItemsController < ApplicationController
 
   def new 
     if params[:title] || params[:creator]
-      puts('searching amazon')
+      puts("searching amazon")
       @xml_items = getFromAmazon(title = params[:title], creator = params[:creator], medium = params[:medium])
 
       creator_hash = {read: "Author", } 

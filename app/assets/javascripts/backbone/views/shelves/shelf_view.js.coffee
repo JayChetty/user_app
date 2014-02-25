@@ -7,13 +7,17 @@ class Stirs.Views.Shelves.ShelfView extends Backbone.View
     "click .destroy" : "destroy"
 
   # tagName: "li"
+  # initialize: () ->
+    
+  initialize: =>
+    @model.on('change', @render)
 
-  destroy: () ->
+  destroy: () =>
     @model.destroy()
     this.remove()
 
     return false
 
-  render: ->
+  render: =>
     $(@el).html(@template(@model.toJSON() ))
     return this

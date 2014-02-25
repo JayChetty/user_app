@@ -47,14 +47,23 @@ class ShelvesController < ApplicationController
   end
 
   def update
-    @shelf = current_user
+    @shelf = current_user.shelves.find(params[:shelf][:id])
     name = params[:shelf][:name]
-    if @shelf.update_attribute(:name, name)
-      flash[:success] = "Shelf Updated"
-      redirect_to user_shelf_path(current_user, @shelf)
-    else
-      flash[:failure] = "Could not update shelf"
-      redirect_to edit_user_shelf_path(current_user, @shelf)
+
+    respond_to do |format|
+      format.html do
+        if @shelf.update_attribute(:name, name)
+          flash[:success] = "Shelf Updated"
+          redirect_to user_shelf_path(current_user, @shelf)
+        else
+          flash[:failure] = "Could not update shelf"
+          redirect_to edit_user_shelf_path(current_user, @shelf)
+        end
+      end
+      format.json do
+        @shelf.update_attribute(:name, name)
+        render :json => @shelf.to_json
+      end
     end
   end
 

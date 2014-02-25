@@ -8,13 +8,13 @@ class Stirs.Views.Items.ItemFinderView extends Backbone.View
 
   tagName: "div"
 
-  render: ->
+  render: =>
     $(@el).html(@template())
     return this
 
   findItem:(ev) =>
-    title = $('#title').val()
-    creator = $('#creator').val()
+    title = $(@el).find('#title').val()
+    creator = $(@el).find('#creator').val()
     # medium = $('#medium').val()
     medium = "read"
     $.ajax

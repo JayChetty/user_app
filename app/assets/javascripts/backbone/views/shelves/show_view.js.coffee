@@ -6,21 +6,29 @@ class Stirs.Views.Shelves.ShowView extends Backbone.View
   events:
     "dragover" : "dragOver"
     "drop": "drop"
+    "click #edit-btn" : "edit"
 
-  initialize: ->
+  initialize: =>
     @model.on('change', @render)
 
-  drop:(ev)->
+  edit: =>
+    console.log("Editing")
+    name = $(@el).find('#name').val()
+    @model.set('name', name)
+    @model.save()
+
+  drop:(ev)=>
     itemText = ev.originalEvent.dataTransfer.getData('Item')
     item = new Stirs.Models.Item(JSON.parse(itemText))
     @model.addItem(item)
 
-  setActive: ->
+  setActive: =>
     console.log("asdf", "#index-#{@model.get('id')}")
     $("#index-#{@model.get('id')}").addClass('active')
 
-  render: =>   
+  render: =>
     $(@el).html(@template(@model.toJSON() ))
+    $(@el).find('#name').val(@model.get('name'))
     item_list = this.$('#items')[0]
     if @model.items.length == 0
       li = document.createElement("li")
@@ -36,8 +44,8 @@ class Stirs.Views.Shelves.ShowView extends Backbone.View
     
     return this
 
-  dragOver:(ev) ->
+  dragOver:(ev) =>
     @allowDrop(ev)
 
-  allowDrop: (ev) ->
+  allowDrop: (ev) =>
     ev.preventDefault()

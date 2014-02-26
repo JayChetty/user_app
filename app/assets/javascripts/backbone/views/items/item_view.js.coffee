@@ -12,10 +12,12 @@ class Stirs.Views.Items.ItemView extends Backbone.View
 
   isDraggable: false
 
-  render: =>
-    $(@el).html(@template(@model.toJSON()))
+  initialize: =>
     @pop = new Stirs.Views.Items.PopoverView(model: @model)
-    @el.appendChild(@pop.render().el)
+
+  render: =>
+    $(@el).html(@template(@model.toJSON())) 
+    @el.appendChild(@pop.render().el)   
     return this
 
   setIsDraggable:(isDraggable) =>
@@ -27,7 +29,6 @@ class Stirs.Views.Items.ItemView extends Backbone.View
     ev.originalEvent.dataTransfer.setData("Item", JSON.stringify(@model))
 
   popOver:=>
-    $(document).foundation('reflow')
-    search = "#myModal#{@model.cid}" # would be nice to use @pop directly, bad foundation
-    $(search).foundation('reveal', 'open');
+    @pop.open();
+
 

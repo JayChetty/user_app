@@ -5,14 +5,17 @@ class Stirs.Views.Items.ItemView extends Backbone.View
 
   events:
     "dragstart" : "onDragStart"
+    "click img": "popOver"
 
   tagName: "li"
   className: "item"
 
   isDraggable: false
 
-  render: ->
+  render: =>
     $(@el).html(@template(@model.toJSON() ))
+    popOver = new Stirs.Views.Items.PopoverView()
+    @el.appendChild(popOver.render().el)
     return this
 
   setIsDraggable:(isDraggable) =>
@@ -22,4 +25,8 @@ class Stirs.Views.Items.ItemView extends Backbone.View
 
   onDragStart:(ev)=>
     ev.originalEvent.dataTransfer.setData("Item", JSON.stringify(@model))
+
+  popOver:=>
+    $(document).foundation('reflow')
+    $('#myModal').foundation('reveal', 'open');
 

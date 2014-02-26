@@ -5,9 +5,6 @@ class Stirs.Models.Shelf extends Backbone.Model
     name: null
 
   initialize:(data) ->
-    console.log("Creating shelf data", data)
-    console.log("Creating shelf object", this)
-
     @createItems(data.items)
 
   createItems:(items) ->

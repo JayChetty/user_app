@@ -14,7 +14,7 @@ class Stirs.Views.Items.ItemView extends Backbone.View
 
   render: =>
     $(@el).html(@template(@model.toJSON() ))
-    popOver = new Stirs.Views.Items.PopoverView()
+    popOver = new Stirs.Views.Items.PopoverView(model: @model)
     @el.appendChild(popOver.render().el)
     return this
 
@@ -28,5 +28,6 @@ class Stirs.Views.Items.ItemView extends Backbone.View
 
   popOver:=>
     $(document).foundation('reflow')
-    $('#myModal').foundation('reveal', 'open');
+    search = "#myModal#{@model.get('id')}" #should be able to just find pop directly
+    $(search).foundation('reveal', 'open');
 

@@ -1,9 +1,28 @@
 // Place all the styles related to the Items controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
+// @import "foundation/functions";
 
 li.item {
   // color: #ff0000;
   padding: 5px;
   margin-left: 0px;
+}
+
+.item-popover {
+  background-color: #fff;
+  width: 80%;
+  position:absolute;
+  z-index:999;
+}
+
+div.modal-backdrop {
+    height:100%;
+    width:100%;
+    position:fixed;
+    left:0;
+    top:0;
+    z-index:1 !important;
+    background-color:black;
+    opacity: 0.4;
 }

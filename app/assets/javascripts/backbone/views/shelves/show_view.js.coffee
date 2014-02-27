@@ -7,12 +7,18 @@ class Stirs.Views.Shelves.ShowView extends Backbone.View
     "dragover" : "dragOver"
     "drop": "drop"
     "click #edit-btn" : "edit"
+    "click #delete" : "delete"
+
+
+  delete: =>
+    @model.destroy()
+    @.remove()
+    router.index()
 
   initialize: =>
     @model.on('change', @render)
 
   edit: =>
-    console.log("Editing")
     name = $(@el).find('#name').val()
     @model.set('name', name)
     @model.save()

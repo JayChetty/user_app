@@ -3,7 +3,9 @@ class Stirs.Routers.ShelvesRouter extends Backbone.Router
     @shelves = new Stirs.Collections.ShelvesCollection()
     # @shelves.fetch()
     # @shelves.addItems()
+    @item_finder_view = new Stirs.Views.Items.ItemFinderView()
     @shelves.reset options.shelves
+    
 
   routes:
     "new"      : "newShelf"
@@ -17,9 +19,7 @@ class Stirs.Routers.ShelvesRouter extends Backbone.Router
     $("#shelves").html(@view.render().el)
 
   index: ->
-    @index_view = new Stirs.Views.Shelves.IndexView(shelves: @shelves)
-    @item_finder_view = new Stirs.Views.Items.ItemFinderView()
-    
+    @index_view = new Stirs.Views.Shelves.IndexView(shelves: @shelves)    
     $("#shelf-index").html(@index_view.render().el)    
     $("#item-finder").html(@item_finder_view.render().el)
 
@@ -27,9 +27,16 @@ class Stirs.Routers.ShelvesRouter extends Backbone.Router
     shelf = @shelves.get(id)
     @index_view = new Stirs.Views.Shelves.IndexView(shelves: @shelves)
     @view = new Stirs.Views.Shelves.ShowView(model: shelf, shelves: @shelves)
+
+    # if $("#item-finder")
     
     $("#shelf-index").html(@index_view.render().el)
     $("#current-shelf").html(@view.render().el)
+
+    $item_finder = $("#item-finder")
+    if ($item_finder.find('form').length == 0)#no finder
+      console.log('adding finder')
+      $item_finder.html(@item_finder_view.render().el)
     
 
     # $("#item-finder")[0].appendChild(@view.render().el)

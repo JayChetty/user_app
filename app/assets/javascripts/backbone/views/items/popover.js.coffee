@@ -3,10 +3,12 @@ Stirs.Views.Items ||= {}
 class Stirs.Views.Items.PopoverView extends Backbone.View
   template: JST["backbone/templates/items/popover"]
 
-  tagName: "div"  
+  tagName: "div" 
+  className: "item-popover" 
 
   events:
     "click" : "hide"
+    "click a#delete" : "deleteItem"
 
   render: =>
     $(@el).html( @template ( @model.toJSON()) )
@@ -18,3 +20,9 @@ class Stirs.Views.Items.PopoverView extends Backbone.View
 
   hide: =>
     $(@el).hide()
+
+  deleteItem: =>
+    # console.log('trying to delete item', @model)
+    # shelf = window.router.shelves.find(@model.get('shelf_id'))
+    # console.log("shelf", window.router.shelves.get(@model.get('shelf_id')))
+    @model.removeFromShelf()

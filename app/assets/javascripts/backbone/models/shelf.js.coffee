@@ -1,5 +1,6 @@
 class Stirs.Models.Shelf extends Backbone.Model
   paramRoot: 'shelf'
+  # urlRoot: "/shelves/"
 
   defaults:
     name: null

@@ -100,11 +100,20 @@ class ShelvesController < ApplicationController
 
   def destroy
     @shelf = current_user.shelves.find(params[:id])
-    if @shelf.destroy
-      flash[:success] = "Shelf destroyed"
-    else
-      flash[:failure] = "Could not destroy Shelf"
-    end
-    redirect_to user_shelves_path(current_user)      
+
+    respond_to do |format|
+      format.html do
+        if @shelf.destroy
+          flash[:success] = "Shelf destroyed"
+        else
+          flash[:failure] = "Could not destroy Shelf"
+        end
+        redirect_to user_shelves_path(current_user)            
+      end
+      format.json do
+        @shelf.destroy
+        render :json => {}
+      end
+    end      
   end
 end

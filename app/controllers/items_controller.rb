@@ -74,14 +74,23 @@ class ItemsController < ApplicationController
   end
 
   def destroy
+    puts "IN DESTROY #{params}"
     @shelf = current_user.shelves.find(params[:shelf_id])
     @item = @shelf.items.find(params[:id])
-    if @item.destroy
-      flash[:success] = "item destroyed"
-    else
-      flash[:failure] = "Could not destroy item"
-    end
-    redirect_to user_shelf_path(current_user, @shelf)  
+    respond_to do |format|
+      format.html do
+        if @item.destroy
+          flash[:success] = "item destroyed"
+        else
+          flash[:failure] = "Could not destroy item"
+        end
+        redirect_to user_shelf_path(current_user, @shelf)        
+      end
+      format.json do
+        @item.destroy
+        render :json => {}
+      end
+    end    
   end
 
   private

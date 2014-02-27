@@ -8,7 +8,7 @@ class Stirs.Views.Items.PopoverView extends Backbone.View
 
   events:
     "click" : "hide"
-    "click a#delete" : "deleteItem"
+    "click a#delete-item" : "deleteItem"
 
   render: =>
     $(@el).html( @template ( @model.toJSON()) )

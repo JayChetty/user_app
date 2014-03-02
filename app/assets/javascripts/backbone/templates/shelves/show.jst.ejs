@@ -4,17 +4,33 @@
   <b>Items </b>
 </p> -->
 <div class = "panel" >
-  <div class="right">
-    <a id="delete" href="#"> X </a>
-  </div>
-  <form>
-    <label for="name">Name</label>
-    <input id="name" name="Name" type="text">
-    <input id = "edit-btn" name="commit" type="button" value="Update Name" >
+
+  <h6 id = "namehead"> <%= name %></h6>
+
+  <form id = "nameform">
+    <div class = "row">
+      <div class = "small-6 columns">
+        <input id="name" name="Name" type="text">
+      </div>
+      <div class = "small-5 columns"> 
+        <input id = "edit-btn" name="commit" type="button" value="Save" >
+      </div>
+      <div class = "small-1 columns"> 
+        <a id="formclose" href="#"> x </a>
+      </div>
+    </div>
   </form>
 
-  <ul id='items' class = 'inline-list' >
-    
-  </ul>
+  <div class = "row">
+    <div class = "small-12 columns">
+      <ul id='items' class = 'inline-list' >       
+      </ul>
+    </div>
+  </div>
+
+  <div class="right">
+    <a id="delete" href="#"> x </a>
+  </div>
+
 </div<
 

@@ -8,6 +8,9 @@ class Stirs.Views.Shelves.ShowView extends Backbone.View
     "drop": "drop"
     "click #edit-btn" : "edit"
     "click #delete" : "delete"
+    "click #namehead" : "toggleEdit"
+    "click #formclose" : "toggleEdit"
+    # "click" : "closeEdit"
 
 
   delete: =>
@@ -17,11 +20,22 @@ class Stirs.Views.Shelves.ShowView extends Backbone.View
 
   initialize: =>
     @model.on('change', @render)
+    @editing = false
+
+  # closeEdit: =>
+  #   if @editing == true
+  #     @toggleEdit()
+
+  toggleEdit: =>
+    $(@el).find('#nameform').toggle()
+    $(@el).find('#namehead').toggle()
+    @editing = !@editing
 
   edit: =>
     name = $(@el).find('#name').val()
     @model.set('name', name)
     @model.save()
+    @toggleEdit()
 
   drop:(ev)=>
     itemText = ev.originalEvent.dataTransfer.getData('Item')
@@ -35,6 +49,7 @@ class Stirs.Views.Shelves.ShowView extends Backbone.View
   render: =>
     $(@el).html(@template(@model.toJSON() ))
     $(@el).find('#name').val(@model.get('name'))
+    $(@el).find('#nameform').hide()
     item_list = this.$('#items')[0]
     if @model.items.length == 0
       li = document.createElement("li")

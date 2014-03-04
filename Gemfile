@@ -13,8 +13,6 @@ gem 'amazon-ecs'
 gem 'geocoder'
 gem "rails-backbone"
 
-gem 'foundation-rails'
-
 gem 'jquery-ui-rails'
 
 

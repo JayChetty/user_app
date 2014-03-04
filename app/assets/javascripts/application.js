@@ -13,12 +13,9 @@
 //= require jquery
 //= require jquery_ujs
 //= require jquery.ui.all
-//= require foundation
 //= require underscore
 //= require backbone
 //= require backbone_rails_sync
 //= require backbone_datalink
 //= require backbone/stirs
 //= require_tree .
-
-$(function(){ $(document).foundation(); });

@@ -14,6 +14,7 @@
 //= require jquery_ujs
 //= require jquery.ui.all
 //= require underscore
+//= require bootstrap
 //= require backbone
 //= require backbone_rails_sync
 //= require backbone_datalink

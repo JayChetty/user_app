@@ -7,7 +7,7 @@ class Stirs.Views.Items.ItemFinderView extends Backbone.View
     "click #find_btn": 'findItem'
 
   tagName: "div"
-  className: "panel"
+  className: "panel panel-default"
   id: "finder"
 
   render: =>

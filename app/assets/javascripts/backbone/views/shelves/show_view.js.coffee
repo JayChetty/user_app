@@ -12,7 +12,9 @@ class Stirs.Views.Shelves.ShowView extends Backbone.View
     "click #formclose" : "toggleEdit"
     "click #show-finder" : "finderToggle"
 
-  finderToggle: =>
+  finderToggle:(event) =>
+    event.preventDefault()
+    console.log('showing view')
     $('#finder').toggle()
 
   delete: =>
@@ -24,9 +26,6 @@ class Stirs.Views.Shelves.ShowView extends Backbone.View
     @model.on('change', @render)
     @editing = false
 
-  # closeEdit: =>
-  #   if @editing == true
-  #     @toggleEdit()
 
   toggleEdit: =>
     $(@el).find('#nameform').toggle()

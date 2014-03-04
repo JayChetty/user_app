@@ -16,12 +16,12 @@ class Stirs.Views.Items.PopoverView extends Backbone.View
     @
 
   open: =>
-    @backdrop = $("<div class='modal-backdrop'>")
-    $('body').append(@backdrop)
+    # @backdrop = $("<div class='modal-backdrop'>")
+    # $('body').append(@backdrop)
     $(@el).show()
 
   hide: =>
-    @backdrop.remove()
+    # @backdrop.remove()
     $(@el).hide()
 
   deleteItem: =>

@@ -5,37 +5,25 @@
 </p> -->
 <div class = "panel panel-default" >
   <div class="panel-heading">
-    <h4 id = "namehead"> <%= name %></h4>
+    <div class="pull-right">
+      <a id="delete" href="#" class="btn btn-default"> Delete Shelf </a>
+    </div>      
+
+    <h2 id = "namehead"> <%= name %></h2>
 
     <form id = "nameform">
-      <div class = "row">
-        <div class = "small-6 columns">
-          <input id="name" name="Name" type="text">
-        </div>
-        <div class = "small-5 columns"> 
-          <input id = "edit-btn" name="commit" type="button" value="Save" >
-        </div>
-        <div class = "small-1 columns"> 
-          <a id="formclose" href="#"> x </a>
-        </div>
-      </div>
-    </form>
+      <input id="name" name="Name" type="text">
+      <input id = "edit-btn" name="commit" type="button" value="Save" >
+      <a id="formclose" href="#"> x </a>
+    </form>  
   </div>
 
   <div class="panel-body">
-    <div class = "row">
-      <div class = "small-12 columns">
-        <ul id='items' class = 'list-inline' >       
-        </ul>
-      </div>
-    </div>
-    <div class = "row">
-      <div class = "small-12 columns">
-        <div class="right">
-          <a id="show-finder" href="#" class="btn btn-default"> Finder </a>
-          <a id="delete" href="#"> x </a>
-        </div>
-      </div>
+    <ul id='items' class = 'list-inline items' >       
+    </ul>
+
+    <div class="pull-right">
+      <a id="show-finder" href="" class="btn btn-default"> Add Item <span class="glyphicon glyphicon-chevron-down"></span> </a>
     </div>
   </div>
 

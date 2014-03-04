@@ -1,25 +1,23 @@
-<div class="row">
-  <div class="large-3 columns">
-    <form>
-      <label for="title">Title</label>
-      <input id="title" name="title" type="text">
-      <label for="creator">Creator</label>
-      <input id="creator" name="creator" type="text">
+<div class = "panel-heading">
+  <form>
+    <label for="title">Title</label>
+    <input id="title" name="title" type="text">
+    <label for="creator">Creator</label>
+    <input id="creator" name="creator" type="text">
+<!--     <label for="medium">Type</label>
+    <select id = 'medium'>
+      <option value="read">Book</option>
+      <option value="track">Track</option>
+      <option value="show">Film/Show</option>
+    </select> -->
 
-  <!--     <label for="medium">Type</label>
-      <select id = 'medium'>
-        <option value="read">Book</option>
-        <option value="track">Track</option>
-        <option value="show">Film/Show</option>
-      </select> -->
+    <input id = "find_btn" name="commit" type="button" value="Find" >
+  </form>
+</div>
 
-      <input id = "find_btn" name="commit" type="button" value="Find" >
-    </form>
-  </div>
-  <div class="large-9 columns">
-    <ul id='found_items', class = "inline-list" >
-    </ul>
-  </div>
+<div class = "panel-body">
+  <ul id='found_items', class = "list-inline" >
+  </ul>
 </div>
 
 

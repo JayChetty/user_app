@@ -3,37 +3,41 @@
   <%= name %>
   <b>Items </b>
 </p> -->
-<div class = "panel" >
+<div class = "panel panel-default" >
+  <div class="panel-heading">
+    <h4 id = "namehead"> <%= name %></h4>
 
-  <h6 id = "namehead"> <%= name %></h6>
+    <form id = "nameform">
+      <div class = "row">
+        <div class = "small-6 columns">
+          <input id="name" name="Name" type="text">
+        </div>
+        <div class = "small-5 columns"> 
+          <input id = "edit-btn" name="commit" type="button" value="Save" >
+        </div>
+        <div class = "small-1 columns"> 
+          <a id="formclose" href="#"> x </a>
+        </div>
+      </div>
+    </form>
+  </div>
 
-  <form id = "nameform">
+  <div class="panel-body">
     <div class = "row">
-      <div class = "small-6 columns">
-        <input id="name" name="Name" type="text">
-      </div>
-      <div class = "small-5 columns"> 
-        <input id = "edit-btn" name="commit" type="button" value="Save" >
-      </div>
-      <div class = "small-1 columns"> 
-        <a id="formclose" href="#"> x </a>
+      <div class = "small-12 columns">
+        <ul id='items' class = 'list-inline' >       
+        </ul>
       </div>
     </div>
-  </form>
+    <div class = "row">
+      <div class = "small-12 columns">
+        <div class="right">
+          <a id="show-finder" href="#" class="btn btn-default"> Finder </a>
+          <a id="delete" href="#"> x </a>
+        </div>
+      </div>
+    </div>
+  </div>
 
-  <div class = "row">
-    <div class = "small-12 columns">
-      <ul id='items' class = 'inline-list' >       
-      </ul>
-    </div>
-  </div>
-  <div class = "row">
-    <div class = "small-12 columns">
-      <div class="right">
-        <a id="show-finder" href="#" class="button tiny"> Finder </a>
-        <a id="delete" href="#"> x </a>
-      </div>
-    </div>
-  </div>
 </div<
 

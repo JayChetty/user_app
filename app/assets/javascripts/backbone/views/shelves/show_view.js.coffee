@@ -10,8 +10,10 @@ class Stirs.Views.Shelves.ShowView extends Backbone.View
     "click #delete" : "delete"
     "click #namehead" : "toggleEdit"
     "click #formclose" : "toggleEdit"
-    # "click" : "closeEdit"
+    "click #show-finder" : "finderToggle"
 
+  finderToggle: =>
+    $('#finder').toggle()
 
   delete: =>
     @model.destroy()

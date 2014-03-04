@@ -7,9 +7,12 @@ class Stirs.Views.Items.ItemFinderView extends Backbone.View
     "click #find_btn": 'findItem'
 
   tagName: "div"
+  className: "panel"
+  id: "finder"
 
   render: =>
     $(@el).html(@template())
+    $(@el).hide()
     return this
 
   findItem:(ev) =>

@@ -6,11 +6,12 @@ class Stirs.Views.Shelves.ShelfView extends Backbone.View
   events:
     "click .destroy" : "destroy"
 
-  # tagName: "li"
+  tagName: "li"
   # initialize: () ->
     
   initialize: =>
     @model.on('change', @render)
+    @el.id= "index-#{@model.get('id')}"
 
   destroy: () =>
     @model.destroy()

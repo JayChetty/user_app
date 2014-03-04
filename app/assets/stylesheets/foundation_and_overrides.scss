@@ -1,7 +1,8 @@
 //
 // FOUNDATION SETTINGS
 //
-
+$primary-color: #243497;
+$panel-color: #444;
 // This is the default html and body font-size for the base rem value.
 // $rem-base: 16px;
 
@@ -31,14 +32,14 @@
 // $include-html-grid-classes: $include-html-classes;
 // $include-xl-html-grid-classes: false;
 
-// $row-width: rem-calc(1000);
+$row-width: rem-calc(2000);
 // $column-gutter: rem-calc(30);
 // $total-columns: 12;
 
 // We use these to control various global styles
-// $body-bg: #fff;
+$body-bg: #fff;
 // $body-font-color: #222;
-// $body-font-family: "Helvetica Neue", "Helvetica", Helvetica, Arial, sans-serif;
+$body-font-family: "Helvetica Neue", "Helvetica", Helvetica, Arial, sans-serif;
 // $body-font-weight: normal;
 // $body-font-style: normal;
 
@@ -762,7 +763,7 @@
 // $include-html-panel-classes: $include-html-classes;
 
 // We use these to control the background and border styles
-// $panel-bg: scale-color(#fff, $lightness: -5%);
+$panel-bg: #444;
 // $panel-border-style: solid;
 // $panel-border-size: 1px;
 
@@ -900,10 +901,10 @@
 // $side-nav-list-margin: rem-calc(0 0 7 0);
 
 // We use these to control link styles.
-// $side-nav-link-color: $primary-color;
+$side-nav-link-color: $primary-color;
 // $side-nav-link-color-active: scale-color($side-nav-link-color, $lightness: 30%);
 // $side-nav-link-color-hover: scale-color($side-nav-link-color, $lightness: 30%);
-// $side-nav-font-size: rem-calc(14);
+$side-nav-font-size: rem-calc(14);
 // $side-nav-font-weight: normal;
 // $side-nav-font-family: $body-font-family;
 // $side-nav-active-font-family: $side-nav-font-family;
@@ -911,9 +912,9 @@
 
 
 // We use these to control border styles
-// $side-nav-divider-size: 1px;
-// $side-nav-divider-style: solid;
-// $side-nav-divider-color: scale-color(#fff, $lightness: -10%);
+$side-nav-divider-size: 5px;
+$side-nav-divider-style: solid;
+$side-nav-divider-color: scale-color(#000, $lightness: -10%);
 
 // Split Buttons
 

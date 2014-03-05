@@ -34,11 +34,11 @@ class Shelf < ActiveRecord::Base
   #   iconstring
   # end
 
-  def icon 
+  def icon # refactor only send an array of medium
     iconstring = ""
-    iconstring << "<i class=\"icon-book\"></i>" if self.items.find(:all, conditions: ["medium = 'read'"]).any?
-    iconstring << "<i class=\"icon-music\"></i>" if self.items.find(:all, conditions: ["medium = 'track'"]).any?
-    iconstring << "<i class=\"icon-film\"></i>" if self.items.find(:all, conditions: ["medium = 'show'"]).any?
+    iconstring << "<span class=\"glyphicon glyphicon-book\"></span>" if self.items.find(:all, conditions: ["medium = 'read'"]).any?
+    iconstring << "<span class=\"glyphicon glyphicon-music\"></span>" if self.items.find(:all, conditions: ["medium = 'track'"]).any?
+    iconstring << "<span class=\"glyphicon glyphicon-film\"></span>" if self.items.find(:all, conditions: ["medium = 'show'"]).any?
 
     iconstring
 

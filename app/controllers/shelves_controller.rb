@@ -93,7 +93,7 @@ class ShelvesController < ApplicationController
 
     respond_to do |format|
       format.html
-      format.json { render :json => @shelves.to_json( :include => :items) }
+      format.json { render :json => @shelves.to_json( :include => :items, :methods => :icon) }
     end
 
   end

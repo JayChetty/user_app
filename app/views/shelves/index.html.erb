@@ -15,7 +15,7 @@
 <script type="text/javascript">
   $(function() {
     // Blog is the app name
-    window.router = new Stirs.Routers.ShelvesRouter({ shelves: <%=@shelves.to_json(:include => :items).html_safe %> });
+    window.router = new Stirs.Routers.ShelvesRouter({ shelves: <%=@shelves.to_json(:include => :items,:methods => :icon).html_safe %> });
     Backbone.history.start();
   });
 </script>

@@ -15,7 +15,7 @@ class Stirs.Views.Shelves.ShowView extends Backbone.View
   finderToggle:(event) =>
     event.preventDefault()
     console.log('showing view')
-    $('#finder').toggle()
+    $('#finder').slideToggle()
 
   delete: =>
     @model.destroy()

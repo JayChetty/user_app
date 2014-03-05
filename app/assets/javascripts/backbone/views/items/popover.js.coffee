@@ -7,25 +7,19 @@ class Stirs.Views.Items.PopoverView extends Backbone.View
   className: "item-popover" 
 
   events:
-    "click" : "hide"
     "click a#delete-item" : "deleteItem"
 
   render: =>
     $(@el).html( @template ( @model.toJSON()) )
-    $(@el).hide()
     @
 
   open: =>
-    # @backdrop = $("<div class='modal-backdrop'>")
-    # $('body').append(@backdrop)
-    $(@el).show()
+    @$(".modal").modal('show')
 
   hide: =>
-    # @backdrop.remove()
-    $(@el).hide()
+    @$(".modal").modal('hide')
 
-  deleteItem: =>
-    # console.log('trying to delete item', @model)
-    # shelf = window.router.shelves.find(@model.get('shelf_id'))
-    # console.log("shelf", window.router.shelves.get(@model.get('shelf_id')))
-    @model.removeFromShelf()
+  deleteItem:(event) =>
+    @$(".modal").modal('hide').on('hidden.bs.modal',=>
+      @model.removeFromShelf()
+    )

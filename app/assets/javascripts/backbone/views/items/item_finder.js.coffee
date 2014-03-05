@@ -18,8 +18,8 @@ class Stirs.Views.Items.ItemFinderView extends Backbone.View
   findItem:(ev) =>
     title = $(@el).find('#title').val()
     creator = $(@el).find('#creator').val()
-    # medium = $('#medium').val()
-    medium = "read"
+    medium = $('#medium').val()
+    # medium = "read"
     $.ajax
       dataType: "json"
       url: "/items/new"

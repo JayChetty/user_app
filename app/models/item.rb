@@ -18,8 +18,10 @@ class Item < ActiveRecord::Base
   MEDIUM_DESC = {"read" => "Author", "track" => "Artist", "show" => "Actors"} 
   MEDIUM_ICON = {"read" => '<i class="icon-book"></i>', "track" => '<i class="icon-music"></i>', "show" => '<i class="icon-film"></i>'}  
 
-  attr_accessible :creator, :image_url, :medium, :title, :url
+  attr_accessible :creator, :image_url, :medium, :title, :url, :extra_attributes, :large_image_url, :blurb, :alt_image_url
 
+  serialize :extra_attributes, Hash
+  
   belongs_to :shelf
   has_many :feelings, as: :feelable, dependent: :destroy
   has_many :cards, dependent: :destroy

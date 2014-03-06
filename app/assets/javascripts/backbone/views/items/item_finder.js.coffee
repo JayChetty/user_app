@@ -35,6 +35,7 @@ class Stirs.Views.Items.ItemFinderView extends Backbone.View
     item_list = jlist[0]
 
     _.each(@found_items.models, (item) =>
+      console.log('found item CUNT', item)
       item_view = new Stirs.Views.Items.ItemView({model : item})
       item_view.setIsDraggable(true)
       item_list.appendChild(item_view.render().el)

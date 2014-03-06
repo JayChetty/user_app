@@ -4,29 +4,33 @@ class ItemsController < ApplicationController
 
   def new 
     if params[:title] || params[:creator]
-      puts("searching amazon")
-      @xml_items = getFromAmazon(title = params[:title], creator = params[:creator], medium = params[:medium])
+      amazon_items = AmazonItems.new(title: params[:title], creator: params[:creator], medium: params[:medium])
+      amazon_items.fetch
+      puts "amazon items #{amazon_items}"
+      @items = amazon_items.as_native
+      puts "items #{@items}"
+      # @xml_items = getFromAmazon(title = params[:title], creator = params[:creator], medium = params[:medium])
 
-      creator_hash = {read: "Author", } 
+      # creator_hash = {read: "Author", } 
 
-       case params[:medium]
-       when "read"
-         creator = 'Author'
-       when "track"
-         # creator = 'Creator' || item.get("ItemAttributes/Artist")
-         creator = 'Creator'
-       when "show" 
-         creator = 'Actor'
-       end 
+      #  case params[:medium]
+      #  when "read"
+      #    creator = 'Author'
+      #  when "track"
+      #    # creator = 'Creator' || item.get("ItemAttributes/Artist")
+      #    creator = 'Creator'
+      #  when "show" 
+      #    creator = 'Actor'
+      #  end 
 
-      @items = @xml_items.map do |item|
-        item = Item.new(creator: item.get("ItemAttributes/#{creator}") ,title: item.get('ItemAttributes/Title'), 
-        image_url: item.get("SmallImage/URL"), url: item.get("DetailPageURL"), medium: params[:medium])  
-      end
-
-      # if params[:medium] == 'track' && !item.creator
-      #   item.update_attribute(:creator, item.get("ItemAttributes/Artist"))
+      # @items = @xml_items.map do |item|
+      #   item = Item.new(creator: item.get("ItemAttributes/#{creator}") ,title: item.get('ItemAttributes/Title'), 
+      #   image_url: item.get("SmallImage/URL"), url: item.get("DetailPageURL"), medium: params[:medium],  extra_attributes: { blurb: item.get('ItemAttributes/Binding') } )  
       # end
+
+      # # if params[:medium] == 'track' && !item.creator
+      # #   item.update_attribute(:creator, item.get("ItemAttributes/Artist"))
+      # # end
 
     end
     respond_to do |format|
@@ -93,33 +97,34 @@ class ItemsController < ApplicationController
     end    
   end
 
-  private
-    def getFromAmazon(title, creator, medium)
+  # private
+  #   def getFromAmazon(title, creator, medium)
 
-      country = "us"
+  #     country = "us"
 
-      case request.location.country
-      when "United Kingdom"
-        country = "uk"
-      else
-        country = "us"
-      end
+  #     case request.location.country
+  #     when "United Kingdom"
+  #       country = "uk"
+  #     else
+  #       country = "us"
+  #     end
+
      	
-     	case medium
-     	when "read"
-      	result = Amazon::Ecs.item_search(title, :author => creator, :country => "uk", :response_group => "Medium", :binding => "paperback").items
-      when "track"
-      	result = Amazon::Ecs.item_search("#{title} #{creator}", :country => "uk", :response_group => "Medium", :search_index => "MP3Downloads").items
+  #    	case medium
+  #    	when "read"
+  #     	result = Amazon::Ecs.item_search(title, :author => creator, :country => "uk", :response_group => "Medium", :binding => "paperback").items
+  #     when "track"
+  #     	result = Amazon::Ecs.item_search("#{title} #{creator}", :country => "uk", :response_group => "Medium", :search_index => "MP3Downloads").items
 
-        if result.empty?
-           result = Amazon::Ecs.item_search(title, :artist => creator, :country => "uk", :response_group => "Medium", :search_index => "Music").items
-        end
-      when "show"
-         result = Amazon::Ecs.item_search(title, :actor => creator, :country => "uk", :response_group => "Medium", :search_index => "DVD").items
-         #result = Amazon::Ecs.item_search("#{title} #{creator}", :country => "uk", :response_group => "Medium").items 
-      end
+  #       if result.empty?
+  #          result = Amazon::Ecs.item_search(title, :artist => creator, :country => "uk", :response_group => "Medium", :search_index => "Music").items
+  #       end
+  #     when "show"
+  #        result = Amazon::Ecs.item_search(title, :actor => creator, :country => "uk", :response_group => "Medium", :search_index => "DVD").items
+  #        #result = Amazon::Ecs.item_search("#{title} #{creator}", :country => "uk", :response_group => "Medium").items 
+  #     end
 
-      result
-    end
+  #     result
+  #   end
 end
 

@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20131119073101) do
+ActiveRecord::Schema.define(:version => 20140305201419) do
 
   create_table "cards", :force => true do |t|
     t.integer  "sender_id"
@@ -53,8 +53,12 @@ ActiveRecord::Schema.define(:version => 20131119073101) do
     t.string   "creator"
     t.string   "url"
     t.string   "image_url"
-    t.datetime "created_at", :null => false
-    t.datetime "updated_at", :null => false
+    t.datetime "created_at",       :null => false
+    t.datetime "updated_at",       :null => false
+    t.string   "extra_attributes"
+    t.text     "blurb"
+    t.string   "large_image_url"
+    t.string   "alt_image_url"
   end
 
   add_index "items", ["shelf_id"], :name => "index_items_on_shelf_id"

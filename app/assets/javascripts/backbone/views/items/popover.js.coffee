@@ -10,7 +10,13 @@ class Stirs.Views.Items.PopoverView extends Backbone.View
     "click a#delete-item" : "deleteItem"
 
   render: =>
-    $(@el).html( @template ( @model.toJSON()) )
+    data =  @model.toJSON()
+    console.log('large image', @model.get('large_image_url'))
+    if @model.get('large_image_url') != null
+      data.display_image = @model.get('large_image_url')
+    else
+      data.display_image = @model.get('image_url')
+    $(@el).html( @template (data) )
     @
 
   open: =>

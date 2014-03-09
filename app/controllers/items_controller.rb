@@ -4,7 +4,11 @@ class ItemsController < ApplicationController
 
   def new 
     if params[:title] || params[:creator]
-      amazon_items = AmazonItems.new(title: params[:title], creator: params[:creator], medium: params[:medium])
+      amazon_items = AmazonItems.new(
+        title: params[:title], 
+        creator: params[:creator], 
+        medium: params[:medium]
+      )
       amazon_items.fetch
       puts "amazon items #{amazon_items}"
       @items = amazon_items.as_native
@@ -48,7 +52,15 @@ class ItemsController < ApplicationController
   def create
     @shelf = current_user.shelves.find(params[:shelf_id])
     #@item = @shelf.items.build(creator: params[:creator] ,title: params[:title] , image_url: params[:image_url], url: params[:url], medium: params[:medium]  )
-    @item = @shelf.items.build(creator: params[:item][:creator] ,title: params[:item][:title] , image_url: params[:item][:image_url], url: params[:item][:url], medium: params[:item][:medium]  )
+    @item = @shelf.items.build(
+      creator: params[:item][:creator] ,
+      title: params[:item][:title] , 
+      image_url: params[:item][:image_url],
+      large_image_url: params[:item][:large_image_url],
+      blurb: params[:item][:blurb], 
+      url: params[:item][:url], 
+      medium: params[:item][:medium]  
+    )
     
     if @item.save
       flash[:success] = "Item Added"

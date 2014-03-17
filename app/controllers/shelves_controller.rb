@@ -24,7 +24,7 @@ class ShelvesController < ApplicationController
       end
       format.json do
         @shelf.save
-        render :json => @shelf.to_json
+        render :json => @shelf.to_json(:methods => :icon)
       end
     end    
 
@@ -62,7 +62,7 @@ class ShelvesController < ApplicationController
       end
       format.json do
         @shelf.update_attribute(:name, name)
-        render :json => @shelf.to_json
+        render :json => @shelf.to_json(:methods => :icon) 
       end
     end
   end
